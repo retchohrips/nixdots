@@ -1,27 +1,32 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  pkgs,
+  userSettings,
+  systemSettings,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub.useOSProber = false;
 
-  environment.shells = with pkgs; [ fish ];
+  environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
+  programs.fish.shellAliases = {
+    ls = "eza --icons";
+  };
 
   programs.hyprland.enable = true;
 
-  networking.hostName = "BUNVM"; # Define your hostname.
+  networking.hostName = systemSettings.hostname;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -54,7 +59,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -86,10 +91,10 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bunny = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
-    description = "Bunny";
-    extraGroups = [ "networkmanager" "wheel" ];
+    description = userSettings.name;
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
     ];
@@ -105,6 +110,11 @@
     wget
     git
     eza
+    fishPlugins.puffer
+    nil # nix LS
+    alejandra # nix formatter
+    statix # lints and suggestions
+    deadnix # clean up unused nix code
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

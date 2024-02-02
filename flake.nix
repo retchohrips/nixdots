@@ -1,5 +1,4 @@
 {
-
   description = "My first flake!";
 
   inputs = {
@@ -7,29 +6,59 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    astronvim = { url = "github:AstroNvim/AstroNvim/v3.42.0"; flake = false; };
+    astronvim = {
+      url = "github:AstroNvim/AstroNvim/main";
+      flake = false;
+    };
+
+    stylix.url = "github:danth/stylix";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs:
-    let
-      lib = nixpkgs.lib;
+  outputs = {
+    self,
+    nixpkgs,
+    stylix,
+    home-manager,
+    nixos-hardware,
+    ...
+  } @ inputs: let
+    lib = nixpkgs.lib;
+    systemSettings = rec {
       system = "x86_64-linux";
-    in {
+      hostname = "BUNVM";
+    };
+    userSettings = rec {
+      username = "bunny";
+      name = "Rabbit";
+    };
+  in {
     nixosConfigurations = {
-      BUNVM = lib.nixosSystem {
-        inherit system;
+      ${systemSettings.hostname} = lib.nixosSystem {
+        system = systemSettings.system;
+        specialArgs = {
+          inherit userSettings;
+          inherit systemSettings;
+        };
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
+          nixos-hardware.nixosModules.dell-inspiron-5509
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bunny = import ./home.nix;
-            home-manager.extraSpecialArgs = attrs;
+            home-manager.users.${userSettings.username} = import ./home.nix;
+            stylix.image = ./wallpapers/Makima_Persona.png;
+            home-manager.extraSpecialArgs = {
+              inherit userSettings;
+              inherit (inputs) astronvim;
+              inherit stylix;
+            };
           }
         ];
       };
     };
   };
-
 }

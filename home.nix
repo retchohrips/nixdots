@@ -1,13 +1,23 @@
-{ pkgs, astronvim, lib, ... }:
-
 {
-
-  imports = [ ./hyprland.nix ];
+  pkgs,
+  userSettings,
+  stylix,
+  ...
+}: {
+  imports = [
+    ./hyprland.nix
+    ./starship.nix
+    ./nvim.nix
+    ./stylix.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "bunny";
-  home.homeDirectory = "/home/bunny";
+  # home.username = userSettings.username;
+  # home.homeDirectory = "/home/" + userSettings.username;
+
+  home.username = userSettings.username;
+  home.homeDirectory = "/home/" + userSettings.username;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -21,12 +31,11 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -39,7 +48,6 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -77,39 +85,33 @@
     set fish_greeting # Disable greeting
   '';
 
-  programs.starship.enable = true;
-  programs.starship.enableTransience = true;
-  programs.starship.settings = {
-    format = lib.concatStrings [
-      "$username"
-    ];
-    character = {
-      succes_symbol = "xx";
+  programs.gh.enable = true;
+
+  programs.git = {
+    enable = true;
+    userEmail = "44993244+retchohrips@users.noreply.github.com";
+    userName = "retchohrips";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
     };
   };
 
-  programs.neovim =
-  {
+  programs.git.delta.enable = true;
+
+  programs.kitty = {
     enable = true;
-
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-
-    extraPackages = with pkgs; [
-      gcc # It gets mad if it can't compile C...
-      unzip
-      wget
-      curl
-      tree-sitter
-      ripgrep
-      lazygit
-    ];
+    settings = {
+      font = "JetBrainsMono NF";
+      cursor_shape = "beam";
+      window_padding_width = 5;
+      confirm_os_window_close = 0;
+    };
   };
 
   programs.foot = {
-    enable = true;
+    enable = false;
     settings = {
       main = {
         font = "JetBrainsMono NF:size=10";
@@ -143,18 +145,6 @@
         bright6 = "94e2d5";
         bright7 = "a6adc8";
       };
-    };
-  };
-
-  xdg.configFile = {
-    astronvim = {
-      onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
-      source = ./astronvim;
-    };
-
-    nvim = {
-      onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
-      source = astronvim;
     };
   };
 
