@@ -1,0 +1,5 @@
+# hardware-configuration differs between systems and is auto generated
+hardware-configuration.nix
+
+# lock files
+flake.lock
