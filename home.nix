@@ -1,13 +1,12 @@
 {
   pkgs,
   userSettings,
-  stylix,
   ...
 }: {
   imports = [
-    ./hyprland.nix
-    ./starship.nix
-    ./nvim.nix
+    ./programs/hyprland.nix
+    ./programs/starship.nix
+    ./programs/nvim.nix
     ./stylix.nix
   ];
 

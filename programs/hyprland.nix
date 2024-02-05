@@ -1,11 +1,8 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  imports = [./waybar];
+
   home.packages = with pkgs; [
     swww
-    waybar
   ];
 
   # home.pointerCursor = {
@@ -30,7 +27,7 @@
 
   home.file = {
     ".wallpapers" = {
-      source = ./wallpapers;
+      source = ../wallpapers;
       recursive = true;
     };
   };
