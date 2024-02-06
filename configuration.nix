@@ -121,6 +121,7 @@
     lazygit
     nodejs
     cargo
+    rustdesk
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -135,8 +136,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  services.teamviewer.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
