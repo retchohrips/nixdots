@@ -13,9 +13,7 @@
   ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = false;
+  boot.loader.systemd-boot.enable = true;
 
   environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
@@ -115,6 +113,14 @@
     alejandra # nix formatter
     statix # lints and suggestions
     deadnix # clean up unused nix code
+    gcc # astronvim gets mad if it can't compile C...
+    unzip
+    curl
+    tree-sitter
+    ripgrep
+    lazygit
+    nodejs
+    cargo
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -129,6 +135,8 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  services.teamviewer.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

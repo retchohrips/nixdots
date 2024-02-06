@@ -27,11 +27,11 @@
     lib = nixpkgs.lib;
     systemSettings = rec {
       system = "x86_64-linux";
-      hostname = "BUNVM";
+      hostname = "pawpad";
     };
     userSettings = rec {
-      username = "bunny";
-      name = "Rabbit";
+      username = "puppy";
+      name = "Pup";
     };
   in {
     nixosConfigurations = {

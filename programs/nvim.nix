@@ -10,16 +10,6 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-
-    extraPackages = with pkgs; [
-      gcc # It gets mad if it can't compile C...
-      unzip
-      wget
-      curl
-      tree-sitter
-      ripgrep
-      lazygit
-    ];
   };
 
   xdg.configFile = {

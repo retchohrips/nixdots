@@ -32,6 +32,8 @@
     };
   };
 
+  programs.waybar.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -39,7 +41,7 @@
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
         "waybar"
         "swww init"
-        "swww img ~/.wallpapers/Makima_Persona.png"
+        "sleep 10 ; swww img ~/.wallpapers/Makima_Persona.png"
       ];
       monitor = [",preferred,auto,1"];
       general = {
