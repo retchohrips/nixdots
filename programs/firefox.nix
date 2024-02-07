@@ -9,17 +9,6 @@
     profiles.default = {
       name = "Default";
       settings = {
-        # Personal
-        "browser.tabs.loadInBackground" = true;
-
-        # Theming
-        "svg.context-properties.content.enabled" = true;
-        "gnomeTheme.hideSingleTab" = true;
-        "gnomeTheme.bookmarksToolbarUnderTabs" = true;
-        "gnomeTheme.normalWidthTabs" = false;
-        "gnomeTheme.tabsAsHeaderbar" = false;
-        "browser.toolbars.bookmarks.visibility" = "never";
-
         # Betterfox
 
         /*
@@ -132,7 +121,7 @@
         */
         "browser.search.separatePrivateDefault.ui.enabled" = true;
         "browser.urlbar.update2.engineAliasRefresh" = true;
-        "browser.search.suggest.enabled" = false;
+        "browser.search.suggest.enabled" = true;
         "browser.urlbar.suggest.quicksuggest.sponsored" = false;
         "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
         "browser.formfill.enable" = false;
@@ -324,6 +313,22 @@
         "browser.menu.showViewImageInfo" = true;
         "findbar.highlightAll" = true;
         "layout.word_select.eat_space_to_next_word" = false;
+
+        # Personal
+        "browser.tabs.loadInBackground" = true;
+
+        # Theming
+        "svg.context-properties.content.enabled" = true;
+        "gnomeTheme.hideSingleTab" = true;
+        "gnomeTheme.bookmarksToolbarUnderTabs" = true;
+        "gnomeTheme.normalWidthTabs" = false;
+        "gnomeTheme.tabsAsHeaderbar" = false;
+        "browser.toolbars.bookmarks.visibility" = "never";
+
+        # Smoothfox
+        "apz.overscroll.enabled" = true;
+        "general.smoothScroll" = true;
+        "mousewheel.default.delta_multiplier_y" = 275;
       };
       userChrome =
         /*
