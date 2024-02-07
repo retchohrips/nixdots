@@ -9,6 +9,7 @@
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
       "org/gnome/desktop/interface".clock-format = "12h";
+      "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -19,7 +20,7 @@
         command = "kitty";
         name = "open-terminal";
       };
-      "org/gnome/desktop/wm/keybindings".close = "<Super>c";
+      "org/gnome/desktop/wm/keybindings" = {close = ["<Super>c"];};
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [
