@@ -4,10 +4,12 @@
   ...
 }: {
   imports = [
-    ./programs/hyprland.nix
+    # ./dewm/hyprland.nix
     ./programs/starship.nix
     ./programs/nvim.nix
-    ./stylix.nix
+    ./programs/firefox.nix
+    ./dewm/gnome.nix
+    # ./stylix.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -101,49 +103,12 @@
 
   programs.kitty = {
     enable = true;
+    theme = "Catppuccin-Mocha";
     settings = {
       font = "JetBrainsMono NF";
       cursor_shape = "beam";
       window_padding_width = 5;
       confirm_os_window_close = 0;
-    };
-  };
-
-  programs.foot = {
-    enable = false;
-    settings = {
-      main = {
-        font = "JetBrainsMono NF:size=10";
-        underline-offset = 1;
-        underline-thickness = 1;
-        box-drawings-uses-font-glyphs = "yes";
-        pad = "12x12 center";
-        bold-text-in-bright = "no";
-      };
-      cursor = {
-        style = "beam";
-        blink = "yes";
-      };
-      colors = {
-        foreground = "cdd6f4";
-        background = "1e1e2e";
-        regular0 = "45475a";
-        regular1 = "f38ba8";
-        regular2 = "a6e3a1";
-        regular3 = "f9e2af";
-        regular4 = "89b4fa";
-        regular5 = "f5c2e7";
-        regular6 = "94e2d5";
-        regular7 = "bac2de";
-        bright0 = "585b70";
-        bright1 = "f38ba8";
-        bright2 = "a6e3a1";
-        bright3 = "f9e2af";
-        bright4 = "89b4fa";
-        bright5 = "f5c2e7";
-        bright6 = "94e2d5";
-        bright7 = "a6adc8";
-      };
     };
   };
 

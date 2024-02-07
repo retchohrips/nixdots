@@ -7,13 +7,10 @@
   systemSettings,
   ...
 }: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = ["ntfs"];
 
   environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
@@ -21,8 +18,6 @@
   programs.fish.shellAliases = {
     ls = "eza --icons";
   };
-
-  programs.hyprland.enable = true;
 
   networking.hostName = systemSettings.hostname;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -57,12 +52,12 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -94,9 +89,14 @@
     description = userSettings.name;
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      firefox
+      vscode.fhs
+      telegram-desktop
     ];
   };
+
+  time.hardwareClockInLocalTime = true;
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -121,8 +121,10 @@
     lazygit
     nodejs
     cargo
-    rustdesk
+    gh
   ];
+
+  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

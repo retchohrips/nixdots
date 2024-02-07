@@ -1,6 +1,6 @@
 {
   pkgs,
-  astronvim,
+  inputs,
   ...
 }: {
   programs.neovim = {
@@ -20,7 +20,7 @@
 
     nvim = {
       onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
-      source = astronvim;
+      source = inputs.astronvim;
     };
   };
 }
