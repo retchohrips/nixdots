@@ -8,6 +8,7 @@
     ./programs/starship.nix
     ./programs/nvim.nix
     ./programs/firefox.nix
+    ./programs/beets.nix
     ./dewm/gnome.nix
     # ./stylix.nix
   ];
