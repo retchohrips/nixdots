@@ -2,6 +2,7 @@
   pkgs,
   userSettings,
   systemSettings,
+  inputs,
   ...
 }: {
   # Bootloader

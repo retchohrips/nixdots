@@ -47,6 +47,7 @@
           specialArgs = {
             inherit systemSettings;
             inherit userSettings;
+            inherit inputs;
           };
           modules = [
             ./configuration.nix
@@ -79,6 +80,7 @@
           specialArgs = {
             inherit systemSettings;
             inherit userSettings;
+            inherit inputs;
           };
           modules = [
             ./configuration.nix
@@ -93,7 +95,7 @@
               # stylix.image = ./wallpapers/Makima_Persona.png;
               home-manager.extraSpecialArgs = {
                 inherit userSettings;
-                inherit (inputs) astronvim;
+                inherit inputs;
                 # inherit stylix;
               };
             }
