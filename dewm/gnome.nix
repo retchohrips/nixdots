@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  userSettings,
   ...
 }: {
   dconf = {
@@ -36,6 +37,13 @@
       };
       "org/gnome/shell/extensions/user-theme" = {
         name = "Catppuccin-Mocha-Standard-Blue-Dark";
+      };
+      "org/gnome/desktop/background" = {
+        picture-uri = "file:///home/${userSettings.username}/.local/share/backgrounds/Makima_Persona.png";
+        picture-uri-dark = "file:///home/${userSettings.username}/.local/share/backgrounds/Makima_Persona.png";
+      };
+      "org/gnome/desktop/screensaver" = {
+        picture-uri = "file:///home/${userSettings.username}/.local/share/backgrounds/Makima_Persona.png";
       };
       "org/gnome/shell/extensions/dash-to-dock" = {
         custom-theme-shrink = true;

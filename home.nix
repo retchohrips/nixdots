@@ -53,6 +53,13 @@
     # EDITOR = "emacs";
   };
 
+  home.file = {
+    ".local/share/backgrounds" = {
+      source = ./wallpapers;
+      recursive = true;
+    };
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
