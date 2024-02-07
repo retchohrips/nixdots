@@ -8,6 +8,7 @@
     settings = {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
+      "org/gnome/desktop/peripherals/keyboard".remember-numlock-state = true;
       "org/gnome/desktop/interface".clock-format = "12h";
       "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
       "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -29,12 +30,20 @@
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           # "forge@jmmaranan.com"
           "gsconnect@andyholmes.github.io"
-          "trayIconsReloaded@selfmade.pl"
           "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+          "dash-to-dock@micxgx.gmail.com"
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {
         name = "Catppuccin-Mocha-Standard-Blue-Dark";
+      };
+      "org/gnome/shell/extensions/dash-to-dock" = {
+        custom-theme-shrink = true;
+        intellihide-mode = "ALL_WINDOWS";
+        require-pressure-to-show = false;
+        show-mounts = false;
+        show-show-apps-button = false;
+        show-trash = false;
       };
     };
   };
@@ -63,8 +72,8 @@
 
   home.packages =
     (with pkgs.gnomeExtensions; [
-      tray-icons-reloaded
       gsconnect
+      dash-to-dock
       # forge
     ])
     ++ (with pkgs; [
