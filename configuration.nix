@@ -54,6 +54,19 @@
     desktopManager.gnome.enable = true;
   };
 
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-tour
+    ])
+    ++ (with pkgs.gnome; [
+      cheese # Webcam tool
+      gnome-terminal
+      gnome-music
+      epiphany # Web browser
+      yelp # Help viewer
+      gnome-maps
+    ]);
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

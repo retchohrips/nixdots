@@ -14,6 +14,7 @@
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         ];
+        www = "<Super>b";
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Control><Alt>t";
@@ -60,9 +61,12 @@
     };
   };
 
-  home.packages = with pkgs; [
-    gnomeExtensions.tray-icons-reloaded
-    gnomeExtensions.gsconnect
-    # gnomeExtensions.forge
-  ];
+  home.packages =
+    (with pkgs.gnomeExtensions; [
+      tray-icons-reloaded
+      gsconnect
+      # forge
+    ])
+    ++ (with pkgs; [
+      ]);
 }
