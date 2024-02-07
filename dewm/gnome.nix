@@ -2,16 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  moreWaita = pkgs.stdenv.mkDerivation {
-    name = "MoreWaita";
-    src = inputs.more-waita;
-    installPhase = ''
-      mkdir -p $out/share/icons
-      mv * $out/share/icons
-    '';
-  };
-in {
+}: {
   dconf = {
     enable = true;
     settings = {
@@ -34,7 +25,7 @@ in {
         enabled-extensions = [
           "drive-menu@gnome-shell-extensions.gcampax.github.com"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
-          "forge@jmmaranan.com"
+          # "forge@jmmaranan.com"
           "gsconnect@andyholmes.github.io"
           "trayIconsReloaded@selfmade.pl"
           "native-window-placement@gnome-shell-extensions.gcampax.github.com"
@@ -55,7 +46,8 @@ in {
 
   gtk = {
     enable = true;
-    iconTheme.name = moreWaita.name;
+    iconTheme.package = pkgs.morewaita-icon-theme;
+    iconTheme.name = "MoreWaita";
     theme = {
       package = pkgs.catppuccin-gtk.override {
         size = "standard";
@@ -68,9 +60,8 @@ in {
   };
 
   home.packages = with pkgs; [
-    moreWaita
     gnomeExtensions.tray-icons-reloaded
     gnomeExtensions.gsconnect
-    gnomeExtensions.forge
+    # gnomeExtensions.forge
   ];
 }
