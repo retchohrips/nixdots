@@ -109,6 +109,7 @@
       cursor_shape = "beam";
       window_padding_width = 5;
       confirm_os_window_close = 0;
+      linux_display_server = "x11";
     };
   };
 
