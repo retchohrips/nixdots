@@ -15,12 +15,12 @@
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         ];
-        www = "<Super>b";
+        www = ["<Super>b"];
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Control><Alt>t";
         command = "kitty";
-        name = "open-terminal";
+        name = "Open Kitty";
       };
       "org/gnome/desktop/wm/keybindings" = {close = ["<Super>c"];};
       "org/gnome/shell" = {
