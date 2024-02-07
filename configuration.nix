@@ -20,6 +20,9 @@
   };
 
   networking.hostName = systemSettings.hostname;
+  networking.hosts = {
+    "192.168.1.187" = [ "cuddlenode" ];
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
