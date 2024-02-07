@@ -62,7 +62,6 @@
     ++ (with pkgs.gnome; [
       cheese # Webcam tool
       gnome-terminal
-      gnome-music
       epiphany # Web browser
       yelp # Help viewer
       gnome-maps
@@ -162,8 +161,14 @@
   # Collect garbage
   nix.gc = {
     automatic = true;
-    options = "-d";
-    dates = "48hr";
+    options = "--delete-older-than 1w";
+    dates = "weekly";
+  };
+
+  # Automatic store optimisation
+  nix.optimise = {
+    automatic = true;
+    dates = ["03:45"];
   };
 
   # Automatic updates
@@ -175,7 +180,7 @@
       "nixpkgs"
       "-L" # Print build logs
     ];
-    dates = "24hr";
+    dates = "2:00";
     randomizedDelaySec = "45min";
   };
 
