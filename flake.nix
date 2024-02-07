@@ -15,11 +15,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    more-waita = {
-      url = "github:somepaulo/MoreWaita";
-      flake = false;
-    };
-
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;

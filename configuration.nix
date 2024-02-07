@@ -1,39 +1,32 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
   userSettings,
   systemSettings,
   ...
 }: {
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
 
+  # Make fish the default shell and add aliases
   environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
-  programs.fish.shellAliases = {
-    ls = "eza --icons";
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      ls = "eza --icons";
+    };
   };
 
-  networking.hostName = systemSettings.hostname;
-  networking.hosts = {
-    "192.168.1.187" = [ "cuddlenode" ];
+  networking = {
+    hostName = systemSettings.hostname;
+    hosts = {"192.168.1.187" = ["cuddlenode"];};
+    networkmanager.enable = true;
   };
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "America/New_York";
+  time.hardwareClockInLocalTime = true; # Compatibility with Windows clock for dualbooting
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -50,17 +43,15 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
+
+    # Configure keymap
     xkb.layout = "us";
     xkb.variant = "";
+
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
   # Enable CUPS to print documents.
@@ -86,19 +77,14 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account.
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      vscode.fhs
-      telegram-desktop
-    ];
   };
 
-  time.hardwareClockInLocalTime = true;
-
+  # This makes VSCode work on wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Allow unfree packages
@@ -107,46 +93,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # File fetching
     wget
-    git
-    eza
-    fishPlugins.puffer
-    nil # nix LS
-    alejandra # nix formatter
-    statix # lints and suggestions
-    deadnix # clean up unused nix code
-    gcc # astronvim gets mad if it can't compile C...
-    unzip
     curl
-    tree-sitter
+
+    # VCS
+    git
+    pre-commit
+    commitizen
+
+    # Cli tools
+    eza
+    unzip
     ripgrep
-    lazygit
+    fishPlugins.puffer
+
+    # Package management
     nodejs
     cargo
-    gh
+    nodePackages.pnpm
   ];
 
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
