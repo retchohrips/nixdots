@@ -43,6 +43,7 @@
       noto-fonts-cjk
       noto-fonts-emoji
       liberation_ttf
+      inter
 
       # AstroNvim
       gcc # astronvim gets mad if it can't compile C...

@@ -132,8 +132,10 @@
     # Cli tools
     eza
     unzip
+    p7zip
     ripgrep
     fishPlugins.puffer
+    fishPlugins.z
 
     # Package management
     nodejs

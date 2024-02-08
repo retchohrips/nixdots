@@ -10,7 +10,17 @@
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
       "org/gnome/desktop/peripherals/keyboard".remember-numlock-state = true;
-      "org/gnome/desktop/interface".clock-format = "12h";
+      "org/gnome/desktop/interface" = {
+        clock-format = "12h";
+        font-name = "Inter 11";
+        document-font-name = "Inter 11";
+        monospace-font-name = "JetBrainsMono Nerd Font 10";
+        titlebar-font = "Inter Bold 11";
+        font-antialiasing = "rgba";
+      };
+      "org/gnome/mutter".center-new-windows = true;
+      "org/gnome/desktop/wm/preferences".resize-with-right-button = true;
+      "org/gnome/desktop/wm/preferences".focus-mode = "sloppy";
       "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
