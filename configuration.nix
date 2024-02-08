@@ -75,6 +75,7 @@
   environment.gnome.excludePackages =
     (with pkgs; [
       gnome-tour
+      gnome-console
     ])
     ++ (with pkgs.gnome; [
       cheese # Webcam tool
