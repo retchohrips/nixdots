@@ -5,6 +5,14 @@
   inputs,
   ...
 }: {
+  imports = [inputs.nix-gaming.nixosModules.pipewireLowLatency inputs.nix-gaming.nixosModules.steamCompat];
+
+  # Caches to pull from so we don't have to build packages
+  nix.settings = {
+    substituters = ["https://nix-gaming.cachix.org"];
+    trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
+  };
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,6 +27,13 @@
       ls = "eza --icons";
     };
   };
+
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = [inputs.nix-gaming.packages.${pkgs.system}.proton-ge];
+  };
+
+  programs.gamemode.enable = true;
 
   networking = {
     hostName = systemSettings.hostname;
@@ -53,6 +68,8 @@
 
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+
+    excludePackages = with pkgs; [xterm];
   };
 
   environment.gnome.excludePackages =
@@ -79,12 +96,8 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    lowLatency = {enable = true;};
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

@@ -28,10 +28,18 @@
   home.packages = with pkgs; [
     vscode.fhs
     telegram-desktop
+    vesktop
+    lutris
     (nerdfonts.override {fonts = ["JetBrainsMono"];}) # Installs ONLY JetBrainsMono
 
     # CLI tools
     lazygit
+
+    # Fonts
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
 
     # AstroNvim
     gcc # astronvim gets mad if it can't compile C...
