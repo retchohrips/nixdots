@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   userSettings,
   ...
 }: {
@@ -25,37 +26,42 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    vscode.fhs
-    telegram-desktop
-    vesktop
-    lutris
-    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # Installs ONLY JetBrainsMono
+  home.packages =
+    (with pkgs; [
+      vscode.fhs
+      telegram-desktop
+      vesktop
+      lutris
+      cartridges
+      (nerdfonts.override {fonts = ["JetBrainsMono"];}) # Installs ONLY JetBrainsMono
 
-    # CLI tools
-    lazygit
+      # CLI tools
+      lazygit
 
-    # Fonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
+      # Fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
 
-    # AstroNvim
-    gcc # astronvim gets mad if it can't compile C...
-    nil # nix LS
-    alejandra # nix formatter
-    statix # lints and suggestions
-    deadnix # clean up unused nix code
-    tree-sitter
+      # AstroNvim
+      gcc # astronvim gets mad if it can't compile C...
+      nil # nix LS
+      alejandra # nix formatter
+      statix # lints and suggestions
+      deadnix # clean up unused nix code
+      tree-sitter
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ])
+    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
+      wine-ge
+    ]);
 
   home.sessionVariables = {
     # EDITOR = "emacs";
