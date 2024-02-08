@@ -33,6 +33,8 @@
           "gsconnect@andyholmes.github.io"
           "native-window-placement@gnome-shell-extensions.gcampax.github.com"
           "dash-to-dock@micxgx.gmail.com"
+          "AlphabeticalAppGrid@stuarthayhurst"
+          "Vitals@CoreCoding.com"
         ];
       };
       "org/gnome/shell/extensions/user-theme" = {
@@ -82,6 +84,8 @@
     (with pkgs.gnomeExtensions; [
       gsconnect
       dash-to-dock
+      vitals
+      alphabetical-app-grid
       # forge
     ])
     ++ (with pkgs; [
