@@ -14,7 +14,7 @@
       flake = false;
     };
 
-    # stylix.url = "github:danth/stylix";
+    # Neve.url = "github:redyf/Neve";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -27,7 +27,6 @@
   outputs = {
     self,
     nixpkgs,
-    # stylix,
     home-manager,
     nixos-hardware,
     ...
@@ -56,16 +55,15 @@
             ./configuration.nix
             ./hosts/bundesk
             home-manager.nixosModules.home-manager
-            # stylix.nixosModules.stylix
+
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${userSettings.username} = import ./home.nix;
-              # stylix.image = ./wallpapers/Makima_Persona.png;
+
               home-manager.extraSpecialArgs = {
                 inherit userSettings;
                 inherit inputs;
-                # inherit stylix;
               };
             }
           ];
@@ -89,17 +87,14 @@
             ./configuration.nix
             ./hosts/pawpad
             home-manager.nixosModules.home-manager
-            # stylix.nixosModules.stylix
             nixos-hardware.nixosModules.dell-inspiron-5509
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${userSettings.username} = import ./home.nix;
-              # stylix.image = ./wallpapers/Makima_Persona.png;
               home-manager.extraSpecialArgs = {
                 inherit userSettings;
                 inherit inputs;
-                # inherit stylix;
               };
             }
           ];

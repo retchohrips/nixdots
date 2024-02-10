@@ -5,7 +5,10 @@
   inputs,
   ...
 }: {
-  imports = [inputs.nix-gaming.nixosModules.pipewireLowLatency inputs.nix-gaming.nixosModules.steamCompat];
+  imports = [
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.nix-gaming.nixosModules.steamCompat
+  ];
 
   # Caches to pull from so we don't have to build packages
   nix.settings = {
@@ -21,12 +24,7 @@
   # Make fish the default shell and add aliases
   environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      ls = "eza --icons";
-    };
-  };
+  programs.fish.enable = true;
 
   programs.steam = {
     enable = true;
@@ -69,15 +67,19 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
 
+    # do not install xterm
     excludePackages = with pkgs; [xterm];
   };
 
+  # Do not install these packages that are normally included with gnome
   environment.gnome.excludePackages =
     (with pkgs; [
       gnome-tour
       gnome-console
     ])
     ++ (with pkgs.gnome; [
+      gnome-calendar
+      geary # mail
       cheese # Webcam tool
       gnome-terminal
       epiphany # Web browser
@@ -116,6 +118,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Allow Obsidian to be installed...
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

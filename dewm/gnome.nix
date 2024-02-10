@@ -99,5 +99,6 @@
       # forge
     ])
     ++ (with pkgs; [
-      ]);
+      evolution
+    ]);
 }

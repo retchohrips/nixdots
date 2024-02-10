@@ -8,10 +8,10 @@
     # ./dewm/hyprland.nix
     ./programs/starship.nix
     ./programs/nvim.nix
+    # ./programs/nixvim
     ./programs/firefox.nix
     ./programs/beets.nix
     ./dewm/gnome.nix
-    # ./stylix.nix
   ];
 
   home.username = userSettings.username;
@@ -28,6 +28,8 @@
 
   home.packages =
     (with pkgs; [
+      # inputs.Neve.packages.${system}.default
+      obsidian
       vscode.fhs
       telegram-desktop
       vesktop
@@ -73,6 +75,10 @@
       source = ./wallpapers;
       recursive = true;
     };
+  };
+
+  home.shellAliases = {
+    ls = "eza --icons";
   };
 
   programs.fish = {
