@@ -75,6 +75,20 @@
       source = ./wallpapers;
       recursive = true;
     };
+
+    # Obsidian won't run on wayland
+    ".local/share/applications/obsidian.desktop" = {
+      text = ''
+        [Desktop Entry]
+        Categories=Office
+        Comment=Knowledge base
+        Exec=env WAYLAND_DISPLAY= obsidian %u
+        Icon=obsidian
+        MimeType=x-scheme-handler/obsidian
+        Name=Obsidian
+        Type=Application
+        Version=1.4'';
+    };
   };
 
   home.shellAliases = {
