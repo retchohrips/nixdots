@@ -40,7 +40,7 @@
           "drive-menu@gnome-shell-extensions.gcampax.github.com"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           # "forge@jmmaranan.com"
-          "gsconnect@andyholmes.github.io"
+          # "gsconnect@andyholmes.github.io"
           "native-window-placement@gnome-shell-extensions.gcampax.github.com"
           "dash-to-dock@micxgx.gmail.com"
           "AlphabeticalAppGrid@stuarthayhurst"
@@ -92,7 +92,7 @@
 
   home.packages =
     (with pkgs.gnomeExtensions; [
-      gsconnect
+      # gsconnect
       dash-to-dock
       vitals
       alphabetical-app-grid
