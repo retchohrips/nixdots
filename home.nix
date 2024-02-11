@@ -14,17 +14,13 @@
     ./dewm/gnome.nix
   ];
 
+  # Do not change the below value. It determines the Home Manager release
+  # that this config is compatible with. Do not change it,
+  # even when Home Manager updates.
+  home.stateVersion = "23.11";
+
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
 
   home.packages =
     (with pkgs; [
@@ -66,17 +62,13 @@
       wine-ge
     ]);
 
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
   home.file = {
     ".local/share/backgrounds" = {
       source = ./wallpapers;
       recursive = true;
     };
 
-    # Obsidian won't run on wayland
+    # Obsidian won't run on Wayland
     ".local/share/applications/obsidian.desktop" = {
       text = ''
         [Desktop Entry]
