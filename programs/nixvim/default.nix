@@ -1,12 +1,9 @@
 {
-  pkgs,
-  lib,
-  ...
-}: {
   imports = [
     ./bufferline.nix
     ./neo-tree.nix
     ./lsp.nix
+    ./telescope.nix
   ];
 
   home.shellAliases = {
@@ -44,6 +41,9 @@
         showmode = false; # Don't show modes in command line
         breakindent = true; # Wrap indent to match line start
         updatetime = 100; # Faster completion
+        clipboard = "unnamedplus";
+        smartindent = true;
+        incsearch = true;
       };
 
       keymaps = [
@@ -51,9 +51,20 @@
           key = "<leader>e";
           action = "<CMD>Neotree toggle<CR>";
         }
+        {
+          key = "<leader>fm";
+          action = "<CMD> lua vim.lsp.buf.format()<CR>";
+        }
+        {
+          # Escape terminal mode using ESC
+          mode = "t";
+          key = "<esc>";
+          action = "<C-\\><C-n>";
+        }
       ];
 
       plugins = {
+        lightline.enable = true;
         nix.enable = true;
         which-key.enable = true;
         gitsigns.enable = true;
@@ -64,6 +75,11 @@
           backgroundColour = "#000000";
           fps = 60;
           stages = "fade";
+        };
+        toggleterm = {
+          enable = true;
+          openMapping = "<C-t>";
+          direction = "horizontal";
         };
         # buffer navigation
         flash = {

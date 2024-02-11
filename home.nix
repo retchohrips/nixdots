@@ -5,10 +5,11 @@
   ...
 }: {
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
     # ./dewm/hyprland.nix
     ./programs/starship.nix
-    ./programs/nvim.nix
-    # ./programs/nixvim
+    # ./programs/nvim.nix
+    ./programs/nixvim
     ./programs/firefox.nix
     ./programs/beets.nix
     ./dewm/gnome.nix

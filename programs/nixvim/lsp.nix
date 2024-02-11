@@ -1,8 +1,4 @@
 {
-  pkgs,
-  lib,
-  ...
-}: {
   programs.nixvim.plugins = {
     lsp = {
       enable = true;
@@ -86,10 +82,11 @@
 
       nixvimInjections = true;
 
-      folding = true;
       indent = true;
     };
 
+    treesitter-context.enable = true;
+    rainbow-delimiters.enable = true;
     treesitter-refactor = {
       enable = true;
       highlightDefinitions.enable = true;

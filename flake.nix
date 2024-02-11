@@ -14,7 +14,10 @@
       flake = false;
     };
 
-    # Neve.url = "github:redyf/Neve";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -28,6 +31,7 @@
     self,
     nixpkgs,
     home-manager,
+    nixvim,
     nixos-hardware,
     ...
   } @ inputs: let
