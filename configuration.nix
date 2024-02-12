@@ -93,6 +93,7 @@
       ripgrep
       fishPlugins.puffer
       fishPlugins.z
+      fishPlugins.plugin-git
       cachix # Fetch cached binaries
 
       # Package management
