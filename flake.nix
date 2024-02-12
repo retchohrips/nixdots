@@ -14,8 +14,8 @@
       flake = false;
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    neovim-flake = {
+      url = "github:notashelf/neovim-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -28,14 +28,12 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
-    nixvim,
     nixos-hardware,
     ...
   } @ inputs: let
-    lib = nixpkgs.lib;
+    inherit (nixpkgs) lib;
     system = "x86_64-linux";
   in {
     nixosConfigurations = {
@@ -49,7 +47,7 @@
         };
       in
         lib.nixosSystem {
-          system = system;
+          inherit system;
           specialArgs = {
             inherit systemSettings;
             inherit userSettings;
@@ -61,13 +59,15 @@
             home-manager.nixosModules.home-manager
 
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${userSettings.username} = import ./home.nix;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${userSettings.username} = import ./home.nix;
 
-              home-manager.extraSpecialArgs = {
-                inherit userSettings;
-                inherit inputs;
+                extraSpecialArgs = {
+                  inherit userSettings;
+                  inherit inputs;
+                };
               };
             }
           ];
@@ -81,7 +81,7 @@
         };
       in
         lib.nixosSystem {
-          system = system;
+          inherit system;
           specialArgs = {
             inherit systemSettings;
             inherit userSettings;
@@ -93,12 +93,15 @@
             home-manager.nixosModules.home-manager
             nixos-hardware.nixosModules.dell-inspiron-5509
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${userSettings.username} = import ./home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit userSettings;
-                inherit inputs;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${userSettings.username} = import ./home.nix;
+
+                extraSpecialArgs = {
+                  inherit userSettings;
+                  inherit inputs;
+                };
               };
             }
           ];

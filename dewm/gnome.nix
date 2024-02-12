@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   userSettings,
   ...
 }: {
@@ -14,7 +13,7 @@
         clock-format = "12h";
         font-name = "Inter 11";
         document-font-name = "Inter 11";
-        monospace-font-name = "JetBrainsMono Nerd Font 10";
+        monospace-font-name = "CommitMono 10";
         titlebar-font = "Inter Bold 11";
         font-antialiasing = "rgba";
       };
