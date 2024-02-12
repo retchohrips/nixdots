@@ -10,6 +10,7 @@
           level = 20;
           logFile = "/tmp/nvim.log";
         };
+        searchCase = "smart";
       };
 
       vim.lsp = {
