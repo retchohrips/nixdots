@@ -99,9 +99,6 @@
       nodejs
       cargo
       nodePackages.pnpm
-
-      (nerdfonts.override {fonts = ["JetBrainsMono" "NerdFontsSymbolsOnly"];}) # Installs ONLY JetBrainsMono
-      commit-mono
     ];
   };
 

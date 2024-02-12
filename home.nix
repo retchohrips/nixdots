@@ -11,6 +11,7 @@
     ./programs/firefox.nix
     ./programs/beets.nix
     ./dewm/gnome.nix
+    ./fonts.nix
   ];
 
   home = {
@@ -33,13 +34,6 @@
 
         # CLI tools
         lazygit
-
-        # Fonts
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        liberation_ttf
-        inter
 
         # AstroNvim
         gcc # astronvim gets mad if it can't compile C...
