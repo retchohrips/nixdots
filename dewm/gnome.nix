@@ -17,7 +17,11 @@
         titlebar-font = "Inter Bold 11";
         font-antialiasing = "rgba";
       };
-      "org/gnome/mutter".center-new-windows = true;
+      "org/gnome/mutter" = {
+        center-new-windows = true;
+        edge-tiling = true;
+        dynamic-workspaces = true;
+      };
       "org/gnome/desktop/search-providers" = {
         disabled = [
           "org.gnome.Contacts.desktop"
