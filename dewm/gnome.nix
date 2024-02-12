@@ -18,6 +18,20 @@
         font-antialiasing = "rgba";
       };
       "org/gnome/mutter".center-new-windows = true;
+      "org/gnome/desktop/search-providers" = {
+        disabled = [
+          "org.gnome.Contacts.desktop"
+          "org.gnome.seahorse.Application.desktop"
+          "org.gnome.clocks.desktop"
+        ];
+        sort-order = [
+          "org.gnome.Settings.desktop"
+          "org.gnome.Calculator.desktop"
+          "org.gnome.Nautilus.desktop"
+          "hu.kramo.Cartridges.desktop"
+          "org.gnome.Characters.desktop"
+        ];
+      };
       "org/gnome/desktop/wm/preferences".resize-with-right-button = true;
       "org/gnome/desktop/wm/preferences".focus-mode = "sloppy";
       "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
