@@ -25,7 +25,7 @@
     };
 
     settings = {
-      trusted-users = ["bunny" "puppy"];
+      trusted-users = [userSettings.username];
       # Caches to pull from so we don't have to build packages
       substituters = [
         "https://cache.nixos.org?priority=10"
@@ -83,6 +83,7 @@
 
       # VCS
       git
+      git-crypt
       pre-commit
       commitizen
 
@@ -100,6 +101,12 @@
       nodejs
       cargo
       nodePackages.pnpm
+
+      mpd
+      mpc-cli
+      ffmpeg
+      libnotify
+      networkmanagerapplet
     ];
   };
 
@@ -108,6 +115,7 @@
 
   programs = {
     fish.enable = true;
+    dconf.enable = true;
     steam = {
       enable = true;
       extraCompatPackages = [inputs.nix-gaming.packages.${pkgs.system}.proton-ge];
@@ -120,6 +128,8 @@
     hosts = {"192.168.1.187" = ["cuddlenode"];};
     networkmanager.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
 
   time.timeZone = "America/New_York";
   time.hardwareClockInLocalTime = true; # Compatibility with Windows clock for dualbooting
@@ -140,6 +150,20 @@
   };
 
   services = {
+    blueman.enable = true;
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = ''            ${pkgs.greetd.tuigreet}/bin/tuigreet \
+                    --time --user-menu --remember --remember-user-session \
+                    --cmd Hyprland
+          '';
+          user = "greeter";
+        };
+      };
+    };
+
     xserver = {
       enable = true;
 
@@ -147,8 +171,10 @@
       xkb.layout = "us";
       xkb.variant = "";
 
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable =
+        if (userSettings.dewm == "gnome")
+        then true
+        else false;
 
       # do not install xterm
       excludePackages = with pkgs; [xterm];

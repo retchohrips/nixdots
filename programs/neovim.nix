@@ -10,7 +10,8 @@
           level = 20;
           logFile = "/tmp/nvim.log";
         };
-        searchCase = "smart";
+        searchCase = "ignore";
+        lineNumberMode = "number";
       };
 
       vim.lsp = {
@@ -100,7 +101,7 @@
         enable = true;
         name = "catppuccin";
         style = "mocha";
-        transparent = false;
+        transparent = true;
       };
       vim.autopairs.enable = true;
 

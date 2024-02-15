@@ -16,23 +16,6 @@
         "type": "github"
       }
     },
-    "astronvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707419589,
-        "narHash": "sha256-bhTYKPNRNgxQdgXuFkooGuv7sTGpb7UHBb6M5HYZ4/A=",
-        "owner": "AstroNvim",
-        "repo": "AstroNvim",
-        "rev": "49d48171c22bcc1c3e67b36930f6b9c710f0c70c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AstroNvim",
-        "ref": "main",
-        "repo": "AstroNvim",
-        "type": "github"
-      }
-    },
     "bufdelete-nvim": {
       "flake": false,
       "locked": {
@@ -623,11 +606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707175763,
-        "narHash": "sha256-0MKHC6tQ4KEuM5rui6DjKZ/VNiSANB4E+DJ/+wPS1PU=",
+        "lastModified": 1707919853,
+        "narHash": "sha256-qxmBGDzutuJ/tsX4gp+Mr7fjxOZBbeT9ixhS5o4iFOw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f99eace7c167b8a6a0871849493b1c613d0f1b80",
+        "rev": "043ba285c6dc20f36441d48525402bcb9743c498",
         "type": "github"
       },
       "original": {
@@ -986,6 +969,7 @@
         "project-nvim": "project-nvim",
         "registers": "registers",
         "rnix-lsp": "rnix-lsp",
+        "rose-pine": "rose-pine",
         "rust-tools": "rust-tools",
         "scrollbar-nvim": "scrollbar-nvim",
         "smartcolumn": "smartcolumn",
@@ -1008,11 +992,11 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1707686354,
-        "narHash": "sha256-0ahDwdIVYTMVcIPixLnD4QFftEN7+k0m0iqzXdOdweQ=",
+        "lastModified": 1708005091,
+        "narHash": "sha256-L7NRbPV8TaH54EsFBrf/ul8oaRG15AEG+ze6Zxb/KYA=",
         "owner": "notashelf",
         "repo": "neovim-flake",
-        "rev": "44ec36ec3b85874a3364b0ff90d87649d0921515",
+        "rev": "2b1749676dd2fde0903bb56833b89c5ae77e70a3",
         "type": "github"
       },
       "original": {
@@ -1053,11 +1037,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1707095568,
-        "narHash": "sha256-6zZifK7cs9eWiC+3MQvlMsq2JeyH7hPSP0qZ6sTny68=",
+        "lastModified": 1707614138,
+        "narHash": "sha256-xdmNhDnlDF5H/yT1wLGqwVyphjj03lmA/e3SGXyC3DU=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "9bde4efca9e4750ed691520d68c4c6eb308015e7",
+        "rev": "a5de885438ecce695b4b7a110974c33f0eb507e3",
         "type": "github"
       },
       "original": {
@@ -1068,11 +1052,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1707211557,
-        "narHash": "sha256-LTKTzZ6fM5j8XWXf51IMBzDaOaJg9kYWLUZxoIhzRN8=",
+        "lastModified": 1707842204,
+        "narHash": "sha256-M+HAq1qWQBi/gywaMZwX0odU+Qb/XeqVeANGKRBDOwU=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "6e5cc385fc8cf5ca6495d70243074ccdea9f64c7",
+        "rev": "f1b2f71c86a5b1941d20608db0b1e88a07d31303",
         "type": "github"
       },
       "original": {
@@ -1168,11 +1152,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1706925685,
-        "narHash": "sha256-hVInjWMmgH4yZgA4ZtbgJM1qEAel72SYhP5nOWX4UIM=",
+        "lastModified": 1707451808,
+        "narHash": "sha256-UwDBUNHNRsYKFJzyTMVMTF5qS4xeJlWoeyJf+6vvamU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "79a13f1437e149dc7be2d1290c74d378dad60814",
+        "rev": "442d407992384ed9c0e6d352de75b69079904e4e",
         "type": "github"
       },
       "original": {
@@ -1184,11 +1168,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1707268954,
-        "narHash": "sha256-2en1kvde3cJVc3ZnTy8QeD2oKcseLFjYPLKhIGDanQ0=",
+        "lastModified": 1707956935,
+        "narHash": "sha256-ZL2TrjVsiFNKOYwYQozpbvQSwvtV/3Me7Zwhmdsfyu4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f8e2ebd66d097614d51a56a755450d4ae1632df1",
+        "rev": "a4d4fe8c5002202493e87ec8dbc91335ff55552c",
         "type": "github"
       },
       "original": {
@@ -1748,13 +1732,28 @@
     },
     "root": {
       "inputs": {
-        "astronvim": "astronvim",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "home-manager": "home-manager",
         "neovim-flake": "neovim-flake",
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5"
+      }
+    },
+    "rose-pine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707703907,
+        "narHash": "sha256-jmDGDlCurGAG85SglAwmQr943kVr8KUr11zpPejQliQ=",
+        "owner": "rose-pine",
+        "repo": "neovim",
+        "rev": "f01ce3a71748a92997d266cfe2c985decd18c601",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rose-pine",
+        "repo": "neovim",
+        "type": "github"
       }
     },
     "rust-overlay": {

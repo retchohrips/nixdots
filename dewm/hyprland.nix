@@ -1,38 +1,35 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  userSettings,
+  ...
+}: {
   imports = [./waybar];
 
   home.packages = with pkgs; [
     swww
   ];
 
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   package = pkgs.catppuccin-cursors.mochaDark;
-  #   name = "Catppuccin-Mocha-Dark-Cursors";
-  #   size = 24;
-  # };
-
-  # gtk = {
-  #   enable = true;
-  #   theme = {
-  #     package = pkgs.catppuccin-gtk.override {
-  #       size = "standard";
-  #       accents = ["blue"];
-  #       variant = "mocha";
-  #       tweaks = ["normal"];
-  #     };
-  #     name = "Catppuccin-Mocha-Standard-Blue-Dark";
-  #   };
-  # };
-
-  home.file = {
-    ".wallpapers" = {
-      source = ../wallpapers;
-      recursive = true;
-    };
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.catppuccin-cursors.mochaDark;
+    name = "Catppuccin-Mocha-Dark-Cursors";
+    size = 24;
   };
 
-  programs.waybar.enable = true;
+  gtk = {
+    enable = true;
+    # iconTheme.package = pkgs.morewaita-icon-theme;
+    # iconTheme.name = "MoreWaita";
+    theme = {
+      package = pkgs.catppuccin-gtk.override {
+        size = "standard";
+        accents = ["blue"];
+        variant = "mocha";
+        tweaks = ["normal"];
+      };
+      name = "Catppuccin-Mocha-Standard-Blue-Dark";
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -41,15 +38,20 @@
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
         "waybar"
         "swww init"
-        "sleep 10 ; swww img ~/.wallpapers/Makima_Persona.png"
+        "sleep 10 ; swww img ~/.wallpapers/${userSettings.pape}"
       ];
       monitor = [",preferred,auto,1"];
       general = {
         layout = "dwindle";
         border_size = 0;
-        gaps_in = 6;
-        gaps_out = 12;
+        gaps_in = 5;
+        gaps_out = 10;
         allow_tearing = false;
+      };
+      misc = {
+        disable_splash_rendering = true;
+        disable_hyprland_logo = true;
+        force_default_wallpaper = 0;
       };
       animations = {
         enabled = "yes";
@@ -66,6 +68,7 @@
         kb_layout = "us";
         follow_mouse = 1;
         sensitivity = 0;
+        accel_profile = "flat";
         touchpad = {
           natural_scroll = "yes";
         };
@@ -84,7 +87,36 @@
       };
       decoration = {
         rounding = 5;
+        drop_shadow = true;
+        shadow_range = 40;
+        shadow_render_power = 3;
+        "col.shadow" = "rgba(00000088)";
+        "col.shadow_inactive" = "rgba(00000070)";
+        dim_inactive = true;
+        dim_strength = 0.1;
+        dim_special = 0;
+        blur = {
+          enabled = true;
+          special = true;
+          popups = true;
+          ignore_opacity = false;
+          xray = false;
+          size = 10;
+          passes = 3;
+          contrast = 1.2;
+          brightness = 1;
+          vibrancy = 1;
+          noise = 0.02;
+        };
       };
+      windowrule = [""];
+      layerrule = [
+        "blur, waybar$"
+        "ignorezero, rofi$"
+        "blur, rofi$"
+        "blur, notifications$"
+        "ignorezero, notifications$"
+      ];
       bind = let
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
         mvfocus = binding "SUPER" "movefocus";
@@ -94,10 +126,11 @@
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         arr = [1 2 3 4 5 6 7 8 9];
         term = "kitty";
+        inherit (userSettings) browser;
       in
         [
           "CtrlAlt, T, exec, ${term}"
-          "SUPER, B, exec, firefox"
+          "SUPER, B, exec, ${browser}"
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
           "SUPER, C, killactive"

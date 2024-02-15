@@ -8,9 +8,10 @@
     inputs.neovim-flake.homeManagerModules.default
     ./programs/starship.nix
     ./programs/neovim.nix
-    ./programs/firefox.nix
+    # ./programs/firefox.nix
     ./programs/beets.nix
-    ./dewm/gnome.nix
+    ./programs/mpd.nix
+    ./dewm/${userSettings.dewm}.nix
     ./fonts.nix
   ];
 
@@ -25,12 +26,12 @@
     packages =
       (with pkgs; [
         # inputs.Neve.packages.${system}.default
+        brave
         obsidian
         vscode.fhs
         telegram-desktop
         vesktop
         lutris
-        cartridges
 
         # CLI tools
         lazygit
@@ -117,6 +118,7 @@
         window_padding_width = 5;
         confirm_os_window_close = 0;
         linux_display_server = "x11";
+        background_opacity = "0.85";
       };
     };
 

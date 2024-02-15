@@ -9,11 +9,6 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
-    astronvim = {
-      url = "github:AstroNvim/AstroNvim/main";
-      flake = false;
-    };
-
     neovim-flake = {
       url = "github:notashelf/neovim-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +39,9 @@
         userSettings = {
           username = "bunny";
           name = "Bun";
+          dewm = "hyprland";
+          pape = "Makima_Persona.png";
+          browser = "brave";
         };
       in
         lib.nixosSystem {
@@ -78,6 +76,7 @@
         userSettings = {
           user = "puppy";
           name = "Pup";
+          dewm = "gnome";
         };
       in
         lib.nixosSystem {
