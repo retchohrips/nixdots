@@ -126,12 +126,13 @@ in {
         };
         mpd = {
           format = "{stateIcon} {title} - {artist}";
-          state_icons = {
-            paued = "⏸";
+          state-icons = {
+            paused = "";
             playing = "";
           };
           max-length = 70;
           tooltip-format = "";
+          on-click = "mpc toggle";
         };
         tray = {
           icon-size = 15;
