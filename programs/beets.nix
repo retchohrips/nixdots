@@ -15,7 +15,7 @@
       plugins = [
         # "bandcamp"
         "chroma"
-        "discogs"
+        # "discogs"
         "edit"
         "embedart"
         "fetchart"
@@ -82,7 +82,7 @@
     gst_all_1.gstreamer
     (pkgs.python3.withPackages (ps:
       with ps; [
-        discogs-client
+        # discogs-client
         pyacoustid
         requests
       ]))
