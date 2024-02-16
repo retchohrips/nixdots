@@ -3,7 +3,13 @@
   userSettings,
   ...
 }: {
-  imports = [./waybar ./rofi];
+  imports = [
+    ./waybar
+    ./rofi
+    ./dunst.nix
+    ../programs/ranger
+    ../programs/ncmpcpp.nix
+  ];
 
   home.packages = with pkgs; [
     swww
@@ -37,6 +43,7 @@
       exec-once = [
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
         "waybar"
+        "dunst"
         "swww init"
         "sleep 10 ; swww img ~/.wallpapers/${userSettings.pape}"
       ];

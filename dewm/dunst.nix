@@ -1,0 +1,65 @@
+{userSettings, ...}: let
+  colors = import ../colors.nix;
+in {
+  services.dunst = {
+    enable = true;
+    settings = {
+      global = with colors.scheme.catppuccin-mocha; {
+        font = "${userSettings.font}";
+        markup = "full";
+        format = "<b>%s</b>\n%b";
+        sort = "yes";
+        indicate_hidden = "yes";
+        vertical_alignment = "center";
+        # The frequency at which text can scroll in the notification, we disable it.
+        # We use word_wrap instead.
+        word_wrap = "yes";
+        ignore_newline = "no";
+        # Disable icons
+        icon_position = "off";
+        width = "300";
+        offset = "10x10";
+
+        # Shrink window if it's smaller than the width.
+        shrink = "no";
+
+        # Display indicators for URLs (U) and actions (A).
+        show_indicators = "no";
+
+        # The height of a single line.  If the height is smaller than the
+        # font height, it will get raised to the font height.
+        # This adds empty space above and under the text.
+        line_height = 3;
+
+        separator_height = 2;
+        padding = 8;
+        horizontal_padding = 8;
+        separator_color = "frame";
+        # Mouse
+        # Left click
+        mouse_left_click = "do_action";
+        # Middle click
+        mouse_middle_click = "close_current";
+        # Right click
+        mouse_right_click = "close_current";
+
+        frame_width = 2;
+        frame_color = blue;
+        corner_radius = 5;
+      };
+      urgency_low = with colors.scheme.catppuccin-mocha; {
+        background = base;
+        foreground = text;
+      };
+      urgency_normal = with colors.scheme.catppuccin-mocha; {
+        background = base;
+        foreground = text;
+      };
+      urgency_critical = with colors.scheme.catppuccin-mocha; {
+        background = base;
+        foreground = text;
+        frame_color = red;
+      };
+    };
+  };
+}

@@ -10,7 +10,7 @@
     ./programs/neovim.nix
     # ./programs/firefox.nix
     ./programs/beets.nix
-    ./programs/mpd.nix
+    ./programs/ranger
     ./dewm/${userSettings.dewm}.nix
     ./fonts.nix
   ];

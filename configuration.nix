@@ -88,6 +88,7 @@
       commitizen
 
       # Cli tools
+      ranger
       eza
       unzip
       p7zip
@@ -147,6 +148,21 @@
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
+  };
+
+  fileSystems = {
+    "/mnt/Hardy" =
+      if (systemSettings.hostname == "bundesk")
+      then {device = "/dev/disk/by-label/Hardy";}
+      else {};
+    "/mnt/Harvey" =
+      if (systemSettings.hostname == "bundesk")
+      then {device = "/dev/disk/by-label/Harvey";}
+      else {};
+    "/mnt/Win" =
+      if (systemSettings.hostname == "bundesk")
+      then {device = "/dev/nvme0n1p2";}
+      else {};
   };
 
   services = {
