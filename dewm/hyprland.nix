@@ -3,7 +3,7 @@
   userSettings,
   ...
 }: {
-  imports = [./waybar];
+  imports = [./waybar ./rofi];
 
   home.packages = with pkgs; [
     swww
@@ -109,7 +109,7 @@
           noise = 0.02;
         };
       };
-      windowrule = [""];
+      windowrule = ["float, ^Rofi"];
       layerrule = [
         "blur, waybar$"
         "ignorezero, rofi$"
@@ -163,6 +163,8 @@
         "SUPER, mouse:273, resizewindow"
         "SUPER, mouse:272, movewindow"
       ];
+
+      bindr = ["SUPER, SUPER_L, exec, rofi -show drun || pkill rofi"];
     };
 
     extraConfig = ''

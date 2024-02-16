@@ -42,6 +42,7 @@
           dewm = "hyprland";
           pape = "Makima_Persona.png";
           browser = "brave";
+          font = "CommitMono";
         };
       in
         lib.nixosSystem {
