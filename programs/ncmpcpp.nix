@@ -9,7 +9,7 @@
       # Song Format
       song_list_format = "{$8%l$9} $1|$9 {$6%a$9} $1|$9 {$5%t$9} $R {$1%b$9}";
       song_library_format = "{%n - }{%t}|{%f}";
-      song_status_format = "$b{$6%a$9 $1|$9 } {$7%t$9} $1|$9 {$2%b$9} $1|$9 {$6%y$9}";
+      song_status_format = "$b{$6%a$9 $1|$9} {$7%t$9} $1|$9 {$2%b$9} $1|$9 {$6%y$9}";
       song_window_title_format = "{%b}";
 
       # Columns settings
