@@ -33,9 +33,12 @@
       splitbelow = true; # horizontal split to the bottom
       undofile = true; # Save and restore undo history
       autochdir = true;
-      incsearch = true; # Incremental search: show match for partly typed search command
-      ignorecase = true; # When the search query is lower-case, match both lower and upper-case
-      smartcase = true; # Override the 'ignorecase' option if the search pattern contains upper
+      incsearch =
+        true; # Incremental search: show match for partly typed search command
+      ignorecase =
+        true; # When the search query is lower-case, match both lower and upper-case
+      smartcase =
+        true; # Override the 'ignorecase' option if the search pattern contains upper
       expandtab = true; # use spaces instead of tabs
       shiftwidth = 2; # shift 2 spaces when tab
       tabstop = 2; # 1 tab == 2 spaces
@@ -46,11 +49,12 @@
       cursorline = true; # highlight current line
       lazyredraw = true; # faster scrolling
       list = true; # show hidden characters
-      exrc = true; # Loads project specific settings from .exrc, .nvimrc and .nvim.lua files
+      exrc =
+        true; # Loads project specific settings from .exrc, .nvimrc and .nvim.lua files
       # what hidden characters to show
       listchars = {
         trail = "•"; # trailing space
-        tab = "»\ "; # tabs
+        tab = "» "; # tabs
       };
     };
 
@@ -384,6 +388,12 @@
         options.desc = "Widen Split";
       }
 
+      {
+        key = "<leader>/";
+        action = "<cmd>CommentToggle<CR>";
+        mode = "n";
+        options.desc = "Toggle Comment";
+      }
       {
         key = "<leader>w";
         action = "<cmd>w!<CR>";
