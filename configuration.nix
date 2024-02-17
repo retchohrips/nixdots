@@ -25,6 +25,7 @@
     };
 
     settings = {
+      auto-optimise-store = true;
       trusted-users = [userSettings.username];
       # Caches to pull from so we don't have to build packages
       substituters = [
@@ -46,7 +47,10 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = ["ntfs"];
@@ -58,10 +62,7 @@
 
     # Do not install these packages that are normally included with gnome
     gnome.excludePackages =
-      (with pkgs; [
-        gnome-tour
-        gnome-console
-      ])
+      (with pkgs; [gnome-tour gnome-console])
       ++ (with pkgs.gnome; [
         gnome-calendar
         geary # mail
@@ -137,7 +138,8 @@
   hardware.bluetooth.enable = true;
 
   time.timeZone = "America/New_York";
-  time.hardwareClockInLocalTime = true; # Compatibility with Windows clock for dualbooting
+  time.hardwareClockInLocalTime =
+    true; # Compatibility with Windows clock for dualbooting
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -160,7 +162,8 @@
       enable = true;
       settings = {
         default_session = {
-          command = ''            ${pkgs.greetd.tuigreet}/bin/tuigreet \
+          command = ''
+            ${pkgs.greetd.tuigreet}/bin/tuigreet \
                     --time --user-menu --remember --remember-user-session \
                     --cmd Hyprland
           '';
@@ -214,7 +217,11 @@
           relaysEnabled = true;
           urAccepted = -1;
         };
-        devices = {S23 = {id = "RP3YA5P-EXN4AAG-JAMUDCL-C7GTHE4-SSTGPKC-LSD6UJH-WIBQSVM-K5IXFAN";};};
+        devices = {
+          S23 = {
+            id = "RP3YA5P-EXN4AAG-JAMUDCL-C7GTHE4-SSTGPKC-LSD6UJH-WIBQSVM-K5IXFAN";
+          };
+        };
       };
     };
   };
@@ -243,9 +250,7 @@
     allowUnfree = true;
 
     # Allow obsidian to be installed
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-    ];
+    permittedInsecurePackages = ["electron-25.9.0"];
   };
 
   # Automatic updates

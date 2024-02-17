@@ -40,7 +40,7 @@
           username = "bunny";
           name = "Bun";
           dewm = "hyprland";
-          pape = "Makima_Persona.png";
+          pape = "BLACK_X_desktop.jpg";
           browser = "brave";
           font = "CommitMono";
         };
