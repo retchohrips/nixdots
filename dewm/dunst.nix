@@ -48,15 +48,15 @@ in {
         corner_radius = 5;
       };
       urgency_low = with colors.scheme.catppuccin-mocha; {
-        background = base;
+        background = "${base}80";
         foreground = text;
       };
       urgency_normal = with colors.scheme.catppuccin-mocha; {
-        background = base;
+        background = "${base}80";
         foreground = text;
       };
       urgency_critical = with colors.scheme.catppuccin-mocha; {
-        background = base;
+        background = "${base}80";
         foreground = text;
         frame_color = red;
       };
