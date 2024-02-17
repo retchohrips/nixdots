@@ -202,10 +202,7 @@ in {
       };
       windowrule = [
         "float, ^Rofi"
-        "float, wlogout"
-        "move 0 0, wlogout"
-        "size 100% 100%, wlogout"
-        "animation slide, wlogout"
+        "tile, ^(kitty)$"
       ];
       layerrule = [
         "blur, waybar$"
