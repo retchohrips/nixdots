@@ -12,6 +12,7 @@ in {
     ./dunst.nix
     ../programs/ranger
     ../programs/ncmpcpp.nix
+    ../programs/mpd.nix
   ];
 
   #xdg.configFile."hypr/wlogout/layout" = {
