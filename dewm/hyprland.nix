@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   userSettings,
   ...
 }: let
@@ -15,25 +16,86 @@ in {
     ../programs/mpd.nix
   ];
 
-  #xdg.configFile."hypr/wlogout/layout" = {
-  # source = ./wlogout/layout;
-  #};
-
-  #xdg.configFile."hypr/wlogout/style.css".text = import ./wlogout/style.nix {
-  #inherit colors;
-  # inherit userSettings;
-  #};
-
-  # home.file."hypr/wlogout/icons" = {
-  #  source = ./wlogout/icons;
-  # recursive = true;
-  #};
-
   home.packages = with pkgs; [
     swww
     feh
-    wlogout
+    wl-clipboard
+    cliphist
   ];
+
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = with colors.scheme.catppuccin-mocha; {
+      clock = true;
+      color = base;
+      font = "${userSettings.font}";
+      show-failed-attempts = false;
+      indicator = true;
+      indicator-radius = 200;
+      indicator-thickness = 20;
+      line-color = "00000000";
+      ring-color = "00000000";
+      inside-color = "00000000";
+      key-hl-color = "f2cdcd";
+      separator-color = "00000000";
+      text-color = pink;
+      text-caps-lock-color = "";
+      line-ver-color = yellow;
+      ring-ver-color = rosewater;
+      inside-ver-color = base;
+      text-ver-color = text;
+      ring-wrong-color = red;
+      text-wrong-color = red;
+      inside-wrong-color = base;
+      inside-clear-color = base;
+      text-clear-color = text;
+      ring-clear-color = blue;
+      line-clear-color = base;
+      line-wrong-color = base;
+      bs-hl-color = red;
+      line-uses-ring = false;
+      grace = 2;
+      grace-no-mouse = true;
+      grace-no-touch = true;
+      datestr = "%m.%d";
+      fade-in = "0.1";
+      ignore-empty-password = true;
+    };
+  };
+
+  services.udiskie = {
+    enable = true;
+    automount = true;
+    tray = "auto";
+  };
+
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
+      }
+      {
+        event = "lock";
+        command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
+      }
+    ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
+        resumeCommand = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
+      }
+      {
+        timeout = 310;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
+  };
+
+  systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -62,6 +124,8 @@ in {
     settings = {
       exec-once = [
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
+        "wl-paste --type text --watch cliphist store" #Stores only text data
+        "wl-paste --type image --watch cliphist store" #Stores only image data
         "waybar"
         "dunst"
         "swww init"
@@ -172,7 +236,8 @@ in {
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
           "SUPER SHIFT, X, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
-          # "SUPER SHIFT, X, exec, wlogout --layout ${config.home.homeDirectory}/.config/hypr/wlogout/layout --css ${config.home.homeDirectory}/.config/hypr/wlogout/style.css "
+          "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+          "SUPER, L, exec, swaylock"
 
           (mvfocus "k" "u")
           (mvfocus "j" "d")
