@@ -115,6 +115,10 @@
   users.defaultUserShell = pkgs.fish;
 
   programs = {
+    hyprland.enable =
+      if (userSettings.dewm == "hyprland")
+      then true
+      else false;
     fish.enable = true;
     dconf.enable = true;
     steam = {
@@ -214,7 +218,7 @@
       };
     };
   };
-
+  security.pam.services.swaylock.fprintAuth = false;
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
