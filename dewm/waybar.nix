@@ -109,6 +109,7 @@ in {
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           max-volume = 100;
           format-icons = ["" "" "" "" ""];
+          scroll-step = 5;
         };
         backlight = {format = " {percent}%";};
         clock = {
