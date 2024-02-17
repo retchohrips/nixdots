@@ -280,31 +280,18 @@
         enable = true;
         ensureInstalled = [
           "bash"
-          "bibtex"
-          "c"
-          "commonlisp"
-          "cpp"
           "css"
           "fish"
-          "haskell"
-          "java"
-          "julia"
           "latex"
-          "ledger"
           "lua"
           "make"
           "markdown"
           "markdown_inline"
           "nix"
           "python"
-          "r"
           "rasi"
           "regex"
-          "rst"
-          "rust"
-          "sxhkdrc"
           "vim"
-          "yuck"
         ];
         indent = true;
         folding = false;
