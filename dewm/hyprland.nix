@@ -8,7 +8,7 @@
   colors = import ../colors.nix;
 in {
   imports = [
-    ./waybar
+    ./waybar.nix
     ./rofi
     ./dunst.nix
     ../programs/ranger
@@ -21,6 +21,9 @@ in {
     feh
     wl-clipboard
     cliphist
+    gnome.nautilus
+    grimblast
+    brightnessctl
   ];
 
   programs.swaylock = {
@@ -95,7 +98,8 @@ in {
     ];
   };
 
-  systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
+  systemd.user.services.swayidle.Install.WantedBy =
+    lib.mkForce ["hyprland-session.target"];
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -124,8 +128,8 @@ in {
     settings = {
       exec-once = [
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
-        "wl-paste --type text --watch cliphist store" #Stores only text data
-        "wl-paste --type image --watch cliphist store" #Stores only image data
+        "wl-paste --type text --watch cliphist store" # Stores only text data
+        "wl-paste --type image --watch cliphist store" # Stores only image data
         "telegram-desktop -startintray"
         "waybar"
         "dunst"
@@ -161,9 +165,8 @@ in {
         follow_mouse = 1;
         sensitivity = 0;
         accel_profile = "flat";
-        touchpad = {
-          natural_scroll = "yes";
-        };
+        numlock_by_default = true;
+        touchpad = {natural_scroll = "yes";};
       };
       dwindle = {
         pseudotile = true;
@@ -180,7 +183,7 @@ in {
       decoration = {
         rounding = 5;
         drop_shadow = true;
-        shadow_range = 40;
+        shadow_range = 10;
         shadow_render_power = 3;
         "col.shadow" = "rgba(00000088)";
         "col.shadow_inactive" = "rgba(00000070)";
@@ -191,20 +194,18 @@ in {
           enabled = true;
           special = true;
           popups = true;
-          ignore_opacity = false;
+          ignore_opacity = true;
+          new_optimizations = true;
           xray = false;
-          size = 10;
-          passes = 3;
+          size = 4;
+          passes = 4;
           contrast = 1.2;
           brightness = 1;
           vibrancy = 1;
-          noise = 0.02;
+          noise = 2.0e-2;
         };
       };
-      windowrule = [
-        "float, ^Rofi"
-        "tile, ^(kitty)$"
-      ];
+      windowrule = ["float, ^Rofi" "tile, ^(kitty)$"];
       layerrule = [
         "blur, waybar$"
         "ignorezero, rofi$"
@@ -237,6 +238,8 @@ in {
           "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
           "SUPER, L, exec, swaylock"
           "SUPER, T, exec, telegram-desktop"
+          "SUPER, E, exec, nautilus"
+          "SUPER, S, exec, grimblast copy area"
 
           (mvfocus "k" "u")
           (mvfocus "j" "d")
@@ -258,12 +261,21 @@ in {
         ++ (map (i: ws (toString i) (toString i)) arr)
         ++ (map (i: mvtows (toString i) (toString i)) arr);
 
-      bindm = [
-        "SUPER, mouse:273, resizewindow"
-        "SUPER, mouse:272, movewindow"
-      ];
+      bindm = ["SUPER, mouse:273, resizewindow" "SUPER, mouse:272, movewindow"];
 
       bindr = ["SUPER, SUPER_L, exec, rofi -show drun || pkill rofi"];
+
+      bindle = [
+        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioLowerVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        "SUPER, F1, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "SUPER, F2, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        "SUPER, F3, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        # TODO: Figure out how to set minimum brightness on these
+        # ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
+        # ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+      ];
     };
 
     extraConfig = ''
