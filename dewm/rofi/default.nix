@@ -5,6 +5,11 @@
 }: let
   colors = import ../../colors.nix;
 in {
+  xdg.configFile."rofi/powermenuhack/style.rasi".text = import ./powermenu-style.nix {
+    inherit colors;
+    inherit userSettings;
+  };
+  xdg.configFile."rofi/powermenuhack/powermenu.sh".source = ./powermenu.sh;
   programs.rofi = {
     enable = true;
     theme = with colors.scheme.catppuccin-mocha; let

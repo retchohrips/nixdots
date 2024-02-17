@@ -1,8 +1,11 @@
 {
   pkgs,
+  config,
   userSettings,
   ...
-}: {
+}: let
+  colors = import ../colors.nix;
+in {
   imports = [
     ./waybar
     ./rofi
@@ -11,8 +14,24 @@
     ../programs/ncmpcpp.nix
   ];
 
+  #xdg.configFile."hypr/wlogout/layout" = {
+  # source = ./wlogout/layout;
+  #};
+
+  #xdg.configFile."hypr/wlogout/style.css".text = import ./wlogout/style.nix {
+  #inherit colors;
+  # inherit userSettings;
+  #};
+
+  # home.file."hypr/wlogout/icons" = {
+  #  source = ./wlogout/icons;
+  # recursive = true;
+  #};
+
   home.packages = with pkgs; [
     swww
+    feh
+    wlogout
   ];
 
   home.pointerCursor = {
@@ -116,7 +135,13 @@
           noise = 0.02;
         };
       };
-      windowrule = ["float, ^Rofi"];
+      windowrule = [
+        "float, ^Rofi"
+        "float, wlogout"
+        "move 0 0, wlogout"
+        "size 100% 100%, wlogout"
+        "animation slide, wlogout"
+      ];
       layerrule = [
         "blur, waybar$"
         "ignorezero, rofi$"
@@ -145,6 +170,8 @@
           "SUPER, G, fullscreen"
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
+          "SUPER SHIFT, X, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
+          # "SUPER SHIFT, X, exec, wlogout --layout ${config.home.homeDirectory}/.config/hypr/wlogout/layout --css ${config.home.homeDirectory}/.config/hypr/wlogout/style.css "
 
           (mvfocus "k" "u")
           (mvfocus "j" "d")
