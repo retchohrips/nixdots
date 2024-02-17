@@ -322,12 +322,12 @@
         mode = "v";
         options.desc = "Indent";
       }
-      # {
-      #   key = "/";
-      #   action = ""; # TODO
-      #   mode = "v";
-      #   options.desc = "Toggle Comment";
-      # }
+      {
+        key = "/";
+        action = "<CMD>CommentToggle<CR>";
+        mode = "v";
+        options.desc = "Toggle Comment";
+      }
       {
         key = "p";
         action = ''"_dP'';
