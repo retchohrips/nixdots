@@ -7,7 +7,7 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./programs/starship.nix
-    # ./programs/nixvim # Currently broken, waiting for nixpkgs update
+    ./programs/nixvim # Currently broken, waiting for nixpkgs update
     # ./programs/firefox.nix # Using Brave
     ./programs/beets.nix
     ./dewm/${userSettings.dewm}.nix
@@ -34,6 +34,7 @@
 
         # CLI tools
         lazygit
+        tldr
 
         # AstroNvim
         gcc # astronvim gets mad if it can't compile C...
@@ -119,11 +120,6 @@
         linux_display_server = "x11";
         background_opacity = "0.85";
       };
-    };
-
-    tealdeer = {
-      enable = true;
-      settings = {updates = {auto_update = true;};};
     };
 
     # Let Home Manager install and manage itself.
