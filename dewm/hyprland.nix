@@ -126,6 +126,7 @@ in {
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
         "wl-paste --type text --watch cliphist store" #Stores only text data
         "wl-paste --type image --watch cliphist store" #Stores only image data
+        "telegram-desktop -startintray"
         "waybar"
         "dunst"
         "swww init"
@@ -235,6 +236,7 @@ in {
           "SUPER SHIFT, X, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
           "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
           "SUPER, L, exec, swaylock"
+          "SUPER, T, exec, telegram-desktop"
 
           (mvfocus "k" "u")
           (mvfocus "j" "d")
