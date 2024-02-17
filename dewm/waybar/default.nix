@@ -53,18 +53,18 @@ in {
           padding-left: 10px;
         }
 
-        #backlight {
+        #battery {
           border-radius: 0px 6px 6px 0px;
-          padding-right: 20px;
-          padding-left: 10px;
-          border-right: 0px transparent;
+          border-left: 0px transparent;
+          padding-right: 10px;
+          margin-right: 20px;
         }
 
-        #battery {
+        #backlight {
           border-radius: 6px 0px 0px 6px;
-          margin-right: 20px;
-          padding-right: 10px;
-          border-left: 0px transparent;
+          border-right: 0px transparent;
+          padding-right: 20px;
+          padding-left: 10px;
         }
 
         #battery.charging {
@@ -110,7 +110,7 @@ in {
           max-volume = 100;
           format-icons = ["" "" "" "" ""];
         };
-        backlight = {format = "  {percent}%";};
+        backlight = {format = " {percent}%";};
         clock = {
           format = "{:%I:%M %p}";
           tooltip-format = "{:%A, %B %d, %Y}";
