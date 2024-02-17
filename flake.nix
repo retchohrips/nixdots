@@ -14,17 +14,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-flake = {
-      url = "github:notashelf/neovim-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
+    # firefox-gnome-theme = {
+    #   url = "github:rafaelmardojai/firefox-gnome-theme";
+    #   flake = false;
+    # };
   };
 
   outputs = {
@@ -80,9 +75,12 @@
       pawpad = let
         systemSettings = {hostname = "pawpad";};
         userSettings = {
-          user = "puppy";
+          username = "puppy";
           name = "Pup";
-          dewm = "gnome";
+          dewm = "hyprland";
+          pape = "Makima_Persona.png";
+          browser = "brave";
+          font = "CommitMono";
         };
       in
         lib.nixosSystem {

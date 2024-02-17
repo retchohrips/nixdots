@@ -6,13 +6,10 @@
 }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    # inputs.neovim-flake.homeManagerModules.default
     ./programs/starship.nix
-    # ./programs/neovim.nix
-    ./programs/nixvim
-    # ./programs/firefox.nix
+    # ./programs/nixvim # Currently broken, waiting for nixpkgs update
+    # ./programs/firefox.nix # Using Brave
     ./programs/beets.nix
-    ./programs/ranger
     ./dewm/${userSettings.dewm}.nix
     ./fonts.nix
   ];
