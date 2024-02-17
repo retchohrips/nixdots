@@ -5,9 +5,11 @@
   ...
 }: {
   imports = [
-    inputs.neovim-flake.homeManagerModules.default
+    inputs.nixvim.homeManagerModules.nixvim
+    # inputs.neovim-flake.homeManagerModules.default
     ./programs/starship.nix
-    ./programs/neovim.nix
+    # ./programs/neovim.nix
+    ./programs/nixvim
     # ./programs/firefox.nix
     ./programs/beets.nix
     ./programs/ranger
