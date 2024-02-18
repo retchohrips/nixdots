@@ -100,8 +100,6 @@
       cargo
       nodePackages.pnpm
 
-      mpd
-      mpc-cli
       ffmpeg
       libnotify
       networkmanagerapplet
