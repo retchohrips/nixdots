@@ -78,7 +78,7 @@
           username = "puppy";
           name = "Pup";
           dewm = "hyprland";
-          pape = "Makima_Persona.png";
+          pape = "BLACK_X_desktop.jpg";
           browser = "brave";
           font = "CommitMono";
         };
