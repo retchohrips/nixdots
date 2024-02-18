@@ -94,6 +94,11 @@
       '';
     };
 
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     bat = {
       enable = true;
       config = {theme = "ansi";};
