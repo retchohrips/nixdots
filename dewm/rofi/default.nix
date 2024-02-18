@@ -3,30 +3,29 @@
   userSettings,
   ...
 }: let
-  colors = import ../../colors.nix;
+  inherit (config.colorScheme) palette;
 in {
   xdg.configFile."rofi/powermenuhack/style.rasi".text = import ./powermenu-style.nix {
-    inherit colors;
     inherit userSettings;
   };
   xdg.configFile."rofi/powermenuhack/powermenu.sh".source = ./powermenu.sh;
   programs.rofi = {
     enable = true;
-    theme = with colors.scheme.catppuccin-mocha; let
+    theme = let
       mkL = config.lib.formats.rasi.mkLiteral;
     in {
       "*" = {
         background-color = mkL "transparent";
-        text-color = mkL text;
+        text-color = mkL "#${palette.base05}";
         font = "${userSettings.font} 14";
       };
 
       window = {
         padding = mkL "1em";
-        border-color = mkL "${text}30";
+        border-color = mkL "#${palette.base05}30";
         border = mkL "1px";
         border-radius = mkL "6px";
-        background-color = mkL "${crust}80";
+        background-color = mkL "#${palette.base00}80";
       };
 
       mainbox = {
@@ -61,8 +60,8 @@ in {
         border-radius = mkL "6px";
         border = mkL "1px";
         border-bottom = mkL "3px";
-        background-color = mkL "${crust}55";
-        border-color = mkL "${text}20";
+        background-color = mkL "#${palette.base00}55";
+        border-color = mkL "#${palette.base05}20";
         children = map mkL ["entry" "overlay" "case-indicator"];
       };
 
@@ -70,7 +69,7 @@ in {
         padding = mkL "0.5em";
         border = mkL "1px";
         border-radius = 0;
-        border-color = "${text}20";
+        border-color = "#${palette.base05}20";
         background-color = mkL "transparent";
         columns = 3;
         lines = 7;
@@ -80,7 +79,7 @@ in {
         border = 0;
         spacing = mkL "10px";
         background-color = mkL "transparent";
-        border-color = mkL "${text}20";
+        border-color = mkL "#${palette.base05}20";
         scrollbar = false;
       };
 
@@ -88,30 +87,30 @@ in {
         border = mkL "1px";
         border-radius = mkL "3px";
         padding = mkL "5px";
-        border-color = mkL "${text}20";
+        border-color = mkL "#${palette.base05}20";
       };
 
       element-text = {
         background-color = mkL "transparent";
-        text-color = mkL "${text}cc";
+        text-color = mkL "#${palette.base05}cc";
         font = "${userSettings.font} 13";
       };
 
       "element normal.normal" = {
-        background-color = mkL "${crust}55";
+        background-color = mkL "#${palette.base00}55";
       };
 
-      "element.alternate.normal" = {background-color = mkL "${crust}55";};
+      "element.alternate.normal" = {background-color = mkL "#${palette.base00}55";};
 
-      "element.selected.normal" = {background-color = mkL "${text}20";};
+      "element.selected.normal" = {background-color = mkL "#${palette.base05}20";};
 
       entry = {
         placeholder = "Search here";
-        placeholder-color = mkL "${text}20";
+        placeholder-color = mkL "#${palette.base05}20";
         border-color = mkL "transparent";
         background-color = mkL "transparent";
         border = mkL "10px";
-        text-color = mkL "${text}cc";
+        text-color = mkL "#${palette.base05}cc";
       };
     };
   };

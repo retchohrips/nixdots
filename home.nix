@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    inputs.nix-colors.homeManagerModules.default
     ./programs/starship.nix
     ./programs/nixvim # Currently broken, waiting for nixpkgs update
     # ./programs/firefox.nix # Using Brave
@@ -13,6 +14,8 @@
     ./dewm/${userSettings.dewm}.nix
     ./fonts.nix
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = {
     # Do not change the below value. It determines the Home Manager release
@@ -155,7 +158,7 @@
         window_padding_width = 5;
         confirm_os_window_close = 0;
         linux_display_server = "x11";
-        background_opacity = "0.85";
+        background_opacity = "0.50";
         enabled_layouts = "tall, grid, splits";
       };
     };

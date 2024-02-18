@@ -1,24 +1,26 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   programs.starship = let
-    colors = import ../colors.nix;
+    inherit (config.colorScheme) palette;
   in {
     enable = true;
     enableTransience = true;
     settings = {
-      palette = "catppuccin";
-
       format = lib.concatStrings [
-        "[](maroon)"
+        "[](#${palette.base08})"
         "$os"
         "$hostname"
-        "[](bg:peach fg:maroon)"
+        "[](bg:#${palette.base09} fg:#${palette.base08})"
         "$directory"
-        "[](bg:yellow fg:peach)"
+        "[](bg:#${palette.base0A} fg:#${palette.base09})"
         "$git_branch"
         "$git_status"
-        "[](bg:green fg:yellow)"
+        "[](bg:#${palette.base0B} fg:#${palette.base0A})"
         "$cmd_duration"
-        "[](fg:green)"
+        "[](fg:#${palette.base0B})"
         "$line_break"
         "$character"
       ];
@@ -26,11 +28,11 @@
       hostname = {
         ssh_symbol = " ";
         format = "[ $hostname ]($style)";
-        style = "bg:maroon fg:crust";
+        style = "bg:#${palette.base08} fg:#${palette.base01}";
       };
 
       directory = {
-        style = "fg:crust bg:peach";
+        style = "fg:#${palette.base01} bg:#${palette.base09}";
         fish_style_pwd_dir_length = 1;
         truncation_length = 5;
         format = "[ $path ]($style)";
@@ -45,17 +47,17 @@
 
       git_branch = {
         symbol = "󰘬";
-        style = "fg:crust bg:yellow";
-        format = "[[ $symbol $branch ](fg:crust bg:yellow)]($style)";
+        style = "fg:#${palette.base01} bg:#${palette.base0A}";
+        format = "[[ $symbol $branch ](fg:#${palette.base01} bg:#${palette.base0A})]($style)";
       };
 
       git_status = {
-        style = "bg:yellow";
-        format = "[[($all_status$ahead_behind )](fg:fg:crust bg:yellow)]($style)";
+        style = "bg:#${palette.base0A}";
+        format = "[[($all_status$ahead_behind )](fg:#${palette.base01} bg:#${palette.base0A})]($style)";
       };
 
       cmd_duration = {
-        style = "fg:crust bg:green";
+        style = "fg:#${palette.base01} bg:#${palette.base0B}";
         format = "[ $duration]($style)";
       };
 
@@ -63,7 +65,7 @@
 
       os = {
         disabled = false;
-        style = "fg:crust bg:maroon";
+        style = "fg:#${palette.base01} bg:#${palette.base08}";
       };
 
       os.symbols = {
@@ -107,8 +109,6 @@
         Unknown = " ";
         Windows = "󰍲 ";
       };
-
-      palettes.catppuccin = colors.scheme.catppuccin-mocha;
     };
   };
 }

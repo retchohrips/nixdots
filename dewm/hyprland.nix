@@ -5,10 +5,10 @@
   userSettings,
   ...
 }: let
-  colors = import ../colors.nix;
+  inherit (config.colorScheme) palette;
 in {
   imports = [
-    ./waybar.nix
+    ./waybar
     ./rofi
     ./dunst.nix
     ../programs/ranger
@@ -29,9 +29,9 @@ in {
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
-    settings = with colors.scheme.catppuccin-mocha; {
+    settings = {
       clock = true;
-      color = base;
+      color = "#${palette.base00}";
       font = "${userSettings.font}";
       show-failed-attempts = false;
       indicator = true;
@@ -42,21 +42,21 @@ in {
       inside-color = "00000000";
       key-hl-color = "f2cdcd";
       separator-color = "00000000";
-      text-color = pink;
+      text-color = "#${palette.base0C}";
       text-caps-lock-color = "";
-      line-ver-color = yellow;
-      ring-ver-color = rosewater;
-      inside-ver-color = base;
-      text-ver-color = text;
-      ring-wrong-color = red;
-      text-wrong-color = red;
-      inside-wrong-color = base;
-      inside-clear-color = base;
-      text-clear-color = text;
-      ring-clear-color = blue;
-      line-clear-color = base;
-      line-wrong-color = base;
-      bs-hl-color = red;
+      line-ver-color = "#${palette.base0A}";
+      ring-ver-color = "#${palette.base06}";
+      inside-ver-color = "#${palette.base00}";
+      text-ver-color = "#${palette.base05}";
+      ring-wrong-color = "#${palette.base08}";
+      text-wrong-color = "#${palette.base08}";
+      inside-wrong-color = "#${palette.base00}";
+      inside-clear-color = "#${palette.base00}";
+      text-clear-color = "#${palette.base05}";
+      ring-clear-color = "#${palette.base0D}";
+      line-clear-color = "#${palette.base00}";
+      line-wrong-color = "#${palette.base00}";
+      bs-hl-color = "#${palette.base08}";
       line-uses-ring = false;
       grace = 2;
       grace-no-mouse = true;

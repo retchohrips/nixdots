@@ -1,10 +1,14 @@
-{userSettings, ...}: let
-  colors = import ../colors.nix;
+{
+  userSettings,
+  config,
+  ...
+}: let
+  inherit (config.colorScheme) palette;
 in {
   services.dunst = {
     enable = true;
     settings = {
-      global = with colors.scheme.catppuccin-mocha; {
+      global = {
         font = "${userSettings.font}";
         markup = "full";
         format = "<b>%s</b>\n%b";
@@ -44,21 +48,21 @@ in {
         mouse_right_click = "close_current";
 
         frame_width = 2;
-        frame_color = blue;
+        frame_color = "#${palette.base0D}";
         corner_radius = 5;
       };
-      urgency_low = with colors.scheme.catppuccin-mocha; {
-        background = "${base}80";
-        foreground = text;
+      urgency_low = {
+        background = "#${palette.base00}80";
+        foreground = "#${palette.base05}";
       };
-      urgency_normal = with colors.scheme.catppuccin-mocha; {
-        background = "${base}80";
-        foreground = text;
+      urgency_normal = {
+        background = "#${palette.base00}80";
+        foreground = "#${palette.base05}";
       };
-      urgency_critical = with colors.scheme.catppuccin-mocha; {
-        background = "${base}80";
-        foreground = text;
-        frame_color = red;
+      urgency_critical = {
+        background = "#${palette.base00}80";
+        foreground = "#${palette.base05}";
+        frame_color = "#${palette.base08}";
       };
     };
   };

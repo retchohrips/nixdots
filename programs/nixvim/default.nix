@@ -96,6 +96,7 @@
           lualine_z = ["progress" "location"];
         };
       };
+
       which-key = {
         enable = true;
         registrations = {
@@ -274,8 +275,10 @@
             black.enable = true;
             jq.enable = true;
             markdownlint.enable = true;
+            prettier.enable = true;
+            stylelint.enable = true;
             # nixfmt.enable = true;
-            nixpkgs_fmt.enable = true;
+            # nixpkgs_fmt.enable = true;
           };
         };
       };
@@ -326,12 +329,12 @@
         mode = "v";
         options.desc = "Indent";
       }
-      {
-        key = "/";
-        action = "<CMD>CommentToggle<CR>";
-        mode = "v";
-        options.desc = "Toggle Comment";
-      }
+      # {
+      #   key = "/";
+      #   action = "<CMD>CommentToggle<CR>";
+      #   mode = "v";
+      #   options.desc = "Toggle Comment";
+      # }
       {
         key = "p";
         action = ''"_dP'';
@@ -387,13 +390,12 @@
         mode = "n";
         options.desc = "Widen Split";
       }
-
-      {
-        key = "<leader>/";
-        action = "<cmd>CommentToggle<CR>";
-        mode = "n";
-        options.desc = "Toggle Comment";
-      }
+      # {
+      #   key = "<leader>/";
+      #   action = "<cmd>CommentToggle<CR>";
+      #   mode = "n";
+      #   options.desc = "Toggle Comment";
+      # }
       {
         key = "<leader>w";
         action = "<cmd>w!<CR>";
@@ -412,12 +414,13 @@
         mode = "n";
         options.desc = "Remove Highlight";
       }
-      {
-        key = "<leader>a";
-        action = "<cmd>Alpha<CR>";
-        mode = "n";
-        options.desc = "Dashboard";
-      }
+      # TODO: Add dashboard
+      # {
+      #   key = "<leader>a";
+      #   action = "<cmd>Alpha<CR>";
+      #   mode = "n";
+      #   options.desc = "Dashboard";
+      # }
       {
         key = "<leader>bb";
         action = "<cmd>Telescope buffers theme=dropdown<CR>";
@@ -496,12 +499,12 @@
         mode = "n";
         options.desc = "Search Commands";
       }
-      {
-        key = "<leader>sC";
-        action = "<cmd>Telescope colorscheme<CR>";
-        mode = "n";
-        options.desc = "Search Colorschemes";
-      }
+      # {
+      #   key = "<leader>sC";
+      #   action = "<cmd>Telescope colorscheme<CR>";
+      #   mode = "n";
+      #   options.desc = "Search Colorschemes";
+      # }
       {
         key = "<leader>sh";
         action = "<cmd>Telescope help_tags<CR>";
