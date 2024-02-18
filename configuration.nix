@@ -88,7 +88,6 @@
       commitizen
 
       # Cli tools
-      ranger
       eza
       unzip
       p7zip
