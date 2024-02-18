@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    nixpkgs-nixvim-hack.url = "github:nixos/nixpkgs/a4d4fe8c5002202493e87ec8dbc91335ff55552c"; #HACK nixOS-unstable breaks nixvim currently - see https://github.com/nix-community/nixvim/issues/1112
+
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -11,7 +13,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-nixvim-hack"; #HACK nixOS-unstable breaks nixvim currently - see https://github.com/nix-community/nixvim/issues/1112
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
