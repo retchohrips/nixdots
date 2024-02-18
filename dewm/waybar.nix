@@ -1,5 +1,5 @@
-let
-  colors = import ../../colors.nix;
+{userSettings, ...}: let
+  colors = import ../colors.nix;
 in {
   programs.waybar = {
     enable = true;
@@ -10,7 +10,7 @@ in {
       ''
         * {
           border-radius: 12px;
-          font-family: CommitMono, "Symbols Nerd Font";
+          font-family: "${userSettings.font}", "Symbols Nerd Font";
           color: ${text};
           font-size: 14px;
         }
@@ -30,12 +30,27 @@ in {
           background: transparent;
         }
 
-        #network, #bluetooth, #battery, #wireplumber, #backlight, #mpd {
+        #network, #bluetooth, #battery, #wireplumber, #backlight, #mpd, #workspaces {
           border: 1px solid ${overlay0};
           background-color: rgba(255, 255, 255, 0.05);
           transition: none;
           margin-top: 6px;
           margin-bottom: 6px;
+        }
+
+        #workspaces {
+          margin-left: 20px;
+        }
+
+        #workspaces button {
+          padding-top: 2px;
+          padding-bottom: 2px;
+          animation: ws_normal 20s ease-in-out 1;
+        }
+
+        #workspaces button.active {
+          animation: ws_active 20s ease-in-out 1;
+          transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
         }
 
         #network {
@@ -100,7 +115,7 @@ in {
     settings = {
       mainBar = {
         layer = "top";
-        modules-left = ["mpd"];
+        modules-left = ["hyprland/workspaces" "mpd"];
         modules-center = ["clock"];
         modules-right = ["tray" "bluetooth" "network" "wireplumber" "backlight" "battery"];
         wireplumber = {
@@ -123,7 +138,9 @@ in {
             default = "";
           };
           sort-by-number = true;
-          on-click = "activate";
+          disable-scroll = false;
+          on-scroll-up = "hyprctl dispatch workspace +1";
+          on-scroll-down = "hyprctl dispatch workspace -1";
         };
         mpd = {
           format = "{stateIcon} {title} - {artist}";
@@ -146,8 +163,8 @@ in {
           max-length = 16;
         };
         network = {
-          format-wifi = "";
-          format = "";
+          format-wifi = " ";
+          format = " ";
           tooltip-format = "{signaldBm}dBm {essid} {frequency}GHz";
           on-click = "nm-connection-editor";
         };
@@ -156,10 +173,18 @@ in {
           on-click = "blueman-manager";
           format-connected = " {device_alias}";
           format-connected-battery = " {device_alias} {device_battery_percentage}%";
-          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
-          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
-          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          tooltip-format = ''
+            {controller_alias}	{controller_address}
+
+            {num_connections} connected'';
+          tooltip-format-connected = ''
+            {controller_alias}	{controller_address}
+
+            {num_connections} connected
+
+            {device_enumerate}'';
+          tooltip-format-enumerate-connected = "{device_alias}	{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}	{device_address}	{device_battery_percentage}%";
         };
       };
     };

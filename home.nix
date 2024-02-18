@@ -89,6 +89,9 @@
   programs = {
     fish = {
       enable = true;
+      shellAbbrs = {
+        gss = "git status --short";
+      };
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
       '';
@@ -123,7 +126,7 @@
       enable = true;
       theme = "Catppuccin-Mocha";
       settings = {
-        font = "CommitMono";
+        font = "${userSettings.font}";
         cursor_shape = "beam";
         window_padding_width = 5;
         confirm_os_window_close = 0;

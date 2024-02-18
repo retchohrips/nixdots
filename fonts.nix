@@ -9,6 +9,7 @@
     liberation_ttf
     inter
     commit-mono
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
 
     (stdenv.mkDerivation {
       pname = "symbols-nerd-font";
@@ -18,10 +19,7 @@
         repo = "nerd-fonts";
         rev = "v3.1.1";
         sha256 = "sha256-M7BNPdS8TF0VIaFRREQyQ3Idj3chw3Ih7J71g+cQ3CU=";
-        sparseCheckout = [
-          "10-nerd-font-symbols.conf"
-          "patched-fonts/NerdFontsSymbolsOnly"
-        ];
+        sparseCheckout = ["10-nerd-font-symbols.conf" "patched-fonts/NerdFontsSymbolsOnly"];
       };
       dontConfigure = true;
       dontBuild = true;

@@ -12,7 +12,7 @@
         clock-format = "12h";
         font-name = "Inter 11";
         document-font-name = "Inter 11";
-        monospace-font-name = "CommitMono 10";
+        monospace-font-name = "${userSettings.font} 10";
         titlebar-font = "Inter Bold 11";
         font-antialiasing = "rgba";
       };
