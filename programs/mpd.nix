@@ -18,7 +18,7 @@
       }
       audio_output {
       	type                "fifo"
-      	name                "Visualizer"
+      	name                "mpd_visualizer"
       	format              "44100:16:2"
       	path                "/tmp/mpd.fifo"
       }

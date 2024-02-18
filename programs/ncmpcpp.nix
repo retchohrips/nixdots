@@ -4,59 +4,80 @@
     mpdMusicDir = "${config.home.homeDirectory}/Music";
     settings = {
       # Delays
-      playlist_disable_highlight_delay = "1";
+      playlist_disable_highlight_delay = "2";
+      message_delay_time = "1";
 
-      # Song Format
-      song_list_format = "{$8%l$9} $1|$9 {$6%a$9} $1|$9 {$5%t$9} $R {$1%b$9}";
-      song_library_format = "{%n - }{%t}|{%f}";
-      song_status_format = "$b{$6%a$9 $1|$9} {$7%t$9} $1|$9 {$2%b$9} $1|$9 {$6%y$9}";
-      song_window_title_format = "{%b}";
-
-      # Columns settings
-      song_columns_list_format = "(6)[magenta]{l} (30)[red]{a} (30)[blue]{b} (53)[magenta]{t}";
-
-      # Misc
-      playlist_display_mode = "classic";
-      titles_visibility = "no";
-      browser_display_mode = "columns";
-      incremental_seeking = "yes";
-      autocenter_mode = "yes";
-      header_visibility = "no";
-      statusbar_visibility = "yes";
-      cyclic_scrolling = "yes";
-      display_bitrate = "yes";
       ignore_leading_the = "yes";
-      enable_window_title = "yes";
-      progressbar_look = ''"─╼ "'';
-      now_playing_prefix = ''"‣ "'';
-      now_playing_suffix = "$/b";
-      current_item_prefix = "$(blue)$b";
-      current_item_suffix = "$/b$(end)";
       external_editor = "nvim";
+      autocenter_mode = "yes";
+      centered_cursor = "yes";
+      allow_for_physical_item_deletion = "no";
+      lines_scrolled = "0";
+      follow_now_playing_lyrics = "yes";
+      lyrics_fetchers = "musixmatch";
 
-      # Interface
-      startup_screen = "playlist";
-      user_interface = "classic";
-      alternative_header_first_line_format = "{$b$6%a$9} $1««$9 {$6%t$9}";
-      alternative_header_second_line_format = "{$5%b$9} $1»»$9 {$5(%y)$9}";
-      alternative_ui_separator_color = "black";
-      playlist_separate_albums = "no";
+      # visualizer
+      visualizer_data_source = "/tmp/mpd.fifo";
+      visualizer_output_name = "mpd_visualizer";
+      visualizer_type = "ellipse";
+      visualizer_look = "●● ";
+      visualizer_color = "blue, green";
 
-      # Colors
+      # appearance
       colors_enabled = "yes";
-      empty_tag_color = "blue";
-      header_window_color = "black";
-      volume_color = "black";
-      display_volume_level = "yes";
-      state_line_color = "cyan";
-      state_flags_color = "red";
+      playlist_display_mode = "classic";
+      user_interface = "classic";
+      volume_color = "white";
+
+      # window
+      song_window_title_format = "Music";
+      statusbar_visibility = "no";
+      header_visibility = "no";
+      titles_visibility = "no";
+      # progress bar
+      progressbar_look = "‎‎‎";
+      progressbar_color = "black";
+      progressbar_elapsed_color = "blue";
+
+      # song list
+      song_status_format = "$7%t";
+      song_list_format = "$(008)%t$R  $(247)%a$R$5  %l$8";
+      song_columns_list_format = "(53)[blue]{tr} (45)[blue]{a}";
+
+      current_item_prefix = "$b$2| ";
+      current_item_suffix = "$/b$5";
+
+      now_playing_prefix = "$b$5| ";
+      now_playing_suffix = "$/b$5";
+
+      song_library_format = "{{%a - %t} (%b)}|{%f}";
+
+      # colors
       main_window_color = "blue";
+
+      current_item_inactive_column_prefix = "$b$5";
+      current_item_inactive_column_suffix = "$/b$5";
+
       color1 = "white";
       color2 = "blue";
-      progressbar_color = "cyan";
-      statusbar_color = "black";
-      window_border_color = "red";
-      active_window_border = "red";
     };
+    bindings = [
+      {
+        key = "j";
+        command = "scroll_down";
+      }
+      {
+        key = "k";
+        command = "scroll_up";
+      }
+      {
+        key = "J";
+        command = ["select_item" "scroll_down"];
+      }
+      {
+        key = "K";
+        command = ["select_item" "scroll_up"];
+      }
+    ];
   };
 }
