@@ -40,17 +40,19 @@ in {
 
         #workspaces {
           margin-left: 20px;
+          border-radius: 6px;
         }
 
         #workspaces button {
           padding-top: 2px;
           padding-bottom: 2px;
-          animation: ws_normal 20s ease-in-out 1;
+          box-shadow: none;
+          text-shadow: none;
+          font-weight: normal;
         }
 
-        #workspaces button.active {
-          animation: ws_active 20s ease-in-out 1;
-          transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+        #workspaces button.active * {
+          color: ${blue};
         }
 
         #network {
@@ -134,8 +136,18 @@ in {
         "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
-            active = "";
-            default = "";
+            # active = "";
+            # default = "";
+            "1" = "一";
+            "2" = "二";
+            "3" = "三";
+            "4" = "四";
+            "5" = "五";
+            "6" = "六";
+            "7" = "七";
+            "8" = "八";
+            "9" = "九";
+            # "10"= "〇";
           };
           sort-by-number = true;
           disable-scroll = false;
