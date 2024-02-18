@@ -38,14 +38,7 @@
         # CLI tools
         lazygit
         tldr
-
-        # AstroNvim
-        gcc # astronvim gets mad if it can't compile C...
-        nil # nix LS
-        alejandra # nix formatter
-        statix # lints and suggestions
-        deadnix # clean up unused nix code
-        tree-sitter
+        alejandra # Needed for pre-commit hooks
 
         # # You can also create simple shell scripts directly inside your
         # # configuration. For example, this adds a command 'my-hello' to your
@@ -77,13 +70,18 @@
       };
     };
 
-    shellAliases = {ls = "eza --icons";};
+    shellAliases = {
+      ls = "eza --icons --no-quotes --group-directories-first";
+      ll = "eza --long --git --icons --header --total-size --time-style relative --smart-group";
+      la = "eza --icons --no-quotes --group-directories-first -a";
+      lla = "eza --long --git --icons --header --total-size --time-style relative --smart-group -a";
+      rg = "rg --smart-case";
+    };
   };
 
   programs = {
     fish = {
       enable = true;
-      shellAliases = {rg = "rg --smart-case";};
       shellAbbrs = {
         g = "git";
         ga = "git add";
@@ -92,6 +90,7 @@
         gc = "git commit -m";
         gca = "git commit --amend";
         gcl = "git clone";
+        gs = "git status";
         gss = "git status --short";
         gd = "git diff";
         gds = "git diff --staged";
@@ -109,14 +108,20 @@
         ns = "nix shell";
         nr = "nix run";
         ncg = "sudo nix-collect-garbage -d";
-        nvd = "nvd --color always diff /run/current-system result | less -R";
+        nrb = "sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
+        # nvd = "nvd --color always diff /run/current-system result | less -R";
         c = "clear";
         e = "exit";
         v = "nvim";
       };
-      interactiveShellInit = ''
-        set fish_greeting # Disable greeting
-      '';
+      interactiveShellInit =
+        /*
+        fish
+        */
+        ''
+          set fish_greeting # Disable greeting
+          set sponge_purge_only_on_exit true
+        '';
     };
 
     zoxide = {
@@ -143,6 +148,7 @@
     kitty = {
       enable = true;
       theme = "Catppuccin-Mocha";
+      shellIntegration.enableFishIntegration = true;
       settings = {
         font = "${userSettings.font}";
         cursor_shape = "beam";
@@ -150,6 +156,7 @@
         confirm_os_window_close = 0;
         linux_display_server = "x11";
         background_opacity = "0.85";
+        enabled_layouts = "tall, grid, splits";
       };
     };
 

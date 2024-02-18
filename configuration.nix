@@ -93,6 +93,10 @@
       p7zip
       ripgrep
       fishPlugins.puffer
+      fishPlugins.bass
+      fishPlugins.sponge
+      fishPlugins.pisces
+      fishPlugins.colored-man-pages
       cachix # Fetch cached binaries
 
       # Package management
@@ -156,11 +160,15 @@
       enable = true;
       settings = {
         default_session = {
-          command = ''
-            ${pkgs.greetd.tuigreet}/bin/tuigreet \
-                    --time --user-menu --remember --remember-user-session \
-                    --cmd Hyprland
-          '';
+          command =
+            /*
+            bash
+            */
+            ''
+              ${pkgs.greetd.tuigreet}/bin/tuigreet \
+                      --time --user-menu --remember --remember-user-session \
+                      --cmd Hyprland
+            '';
           user = "greeter";
         };
       };
