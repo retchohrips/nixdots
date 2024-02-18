@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  home.file."ranger_devicons" = {
+    target = ".config/ranger/plugins/ranger_devicons";
+    source = inputs.ranger-devicons;
+  };
 
   home.packages = with pkgs; [
     ranger
