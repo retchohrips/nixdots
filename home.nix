@@ -23,9 +23,7 @@
     inherit (userSettings) username;
     homeDirectory = "/home/" + userSettings.username;
 
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
+    sessionVariables = {EDITOR = "nvim";};
 
     packages =
       (with pkgs; [
@@ -56,9 +54,7 @@
         #   echo "Hello, ${config.home.username}!"
         # '')
       ])
-      ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
-        wine-ge
-      ]);
+      ++ (with inputs.nix-gaming.packages.${pkgs.system}; [wine-ge]);
 
     file = {
       ".local/share/backgrounds" = {
@@ -81,16 +77,42 @@
       };
     };
 
-    shellAliases = {
-      ls = "eza --icons";
-    };
+    shellAliases = {ls = "eza --icons";};
   };
 
   programs = {
     fish = {
       enable = true;
+      shellAliases = {rg = "rg --smart-case";};
       shellAbbrs = {
+        g = "git";
+        ga = "git add";
+        gaa = "git add --all";
+        gb = "git branch --verbose";
+        gc = "git commit -m";
+        gca = "git commit --amend";
+        gcl = "git clone";
         gss = "git status --short";
+        gd = "git diff";
+        gds = "git diff --staged";
+        gf = "git fetch";
+        gi = "git init";
+        gl = "git log --oneline --decorate --graph -n 10";
+        gm = "git merge";
+        gp = "git push";
+        gpu = "git pull";
+        nf = "nix flake";
+        nfu = "nix flake update";
+        npr = "nixpkgs-review pr --run fish --print-result";
+        nd = "nix develop --command fish";
+        nb = "nix build";
+        ns = "nix shell";
+        nr = "nix run";
+        ncg = "sudo nix-collect-garbage -d";
+        nvd = "nvd --color always diff /run/current-system result | less -R";
+        c = "clear";
+        e = "exit";
+        v = "nvim";
       };
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
@@ -111,11 +133,7 @@
       enable = true;
       userEmail = "44993244+retchohrips@users.noreply.github.com";
       userName = "retchohrips";
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-      };
+      extraConfig = {init = {defaultBranch = "main";};};
 
       delta.enable = true;
     };
