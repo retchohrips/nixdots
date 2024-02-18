@@ -25,7 +25,6 @@
     };
 
     settings = {
-      auto-optimise-store = true;
       trusted-users = [userSettings.username];
       # Caches to pull from so we don't have to build packages
       substituters = [
