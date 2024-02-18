@@ -12,7 +12,7 @@ in {
     ./rofi
     ./dunst.nix
     ../programs/ranger
-    ../programs/ncmpcpp
+    ../programs/ncmpcpp.nix
     ../programs/mpd.nix
   ];
 
