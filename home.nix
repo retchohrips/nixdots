@@ -19,8 +19,13 @@
     # that this config is compatible with. Do not change it,
     # even when Home Manager updates.
     stateVersion = "23.11";
+
     inherit (userSettings) username;
     homeDirectory = "/home/" + userSettings.username;
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
 
     packages =
       (with pkgs; [
