@@ -16,6 +16,11 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    ranger-devicons = {
+      url = "github:alexanderjeurissen/ranger_devicons";
+      flake = false;
+    };
+
     # firefox-gnome-theme = {
     #   url = "github:rafaelmardojai/firefox-gnome-theme";
     #   flake = false;
@@ -42,7 +47,7 @@
           dewm = "hyprland";
           pape = "BLACK_X_desktop.jpg";
           browser = "brave";
-          font = "CommitMono";
+          font = "JetBrainsMono Nerd Font";
         };
       in
         lib.nixosSystem {
