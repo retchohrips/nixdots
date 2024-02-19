@@ -34,6 +34,10 @@
       statusbar_visibility = "no";
       header_visibility = "no";
       titles_visibility = "no";
+
+      media_library_primary_tag = "album_artist";
+      connected_message_on_startup = "no";
+
       # progress bar
       progressbar_look = "‎‎‎";
       progressbar_color = "black";
