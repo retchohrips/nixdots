@@ -8,7 +8,7 @@
     inputs.nixvim.homeManagerModules.nixvim
     inputs.nix-colors.homeManagerModules.default
     ./programs/starship.nix
-    ./programs/nixvim # Currently broken, waiting for nixpkgs update
+    ./programs/nixvim
     # ./programs/firefox.nix # Using Brave
     ./programs/beets.nix
     ./dewm/${userSettings.dewm}.nix
@@ -30,12 +30,11 @@
 
     packages =
       (with pkgs; [
-        # inputs.Neve.packages.${system}.default
         brave
         obsidian
         vscode.fhs
         telegram-desktop
-        vesktop
+        # vesktop # Kinda sucks on nixos...
         lutris
 
         # CLI tools
