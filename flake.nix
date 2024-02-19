@@ -4,22 +4,22 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    nixpkgs-nixvim-hack.url = "github:nixos/nixpkgs/a4d4fe8c5002202493e87ec8dbc91335ff55552c"; #HACK nixOS-unstable breaks nixvim currently - see https://github.com/nix-community/nixvim/issues/1112
+    nur.url = "github:nix-community/NUR";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-nixvim-hack"; #HACK nixOS-unstable breaks nixvim currently - see https://github.com/nix-community/nixvim/issues/1112
-    };
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     ranger-devicons = {
       url = "github:alexanderjeurissen/ranger_devicons";
+      flake = false;
+    };
+
+    nvchad = {
+      url = "github:nvchad/nvchad";
       flake = false;
     };
 
@@ -33,6 +33,7 @@
 
   outputs = {
     nixpkgs,
+    nur,
     home-manager,
     nixos-hardware,
     ...
@@ -62,6 +63,7 @@
             inherit inputs;
           };
           modules = [
+            nur.nixosModules.nur
             ./configuration.nix
             ./hosts/bundesk
             home-manager.nixosModules.home-manager
@@ -100,6 +102,7 @@
             inherit inputs;
           };
           modules = [
+            nur.nixosModules.nur
             ./configuration.nix
             ./hosts/pawpad
             home-manager.nixosModules.home-manager

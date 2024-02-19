@@ -5,10 +5,9 @@
   ...
 }: {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
     inputs.nix-colors.homeManagerModules.default
     ./programs/starship.nix
-    ./programs/nixvim
+    ./programs/neovim.nix
     # ./programs/firefox.nix # Using Brave
     ./programs/beets.nix
     ./dewm/${userSettings.dewm}.nix
@@ -82,6 +81,7 @@
   };
 
   programs = {
+    bash.enable = true;
     fish = {
       enable = true;
       shellAbbrs = {
@@ -110,11 +110,12 @@
         ns = "nix shell";
         nr = "nix run";
         ncg = "sudo nix-collect-garbage -d";
-        nrb = "sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
+        nrb = "nix flake update ~/.dotfiles && sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
         # nvd = "nvd --color always diff /run/current-system result | less -R";
         c = "clear";
         e = "exit";
         v = "nvim";
+        cd = "z";
       };
       interactiveShellInit =
         /*
@@ -129,7 +130,6 @@
     zoxide = {
       enable = true;
       enableFishIntegration = true;
-      options = ["--cmd cd"];
     };
 
     bat = {

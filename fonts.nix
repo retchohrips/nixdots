@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
@@ -9,6 +13,7 @@
     liberation_ttf
     inter
     commit-mono
+    pkgs.nur.repos.sagikazarmark.sf-pro
     (nerdfonts.override {fonts = ["JetBrainsMono"];})
 
     (stdenv.mkDerivation {
