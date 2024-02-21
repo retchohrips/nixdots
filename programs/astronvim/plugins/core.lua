@@ -1,4 +1,6 @@
 return {
+  -- replacing null-ls with none-ls
+	{ "jose-elias-alvarez/null-ls.nvim", enabled = false },
   -- customize alpha options
   {
     "goolord/alpha-nvim",

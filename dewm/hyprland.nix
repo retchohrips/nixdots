@@ -31,26 +31,35 @@ in {
     hyprpaper
     tesseract4
 
-    (pkgs.writeShellScriptBin "lock-screen" ''
-      img=/tmp/lockscreen.png
+    (pkgs.writeShellScriptBin "lock-screen"
+      /*
+      bash
+      */
+      ''
+        img=/tmp/lockscreen.png
 
-      grim $img
-      convert $img -scale 10% -blur 0x3 -resize 1000% $img
-      hyprlock
-    '')
-    (pkgs.writeScriptBin "screenshot-ocr" ''
-      imgname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).png"
-      txtname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S)"
-      txtfname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).txt"
-      grim -g "$(slurp)" $imgname;
-      tesseract $imgname $txtname;
-      wl-copy -n < $txtfname
-    '')
+        grim $img
+        convert $img -scale 10% -blur 0x3 -resize 1000% $img
+        hyprlock
+      '')
+    (pkgs.writeScriptBin "screenshot-ocr"
+      /*
+      bash
+      */
+      ''
+        imgname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).png"
+        txtname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S)"
+        txtfname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).txt"
+        grim -g "$(slurp)" $imgname;
+        tesseract $imgname $txtname;
+        wl-copy -n < $txtfname
+      '')
   ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = $HOME/.local/share/backgrounds/${userSettings.pape}
     wallpaper = ,$HOME/.local/share/backgrounds/${userSettings.pape}
+    splash = false
   '';
 
   services.hypridle = {
