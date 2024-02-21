@@ -110,7 +110,7 @@
         ns = "nix shell";
         nr = "nix run";
         ncg = "sudo nix-collect-garbage -d";
-        nrb = "nix flake update ~/.dotfiles && sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
+        nrb = "sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
         # nvd = "nvd --color always diff /run/current-system result | less -R";
         c = "clear";
         e = "exit";
