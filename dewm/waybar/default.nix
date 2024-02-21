@@ -73,12 +73,13 @@
         battery = {
           format = "{icon} {capacity%}";
           format-icons = ["" "" "" "" ""];
-          format-charging = "󰢝 {capacity}%";
+          format-charging = "󱐋 {capacity}%";
           max-length = 16;
         };
         network = {
-          format-wifi = " ";
-          format = " ";
+          format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
+          format-wifi = "{icon}";
+          format-disconneced = "󰤮";
           tooltip-format = "{signaldBm}dBm {essid} {frequency}GHz";
           on-click = "nm-connection-editor";
         };
