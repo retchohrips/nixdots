@@ -108,6 +108,8 @@
       libnotify
       networkmanagerapplet
       pulseaudio
+
+      gcc # Home manager must be able to compile C...
     ];
   };
 
