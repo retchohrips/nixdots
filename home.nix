@@ -164,4 +164,11 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
   };
+
+  xdg.configFile = {
+    "kitty/diff.conf".text = ''
+      # Load theme
+      include ${inputs.catppuccin-kitty}/themes/diff-mocha.conf
+    '';
+  };
 }

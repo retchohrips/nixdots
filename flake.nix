@@ -13,6 +13,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nix-colors.url = "github:misterio77/nix-colors";
+
     ranger-devicons = {
       url = "github:alexanderjeurissen/ranger_devicons";
       flake = false;
@@ -23,8 +25,6 @@
       flake = false;
     };
 
-    nix-colors.url = "github:misterio77/nix-colors";
-
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +33,11 @@
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin-kitty = {
+      url = "github:catppuccin/kitty";
+      flake = false;
     };
 
     # firefox-gnome-theme = {

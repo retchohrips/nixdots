@@ -53,6 +53,7 @@
           };
           sort-by-number = true;
           disable-scroll = false;
+          reverse-scroll = true;
           on-scroll-up = "hyprctl dispatch workspace +1";
           on-scroll-down = "hyprctl dispatch workspace -1";
         };

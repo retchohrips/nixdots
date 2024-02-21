@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "catppuccin-kitty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704898305,
+        "narHash": "sha256-mRFa+40fuJCUrR1o4zMi7AlgjRtFmii4fNsQyD8hIjM=",
+        "owner": "catppuccin",
+        "repo": "kitty",
+        "rev": "d7d61716a83cd135344cbb353af9d197c5d7cec1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "kitty",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_2"
@@ -143,11 +159,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708524740,
-        "narHash": "sha256-SZYUhpvzhgBxXCsHzgssE1YRNF5DCztjPzzvP8BD6sg=",
+        "lastModified": 1708541136,
+        "narHash": "sha256-M9V1/Z4yMNftn4ZaMnLlJQ7LCGDwaGKHopevvnO5cr4=",
         "owner": "hyprwm",
         "repo": "hyprlock",
-        "rev": "06b07c53e5f71f864c795e38d314a6b1bb390d5c",
+        "rev": "3b7e055dcf35d32edf07e97871f3620b047a4a42",
         "type": "github"
       },
       "original": {
@@ -276,11 +292,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1708531891,
-        "narHash": "sha256-G6W9KnoYhRZL/FHCGo19amp0lJQXWySrZN3dhZ4lT6o=",
+        "lastModified": 1708540341,
+        "narHash": "sha256-x0HP+cyB5YZSKiHLawfoDf41RVfZtLJ+8nrZhIuYIH8=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "cf9b05d5f39c764ed41b1a92d332c3e6b1fd733a",
+        "rev": "15d82702d15e1c9f6a861ed62a72dfa592918a0b",
         "type": "github"
       },
       "original": {
@@ -308,6 +324,7 @@
     "root": {
       "inputs": {
         "astronvim": "astronvim",
+        "catppuccin-kitty": "catppuccin-kitty",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
         "hyprlock": "hyprlock",
