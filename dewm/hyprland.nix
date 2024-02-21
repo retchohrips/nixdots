@@ -3,11 +3,14 @@
   config,
   lib,
   userSettings,
+  inputs,
   ...
 }: let
   inherit (config.colorScheme) palette;
 in {
   imports = [
+    inputs.hyprlock.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.default
     ./waybar
     ./rofi
     ./dunst.nix
@@ -17,53 +20,79 @@ in {
   ];
 
   home.packages = with pkgs; [
-    swww
     feh
     wl-clipboard
     cliphist
     gnome.nautilus
     grimblast
     brightnessctl
+    hyprpaper
   ];
 
-  programs.swaylock = {
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    preload = $HOME/.local/share/backgrounds/${userSettings.pape}
+    wallpaper = ,$HOME/.local/share/backgrounds/${userSettings.pape}
+  '';
+
+  services.hypridle = {
     enable = true;
-    package = pkgs.swaylock-effects;
-    settings = {
-      clock = true;
-      color = "#${palette.base00}";
-      font = "${userSettings.font}";
-      show-failed-attempts = false;
-      indicator = true;
-      indicator-radius = 200;
-      indicator-thickness = 20;
-      line-color = "00000000";
-      ring-color = "00000000";
-      inside-color = "00000000";
-      key-hl-color = "f2cdcd";
-      separator-color = "00000000";
-      text-color = "#${palette.base0C}";
-      text-caps-lock-color = "";
-      line-ver-color = "#${palette.base0A}";
-      ring-ver-color = "#${palette.base06}";
-      inside-ver-color = "#${palette.base00}";
-      text-ver-color = "#${palette.base05}";
-      ring-wrong-color = "#${palette.base08}";
-      text-wrong-color = "#${palette.base08}";
-      inside-wrong-color = "#${palette.base00}";
-      inside-clear-color = "#${palette.base00}";
-      text-clear-color = "#${palette.base05}";
-      ring-clear-color = "#${palette.base0D}";
-      line-clear-color = "#${palette.base00}";
-      line-wrong-color = "#${palette.base00}";
-      bs-hl-color = "#${palette.base08}";
-      line-uses-ring = false;
-      grace = 2;
-      grace-no-mouse = true;
-      grace-no-touch = true;
-      datestr = "%m.%d";
-      fade-in = "0.1";
-      ignore-empty-password = true;
+    lockCmd = "lock-screen";
+    ignoreDbusInhibit = false;
+    beforeSleepCmd = "lock-screen";
+
+    listeners = [
+      {
+        timeout = 3 * 60;
+        onTimeout = "lock-screen";
+      }
+      {
+        timeout = (3 * 60) + 30;
+        onTimeout = "${pkgs.coreutils}/bin/sleep 1 && hyprctl dispatch dpms off";
+      }
+    ];
+  };
+
+  programs.hyprlock = {
+    enable = true;
+    general = {
+      disable_loading_bar = false;
+      hide_cursor = true;
+    };
+
+    backgrounds = [
+      {
+        path = "/tmp/lockscreen.png";
+        color = "0xff${palette.base00}";
+      }
+    ];
+
+    input_field = {
+      size.width = 300;
+      size.height = 40;
+      outline_thickness = 3;
+      outer_color = "0xff${palette.base00}";
+      inner_color = "0xff${palette.base05}";
+      font_color = "0xff${palette.base00}";
+      fade_on_empty = true;
+      placeholder_text = "";
+      hide_input = false;
+      position = {
+        x = 0;
+        y = -50;
+      };
+      halign = "center";
+      valign = "center";
+    };
+
+    label = {
+      text = "$TIME";
+      position = {
+        x = 0;
+        y = 30;
+      };
+      font_family = "${userSettings.font}";
+      font_size = 40;
+      color = "0xff${palette.base07}";
     };
   };
 
@@ -71,31 +100,6 @@ in {
     enable = true;
     automount = true;
     tray = "auto";
-  };
-
-  services.swayidle = {
-    enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
-      }
-    ];
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
-        resumeCommand = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
-      }
-      {
-        timeout = 310;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
   };
 
   systemd.user.services.swayidle.Install.WantedBy =
@@ -133,8 +137,7 @@ in {
         "telegram-desktop -startintray"
         "waybar"
         "dunst"
-        "swww init"
-        "sleep 10 ; swww img ~/.wallpapers/${userSettings.pape}"
+        "hyprpaper"
       ];
       monitor = [",preferred,auto,1"];
       general = {
@@ -236,7 +239,7 @@ in {
           "SUPER, P, togglesplit"
           "SUPER SHIFT, X, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
           "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-          "SUPER, L, exec, swaylock"
+          "SUPER, L, exec, lock-screen"
           "SUPER, T, exec, telegram-desktop"
           "SUPER, E, exec, nautilus"
           "SUPER, S, exec, grimblast copy area"
@@ -272,9 +275,8 @@ in {
         "SUPER, F1, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SUPER, F2, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         "SUPER, F3, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        # TODO: Figure out how to set minimum brightness on these
-        # ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
-        # ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+        ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
+        ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
     };
 

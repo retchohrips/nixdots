@@ -47,6 +47,13 @@
         # (pkgs.writeShellScriptBin "my-hello" ''
         #   echo "Hello, ${config.home.username}!"
         # '')
+        (pkgs.writeShellScriptBin "lock-screen" ''
+        img=/tmp/lockscreen.png
+
+        grimblast --cursor save output $img
+        convert $img -scale 10% -blur 0x3 -resize 1000% $img
+        hyprlock
+        '')
       ])
       ++ (with inputs.nix-gaming.packages.${pkgs.system}; [wine-ge]);
 
