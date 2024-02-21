@@ -75,7 +75,6 @@
   };
 
   programs = {
-    bash.enable = true;
     fish = {
       enable = true;
       shellAbbrs = {
@@ -88,8 +87,8 @@
         gcl = "git clone";
         gs = "git status";
         gss = "git status --short";
-        gd = "git diff";
-        gds = "git diff --staged";
+        gd = "git difftool --no-symlinks --dir-diff";
+        gds = "git difftool --no-symlinks --dir-diff --staged";
         gf = "git fetch";
         gi = "git init";
         gl = "git log --oneline --decorate --graph -n 10";
@@ -135,9 +134,15 @@
       enable = true;
       userEmail = "44993244+retchohrips@users.noreply.github.com";
       userName = "retchohrips";
-      extraConfig = {init = {defaultBranch = "main";};};
-
-      delta.enable = true;
+      extraConfig = {
+        init = {defaultBranch = "main";};
+        diff.tool = "kitty";
+        diff.guitool = "kitty.gui";
+        difftool.prompt = false;
+        difftool.trustExitCode = true;
+        "difftool \"kitty\"".cmd = "${pkgs.kitty}/bin/kitty +kitten diff $LOCAL $REMOTE";
+        "difftool \"kitty.gui\"".cmd = "${pkgs.kitty}/bin/kitty kitty +kitten diff $LOCAL $REMOTE";
+      };
     };
 
     gh.enable = true;
