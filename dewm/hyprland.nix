@@ -301,7 +301,9 @@ in {
         "SUPER, F2, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         "SUPER, F3, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         # Media Control
-        # TODO: Map laptop keys
+        ",XF86AudioPrev, exec, mpc prev"
+        ",XF86AudioPlay, exec, mpc toggle"
+        ",XF86AudioNext, exec, mpc next"
         "SUPER, F5, exec, mpc prev"
         "SUPER, F6, exec, mpc toggle"
         "SUPER, F7, exec, mpc next"
