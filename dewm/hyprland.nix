@@ -36,10 +36,15 @@ in {
       bash
       */
       ''
-        img=/tmp/lockscreen.png
+        if [ "$1" = "delay" ]; then
+          # time for rofi/wlogout fade-out before taking the screenshot
+          sleep 0.45
+        fi
 
-        grim $img
-        convert $img -scale 10% -blur 0x3 -resize 1000% $img
+        img=/tmp/hyprlock
+
+        grim -c -o $(hyprctl monitors | awk '{print $2; exit}') $img.png && convert $img.png -scale 10% -blur 0x3 -resize 1000% $img-blurred.png
+        wait
         hyprlock
       '')
     (pkgs.writeScriptBin "screenshot-ocr"
@@ -76,6 +81,7 @@ in {
       {
         timeout = (3 * 60) + 30;
         onTimeout = "${pkgs.coreutils}/bin/sleep 1 && hyprctl dispatch dpms off";
+        onResume = "hyprctl dispatch dpms on";
       }
     ];
   };
@@ -89,7 +95,7 @@ in {
 
     backgrounds = [
       {
-        path = "/tmp/lockscreen.png";
+        path = "${config.home.homeDirectory}/.local/share/backgrounds/Makima_Persona.png"; # TODO: Fix this and the script above that's meant to work with it
         color = "0xff${palette.base00}";
       }
     ];
@@ -99,10 +105,12 @@ in {
         size.width = 300;
         size.height = 40;
         outline_thickness = 3;
+        dots_center = true;
         outer_color = "0xff${palette.base00}";
         inner_color = "0xff${palette.base05}";
         font_color = "0xff${palette.base00}";
-        fade_on_empty = true;
+        fade_on_empty = false;
+        dots_spacing = 0.3;
         placeholder_text = "";
         hide_input = false;
         position = {
@@ -116,7 +124,7 @@ in {
 
     labels = [
       {
-        text = "$TIME";
+        text = ''cmd[update:100] echo "<b>$(date +'%_I:%M:%S')</b>"'';
         position = {
           x = 0;
           y = 30;
