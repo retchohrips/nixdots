@@ -40,7 +40,6 @@
         lazygit
         tldr
         alejandra # Needed for pre-commit hooks
-
       ])
       ++ (with inputs.nix-gaming.packages.${pkgs.system}; [wine-ge]);
 
@@ -50,7 +49,7 @@
         recursive = true;
       };
 
-      # Obsidian won't run on Wayland
+      # Obsidian won't run on Wayland without this
       ".local/share/applications/obsidian.desktop" = {
         text = ''
           [Desktop Entry]

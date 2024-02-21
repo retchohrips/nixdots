@@ -85,34 +85,38 @@ in {
       }
     ];
 
-    input_field = {
-      size.width = 300;
-      size.height = 40;
-      outline_thickness = 3;
-      outer_color = "0xff${palette.base00}";
-      inner_color = "0xff${palette.base05}";
-      font_color = "0xff${palette.base00}";
-      fade_on_empty = true;
-      placeholder_text = "";
-      hide_input = false;
-      position = {
-        x = 0;
-        y = -50;
-      };
-      halign = "center";
-      valign = "center";
-    };
+    input-fields = [
+      {
+        size.width = 300;
+        size.height = 40;
+        outline_thickness = 3;
+        outer_color = "0xff${palette.base00}";
+        inner_color = "0xff${palette.base05}";
+        font_color = "0xff${palette.base00}";
+        fade_on_empty = true;
+        placeholder_text = "";
+        hide_input = false;
+        position = {
+          x = 0;
+          y = -50;
+        };
+        halign = "center";
+        valign = "center";
+      }
+    ];
 
-    label = {
-      text = "$TIME";
-      position = {
-        x = 0;
-        y = 30;
-      };
-      font_family = "${userSettings.font}";
-      font_size = 40;
-      color = "0xff${palette.base07}";
-    };
+    labels = [
+      {
+        text = "$TIME";
+        position = {
+          x = 0;
+          y = 30;
+        };
+        font_family = "${userSettings.font}";
+        font_size = 40;
+        color = "0xff${palette.base07}";
+      }
+    ];
   };
 
   services.udiskie = {
@@ -289,12 +293,19 @@ in {
       bindr = ["SUPER, SUPER_L, exec, rofi -show drun || pkill rofi"];
 
       bindle = [
+        # Volume
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioLowerVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         "SUPER, F1, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SUPER, F2, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         "SUPER, F3, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 ; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        # Media Control
+        # TODO: Map laptop keys
+        "SUPER, F5, exec, mpc prev"
+        "SUPER, F6, exec, mpc toggle"
+        "SUPER, F7, exec, mpc next"
+        # Brightness
         ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
         ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
