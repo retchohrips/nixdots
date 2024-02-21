@@ -25,8 +25,27 @@ in {
     cliphist
     gnome.nautilus
     grimblast
+    grim
+    slurp
     brightnessctl
     hyprpaper
+    tesseract4
+
+    (pkgs.writeShellScriptBin "lock-screen" ''
+      img=/tmp/lockscreen.png
+
+      grim $img
+      convert $img -scale 10% -blur 0x3 -resize 1000% $img
+      hyprlock
+    '')
+    (pkgs.writeScriptBin "screenshot-ocr" ''
+      imgname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).png"
+      txtname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S)"
+      txtfname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).txt"
+      grim -g "$(slurp)" $imgname;
+      tesseract $imgname $txtname;
+      wl-copy -n < $txtfname
+    '')
   ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
@@ -228,7 +247,7 @@ in {
         inherit (userSettings) browser;
       in
         [
-          "CtrlAlt, T, exec, ${term}"
+          "SUPER, RETURN, exec, ${term}"
           "SUPER, B, exec, ${browser}"
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
@@ -243,6 +262,7 @@ in {
           "SUPER, T, exec, telegram-desktop"
           "SUPER, E, exec, nautilus"
           "SUPER, S, exec, grimblast copy area"
+          "SUPERSHIFT, T, exec, screenshot-ocr"
 
           (mvfocus "k" "u")
           (mvfocus "j" "d")

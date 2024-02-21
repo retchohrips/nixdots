@@ -41,19 +41,6 @@
         tldr
         alejandra # Needed for pre-commit hooks
 
-        # # You can also create simple shell scripts directly inside your
-        # # configuration. For example, this adds a command 'my-hello' to your
-        # # environment:
-        # (pkgs.writeShellScriptBin "my-hello" ''
-        #   echo "Hello, ${config.home.username}!"
-        # '')
-        (pkgs.writeShellScriptBin "lock-screen" ''
-        img=/tmp/lockscreen.png
-
-        grimblast --cursor save output $img
-        convert $img -scale 10% -blur 0x3 -resize 1000% $img
-        hyprlock
-        '')
       ])
       ++ (with inputs.nix-gaming.packages.${pkgs.system}; [wine-ge]);
 
