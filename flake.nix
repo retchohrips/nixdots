@@ -18,8 +18,8 @@
       flake = false;
     };
 
-    nvchad = {
-      url = "github:nvchad/nvchad";
+    astronvim = {
+      url = "github:AstroNvim/AstroNvim/main";
       flake = false;
     };
 

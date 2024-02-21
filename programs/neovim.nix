@@ -3,16 +3,28 @@
   inputs,
   ...
 }: {
-  programs.neovim = {enable = true;};
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+
+  home.packages = with pkgs; [
+    deadnix
+    statix
+  ];
+
   xdg.configFile = {
     nvim = {
-      source = inputs.nvchad;
+      source = inputs.astronvim;
       recursive = true;
       onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
     };
 
-    "nvim/lua/custom" = {
-      source = ./nvchad;
+    "nvim/lua/user" = {
+      source = ./astronvim;
       onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
     };
   };
