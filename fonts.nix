@@ -6,7 +6,8 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    # Fonts
+    corefonts
+    vistafonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
