@@ -52,7 +52,7 @@ $reboot)
 	run_cmd --reboot
 	;;
 $lock)
-	lock-screen
+	hyprlock
 	;;
 $suspend)
 	run_cmd --suspend

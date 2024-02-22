@@ -31,22 +31,6 @@ in {
     hyprpaper
     tesseract4
 
-    (pkgs.writeShellScriptBin "lock-screen"
-      /*
-      bash
-      */
-      ''
-        if [ "$1" = "delay" ]; then
-          # time for rofi/wlogout fade-out before taking the screenshot
-          sleep 0.45
-        fi
-
-        img=/tmp/hyprlock
-
-        grim -c -o $(hyprctl monitors | awk '{print $2; exit}') $img.png && convert $img.png -scale 10% -blur 0x3 -resize 1000% $img-blurred.png
-        wait
-        hyprlock
-      '')
     (pkgs.writeScriptBin "screenshot-ocr"
       /*
       bash
@@ -69,14 +53,14 @@ in {
 
   services.hypridle = {
     enable = true;
-    lockCmd = "lock-screen";
+    lockCmd = "hyprlock";
     ignoreDbusInhibit = false;
-    beforeSleepCmd = "lock-screen";
+    beforeSleepCmd = "hyprlock";
 
     listeners = [
       {
         timeout = 3 * 60;
-        onTimeout = "lock-screen";
+        onTimeout = "hyprlock";
       }
       {
         timeout = (3 * 60) + 30;
@@ -95,8 +79,13 @@ in {
 
     backgrounds = [
       {
-        path = "${config.home.homeDirectory}/.local/share/backgrounds/Makima_Persona.png"; # TODO: Fix this and the script above that's meant to work with it
-        color = "0xff${palette.base00}";
+        path = "screenshot";
+        blur_passes = 4;
+        blur_size = 4;
+        contrast = 1.2;
+        brightness = 1.0;
+        vibrancy = 1.0;
+        noise = 2.0e-2;
       }
     ];
 
@@ -279,7 +268,7 @@ in {
           "SUPER, P, togglesplit"
           "SUPER SHIFT, X, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
           "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-          "SUPER, L, exec, lock-screen"
+          "SUPER, L, exec, hyprlock"
           "SUPER, T, exec, telegram-desktop"
           "SUPER, E, exec, nautilus"
           "SUPER, S, exec, grimblast copy area"

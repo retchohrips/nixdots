@@ -26,7 +26,7 @@
     };
 
     hyprlock = {
-      url = "github:hyprwm/hyprlock";
+      url = "github:retchohrips/hyprlock"; # TODO: Temporary until this (hopefully) gets merged
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
