@@ -48,20 +48,6 @@
         source = ./wallpapers;
         recursive = true;
       };
-
-      # Obsidian won't run on Wayland without this
-      ".local/share/applications/obsidian.desktop" = {
-        text = ''
-          [Desktop Entry]
-          Categories=Office
-          Comment=Knowledge base
-          Exec=env WAYLAND_DISPLAY= obsidian %u
-          Icon=obsidian
-          MimeType=x-scheme-handler/obsidian
-          Name=Obsidian
-          Type=Application
-          Version=1.4'';
-      };
     };
 
     shellAliases = {
@@ -171,5 +157,18 @@
       # Load theme
       include ${inputs.catppuccin-kitty}/themes/diff-mocha.conf
     '';
+  };
+
+  xdg.desktopEntries = {
+    # Obsidian won't run on Wayland without this
+    obsidian = {
+      name = "Obsidian";
+      genericName = "Knowledge base";
+      exec = "env WAYLAND_DISPLAY= obsidian %u";
+      categories = ["Application" "Office"];
+      icon = "obsidian";
+      terminal = false;
+      mimeType = ["x-scheme-handler/obsidian"];
+    };
   };
 }
