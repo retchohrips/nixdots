@@ -72,9 +72,9 @@
           spacing = 20;
         };
         battery = {
-          format = "{icon} {capacity%}";
-          format-icons = ["" "" "" "" ""];
-          format-charging = "󱐋 {capacity}%";
+          format = "{icon} {capacity}%";
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-charging = "󰂄 {capacity}%";
           max-length = 16;
         };
         network = {
