@@ -1,8 +1,8 @@
 * {
   border-radius: 12px;
-  font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font"; /* TODO: Figure out how to replace the font with the one from the flake variables */
+  font-family: monospace;
   color: rgb(base05);
-  font-size: 14px;
+  font-size: 12px;
 }
 
 window#waybar {

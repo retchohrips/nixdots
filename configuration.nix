@@ -275,6 +275,32 @@
     extraGroups = ["networkmanager" "wheel"];
   };
 
+  fonts = {
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      defaultFonts = {
+        emoji = ["Noto Color Emoji"];
+        monospace = ["${userSettings.font}" "Noto Color Emoji" "Symbols Nerd Font"];
+        serif = ["Noto Serif" "Noto Color Emoji"];
+        sansSerif = ["Inter" "Noto Color Emoji"];
+      };
+      hinting = {
+        enable = true;
+        autohint = false;
+        style = "full";
+      };
+      subpixel = {
+        lcdfilter = "default";
+        rgba = "rgb";
+      };
+    };
+    fontDir = {
+      enable = true;
+      decompressFonts = true;
+    };
+  };
+
   nixpkgs.overlays = [inputs.nur.overlay];
 
   nixpkgs.config = {
