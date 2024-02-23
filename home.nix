@@ -8,7 +8,7 @@
     inputs.nix-colors.homeManagerModules.default
     ./programs/starship.nix
     ./programs/neovim.nix
-    # ./programs/firefox.nix # Using Brave
+    ./programs/firefox
     ./programs/beets.nix
     ./dewm/${userSettings.dewm}.nix
     ./fonts.nix
@@ -152,6 +152,7 @@
       shellIntegration.enableFishIntegration = true;
       settings = {
         font = "${userSettings.font}";
+        font_size = 12;
         cursor_shape = "beam";
         window_padding_width = 5;
         confirm_os_window_close = 0;

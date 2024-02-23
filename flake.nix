@@ -66,7 +66,7 @@
           name = "Bun";
           dewm = "hyprland";
           pape = "BLACK_X_desktop.jpg";
-          browser = "brave";
+          browser = "firefox";
           font = "JetBrainsMono Nerd Font";
         };
       in
@@ -105,7 +105,7 @@
           name = "Pup";
           dewm = "hyprland";
           pape = "BLACK_X_desktop.jpg";
-          browser = "brave";
+          browser = "firefox";
           font = "CommitMono";
         };
       in
