@@ -14,6 +14,8 @@
   home.packages = with pkgs; [
     deadnix
     statix
+    nodePackages_latest.prettier
+    stylelint
   ];
 
   xdg.configFile = {
