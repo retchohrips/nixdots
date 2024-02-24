@@ -1,111 +1,158 @@
 * {
-  border-radius: 12px;
+  border-radius: 1rem;
   font-family: monospace;
   color: rgb(base05);
-  font-size: 12px;
+  font-size: 1rem;
+  transition-property: background-color;
+  background-color: rgba(base00, 0.9);
 }
 
-window#waybar {
-  background: rgba(base00, 0.5);
-  border-radius: 0px;
+@keyframes blink_red {
+  to {
+    background-color: rgb(base08);
+    color: rgb(base00);
+  }
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
+.warning,
+.critical,
+.urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#window {
-  transition: none;
-  color: transparent;
-  background: transparent;
-}
-
-#network,
-#bluetooth,
-#battery,
-#wireplumber,
-#backlight,
+#clock,
+#temperature,
+#custom-weather,
 #mpd,
-#workspaces {
-  border: 1px solid rgb(base02);
-  background-color: rgba(base05, 0.05);
-  transition: none;
-  margin-top: 6px;
-  margin-bottom: 6px;
+#backlight,
+#bluetooth,
+#wireplumber,
+#network,
+#battery,
+#custom-launcher,
+#tray {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
 }
 
-#workspaces {
-  margin-left: 20px;
-  border-radius: 6px;
+/* Bar */
+window#waybar {
+  background-color: transparent;
+}
+
+window>box {
+  background-color: transparent;
+  margin: 0.3rem;
+  margin-bottom: 0;
+}
+
+/* Workspaces */
+#workspaces:hover {
+  background-color: rgb(base0B);
 }
 
 #workspaces button {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  box-shadow: none;
-  text-shadow: none;
-  font-weight: normal;
+  padding-right: 0.4rem;
+  padding-left: 0.4rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  background: transparent;
 }
 
+#workspaces button.focused,
 #workspaces button.active * {
   color: rgb(base0D);
 }
 
-#network {
-  border-radius: 0px 6px 6px 0px;
-  border-left: 0px transparent;
-  padding-right: 10px;
-  margin-right: 20px;
+#workspaces button.hover {
+  color: rgb(base06);
 }
 
-#bluetooth {
-  border-radius: 6px 0px 0px 6px;
-  border-right: 0px transparent;
-  margin-left: 20px;
-  padding-right: 20px;
-  padding-left: 10px;
+/* Tooltips */
+tooltip {
+  background-color: rgb(base00);
 }
 
+tooltip label {
+  color: rgb(base06);
+}
+
+/* Battery */
 #battery {
-  border-radius: 0px 6px 6px 0px;
-  border-left: 0px transparent;
-  padding-right: 10px;
-  margin-right: 20px;
+  color: rgb(base0E);
 }
 
-#backlight {
-  border-radius: 6px 0px 0px 6px;
-  border-right: 0px transparent;
-  padding-right: 20px;
-  padding-left: 10px;
-}
-
-#battery.charging {
+#battery.full {
   color: rgb(base0B);
 }
 
-#wireplumber {
-  border-radius: 6px;
-  margin-right: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+#battery.charging {
+  color: rgb(base0C);
 }
 
-#clock {
-  transition: none;
-  border: none;
-  background: transparent;
-  margin-top: 6px;
-  margin-bottom: 6px;
+#battery.discharging {
+  color: rgb(base09);
 }
 
-#mpd {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 20px;
-  border-radius: 6px;
+#battery.critical:not(.charging) {
+  color: rgb(base0F);
+}
+
+/* MPD */
+#mpd.paused {
+  color: rgb(base0F);
+  font-style: italic;
 }
 
 #mpd.stopped {
-  opacity: 0;
+  color: rgb(base06);
+}
+
+#mpd {
+  color: rgb(base07);
+}
+
+/* Extra */
+#custom-launcher {
+  color: rgb(base0A);
+}
+
+#clock {
+  color: rgb(base06);
+}
+
+#temperature {
+  color: rgb(base09);
+}
+
+#backlight {
+  color: rgb(base0A);
+}
+
+#wireplumber {
+  color: rgb(base0E);
+}
+
+#network {
+  color: rgb(base0F);
+}
+
+#network.disconnected {
+  color: rgb(base05);
+}
+
+#custom-weather {
+  color: rgb(base08);
+}
+
+#bluetooth {
+  color: rgb(base0D);
+}
+
+#bluetooth.disconnected {
+  color: rgb(base05);
 }

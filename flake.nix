@@ -67,7 +67,7 @@
           dewm = "hyprland";
           pape = "BLACK_X_desktop.jpg";
           browser = "firefox";
-          font = "JetBrainsMono Nerd Font";
+          font = "ProggyClean Nerd Font";
         };
       in
         lib.nixosSystem {
@@ -91,6 +91,7 @@
 
                 extraSpecialArgs = {
                   inherit userSettings;
+                  inherit systemSettings;
                   inherit inputs;
                 };
               };
@@ -130,6 +131,7 @@
 
                 extraSpecialArgs = {
                   inherit userSettings;
+                  inherit systemSettings;
                   inherit inputs;
                 };
               };

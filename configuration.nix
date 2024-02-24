@@ -107,6 +107,7 @@
       libnotify
       networkmanagerapplet
       pulseaudio
+      rofi-bluetooth
 
       gcc # Home manager must be able to compile C...
     ];
@@ -183,7 +184,7 @@
   };
 
   services = {
-    blueman.enable = true;
+    # blueman.enable = true;
     greetd = {
       enable = true;
       settings = {
@@ -278,16 +279,17 @@
   fonts = {
     fontconfig = {
       enable = true;
-      antialias = true;
       defaultFonts = {
         emoji = ["Noto Color Emoji"];
         monospace = ["${userSettings.font}" "Noto Color Emoji" "Symbols Nerd Font"];
         serif = ["Noto Serif" "Noto Color Emoji"];
         sansSerif = ["Inter" "Noto Color Emoji"];
       };
+      antialias = true; # Fix pixelation
       hinting = {
+        # Fix antialiasing blur
         enable = true;
-        autohint = false;
+        autohint = true;
         style = "full";
       };
       subpixel = {

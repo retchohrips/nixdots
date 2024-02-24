@@ -239,7 +239,7 @@ in {
       };
       windowrule = ["float, ^Rofi" "tile, ^(kitty)$"];
       layerrule = [
-        "blur, waybar$"
+        # "blur, waybar$"
         "ignorezero, rofi$"
         "blur, rofi$"
         "blur, notifications$"
