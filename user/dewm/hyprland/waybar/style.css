@@ -44,7 +44,7 @@ window#waybar {
   background-color: transparent;
 }
 
-window>box {
+window > box {
   background-color: transparent;
   margin: 0.3rem;
   margin-bottom: 0;
@@ -150,9 +150,9 @@ tooltip label {
 }
 
 #bluetooth {
-  color: rgb(base0D);
+  color: rgb(base05);
 }
 
-#bluetooth.disconnected {
-  color: rgb(base05);
+#bluetooth.connected {
+  color: rgb(base0D);
 }
