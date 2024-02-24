@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "catppuccin-btop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696688295,
+        "narHash": "sha256-jodJl4f2T9ViNqsY9fk8IV62CrpC5hy7WK3aRpu70Cs=",
+        "owner": "catppuccin",
+        "repo": "btop",
+        "rev": "c6469190f2ecf25f017d6120bf4e050e6b1d17af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "btop",
+        "type": "github"
+      }
+    },
     "catppuccin-kitty": {
       "flake": false,
       "locked": {
@@ -96,11 +112,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708597999,
-        "narHash": "sha256-Glwi2jMjT/fCMbRGun+zoZOE6nQ053XfFfFuqi23+ds=",
+        "lastModified": 1708787606,
+        "narHash": "sha256-beYbxcIMhhy+G2x4HesQ5TMMBZmz9wkY58NR/EjUoqc=",
         "owner": "hyprwm",
         "repo": "hypridle",
-        "rev": "b85722e41aeb9925f248e9b3fe8427475cb1eb6b",
+        "rev": "b9c94ed8276197dd9574b76b26cd43e3fef7a1a5",
         "type": "github"
       },
       "original": {
@@ -159,11 +175,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708743255,
-        "narHash": "sha256-hCKYHOYRXoymAvAsacGw2Q2IWzpDOU5E1dPBcTry+QU=",
+        "lastModified": 1708787553,
+        "narHash": "sha256-iruG0MClxGNqBeSh1QIOBnFRqUWIx8uoErCNQ69rLtc=",
         "owner": "hyprwm",
         "repo": "hyprlock",
-        "rev": "57e80006602b7857fb23feded368055df62b8cb3",
+        "rev": "844a89925487cc4a129021d8d1b8a3c91596efb8",
         "type": "github"
       },
       "original": {
@@ -292,11 +308,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1708748409,
-        "narHash": "sha256-J5DzSXXE82Fofd9F5JmEc6Ho7pnH3kFqGhulxyVEqE8=",
+        "lastModified": 1708799159,
+        "narHash": "sha256-yWqq7bc2YGZrKBDgQTcf0C1PPXTNOsi+UNxzFO2LglE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "0ec596e0c61b136b668a98051d9f530922be7b7c",
+        "rev": "b36b8de81d0ae9e20f2c5c190559987ce875884d",
         "type": "github"
       },
       "original": {
@@ -324,6 +340,7 @@
     "root": {
       "inputs": {
         "astronvim": "astronvim",
+        "catppuccin-btop": "catppuccin-btop",
         "catppuccin-kitty": "catppuccin-kitty",
         "home-manager": "home-manager",
         "hypridle": "hypridle",

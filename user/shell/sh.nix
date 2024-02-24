@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.shellAliases = {
     ls = "eza --icons --no-quotes --group-directories-first";
     ll = "eza --long --git --icons --header --total-size --time-style relative --smart-group";
@@ -78,7 +82,6 @@
     cargo
     nodePackages.pnpm
 
-    btop
     disfetch
     lolcat
     cowsay
@@ -88,7 +91,17 @@
     libnotify
   ];
 
+  xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
+
   programs = {
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "catppuccin_mocha";
+        theme_background = false; # Makes btop transparent
+      };
+    };
+
     zoxide = {
       enable = true;
       enableFishIntegration = true;
