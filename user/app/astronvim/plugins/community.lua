@@ -12,5 +12,7 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
+  { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.markdown-and-latex.glow-nvim" },
 }
