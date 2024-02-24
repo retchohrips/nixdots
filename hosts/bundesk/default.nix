@@ -3,6 +3,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
   fileSystems = {
     "/mnt/Hardy".device = "/dev/disk/by-label/Hardy";
     "/mnt/Harvey".device = "/dev/disk/by-label/Harvey";

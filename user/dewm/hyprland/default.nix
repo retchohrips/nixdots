@@ -1,22 +1,15 @@
 {
   pkgs,
-  config,
-  lib,
   userSettings,
-  inputs,
   ...
-}: let
-  inherit (config.colorScheme) palette;
-in {
+}: {
   imports = [
-    inputs.hyprlock.homeManagerModules.default
-    inputs.hypridle.homeManagerModules.default
     ./waybar
     ./rofi
     ./dunst.nix
-    ../programs/ranger
-    ../programs/ncmpcpp.nix
-    ../programs/mpd.nix
+    ../../app/ranger
+    ../../app/ncmpcpp.nix
+    ../../app/mpd.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,6 +22,7 @@ in {
     slurp
     brightnessctl
     hyprpaper
+    wlsunset
     tesseract4
 
     (pkgs.writeScriptBin "screenshot-ocr"
@@ -51,89 +45,6 @@ in {
     splash = false
   '';
 
-  services.hypridle = {
-    enable = true;
-    lockCmd = "hyprlock";
-    ignoreDbusInhibit = false;
-    beforeSleepCmd = "hyprlock";
-
-    listeners = [
-      {
-        timeout = 3 * 60;
-        onTimeout = "hyprlock";
-      }
-      {
-        timeout = (3 * 60) + 30;
-        onTimeout = "${pkgs.coreutils}/bin/sleep 1 && hyprctl dispatch dpms off";
-        onResume = "hyprctl dispatch dpms on";
-      }
-    ];
-  };
-
-  programs.hyprlock = {
-    enable = true;
-    general = {
-      disable_loading_bar = false;
-      hide_cursor = true;
-    };
-
-    backgrounds = [
-      {
-        path = "screenshot";
-        blur_passes = 4;
-        blur_size = 4;
-        contrast = 1.2;
-        brightness = 1.0;
-        vibrancy = 1.0;
-        noise = 2.0e-2;
-      }
-    ];
-
-    input-fields = [
-      {
-        size.width = 300;
-        size.height = 40;
-        outline_thickness = 3;
-        dots_center = true;
-        outer_color = "0xff${palette.base00}";
-        inner_color = "0xff${palette.base05}";
-        font_color = "0xff${palette.base00}";
-        fade_on_empty = false;
-        dots_spacing = 0.3;
-        placeholder_text = "";
-        hide_input = false;
-        position = {
-          x = 0;
-          y = -50;
-        };
-        halign = "center";
-        valign = "center";
-      }
-    ];
-
-    labels = [
-      {
-        text = ''cmd[update:100] echo "<b>$(date +'%_I:%M:%S')</b>"'';
-        position = {
-          x = 0;
-          y = 30;
-        };
-        font_family = "${userSettings.font}";
-        font_size = 40;
-        color = "0xff${palette.base07}";
-      }
-    ];
-  };
-
-  services.udiskie = {
-    enable = true;
-    automount = true;
-    tray = "auto";
-  };
-
-  systemd.user.services.swayidle.Install.WantedBy =
-    lib.mkForce ["hyprland-session.target"];
-
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.catppuccin-cursors.mochaDark;
@@ -143,8 +54,13 @@ in {
 
   gtk = {
     enable = true;
-    # iconTheme.package = pkgs.morewaita-icon-theme;
-    # iconTheme.name = "MoreWaita";
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        accent = "blue";
+        flavor = "mocha";
+      };
+    };
     theme = {
       package = pkgs.catppuccin-gtk.override {
         size = "standard";
@@ -156,8 +72,15 @@ in {
     };
   };
 
+  services.udiskie = {
+    enable = true;
+    tray = "auto";
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
+    systemd.enable = true;
     settings = {
       exec-once = [
         "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
@@ -180,6 +103,7 @@ in {
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
         force_default_wallpaper = 0;
+        animate_manual_resizes = true;
       };
       animations = {
         enabled = "yes";
@@ -286,10 +210,10 @@ in {
           (resizeactive "j" "0 20")
           (resizeactive "l" "20 0")
           (resizeactive "h" "-20 0")
-          (mvactive "k" "0 -20")
-          (mvactive "j" "0 20")
-          (mvactive "l" "20 0")
-          (mvactive "h" "-20 0")
+          (mvactive "k" "u")
+          (mvactive "j" "d")
+          (mvactive "l" "r")
+          (mvactive "h" "l")
         ]
         ++ (map (i: ws (toString i) (toString i)) arr)
         ++ (map (i: mvtows (toString i) (toString i)) arr);

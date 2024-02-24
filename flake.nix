@@ -80,7 +80,7 @@
           modules = [
             nur.nixosModules.nur
             ./configuration.nix
-            ./hosts/bundesk
+            ./hosts/${systemSettings.hostname}
             home-manager.nixosModules.home-manager
 
             {
@@ -120,7 +120,7 @@
           modules = [
             nur.nixosModules.nur
             ./configuration.nix
-            ./hosts/pawpad
+            ./hosts/${systemSettings.hostname}
             home-manager.nixosModules.home-manager
             nixos-hardware.nixosModules.dell-inspiron-5509
             {

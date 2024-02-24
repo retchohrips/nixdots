@@ -6,12 +6,18 @@
 }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
-    ./programs/starship.nix
-    ./programs/neovim.nix
-    ./programs/firefox
-    ./programs/beets.nix
-    ./dewm/${userSettings.dewm}.nix
-    ./fonts.nix
+
+    ./user/shell/sh.nix
+    ./user/shell/starship.nix
+
+    ./user/dewm/${userSettings.dewm}
+
+    ./user/app/${userSettings.browser}
+    ./user/app/beets.nix
+    ./user/app/kitty.nix
+    ./user/app/neovim.nix
+
+    ./user/gaming.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
@@ -25,23 +31,16 @@
     inherit (userSettings) username;
     homeDirectory = "/home/" + userSettings.username;
 
-    sessionVariables = {EDITOR = "nvim";};
-
-    packages =
-      (with pkgs; [
-        brave
-        obsidian
-        vscode.fhs
-        telegram-desktop
-        # vesktop # Kinda sucks on nixos...
-        lutris
-
-        # CLI tools
-        lazygit
-        tldr
-        alejandra # Needed for pre-commit hooks
-      ])
-      ++ (with inputs.nix-gaming.packages.${pkgs.system}; [wine-ge]);
+    packages = with pkgs; [
+      obsidian
+      vscode.fhs
+      telegram-desktop
+      # vesktop # Kinda sucks on nixos...
+      blender
+      gimp-with-plugins
+      krita
+      vlc
+    ];
 
     file = {
       ".local/share/backgrounds" = {
@@ -49,115 +48,9 @@
         recursive = true;
       };
     };
-
-    shellAliases = {
-      ls = "eza --icons --no-quotes --group-directories-first";
-      ll = "eza --long --git --icons --header --total-size --time-style relative --smart-group";
-      la = "eza --icons --no-quotes --group-directories-first -a";
-      lla = "eza --long --git --icons --header --total-size --time-style relative --smart-group -a";
-      rg = "rg --smart-case";
-    };
   };
 
-  programs = {
-    fish = {
-      enable = true;
-      shellAbbrs = {
-        g = "git";
-        ga = "git add";
-        gaa = "git add --all";
-        gb = "git branch --verbose";
-        gc = "git commit -m";
-        gca = "git commit --amend";
-        gcl = "git clone";
-        gs = "git status";
-        gss = "git status --short";
-        gd = "git difftool --no-symlinks --dir-diff";
-        gds = "git difftool --no-symlinks --dir-diff --staged";
-        gf = "git fetch";
-        gi = "git init";
-        gl = "git log --oneline --decorate --graph -n 10";
-        gm = "git merge";
-        gp = "git push";
-        gpu = "git pull";
-        nf = "nix flake";
-        nfu = "nix flake update";
-        npr = "nixpkgs-review pr --run fish --print-result";
-        nd = "nix develop --command fish";
-        nb = "nix build";
-        ns = "nix shell";
-        nr = "nix run";
-        ncg = "sudo nix-collect-garbage -d";
-        nrb = "sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
-        # nvd = "nvd --color always diff /run/current-system result | less -R";
-        c = "clear";
-        e = "exit";
-        v = "nvim";
-        cd = "z";
-      };
-      interactiveShellInit =
-        /*
-        fish
-        */
-        ''
-          set fish_greeting # Disable greeting
-          set sponge_purge_only_on_exit true
-        '';
-    };
-
-    zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-
-    bat = {
-      enable = true;
-      config = {theme = "ansi";};
-    };
-
-    git = {
-      enable = true;
-      userEmail = "44993244+retchohrips@users.noreply.github.com";
-      userName = "retchohrips";
-      extraConfig = {
-        init = {defaultBranch = "main";};
-        diff.tool = "kitty";
-        diff.guitool = "kitty.gui";
-        difftool.prompt = false;
-        difftool.trustExitCode = true;
-        "difftool \"kitty\"".cmd = "${pkgs.kitty}/bin/kitty +kitten diff $LOCAL $REMOTE";
-        "difftool \"kitty.gui\"".cmd = "${pkgs.kitty}/bin/kitty kitty +kitten diff $LOCAL $REMOTE";
-      };
-    };
-
-    gh.enable = true;
-
-    kitty = {
-      enable = true;
-      theme = "Catppuccin-Mocha";
-      shellIntegration.enableFishIntegration = true;
-      settings = {
-        font = "${userSettings.font}";
-        font_size = 12;
-        cursor_shape = "beam";
-        window_padding_width = 5;
-        confirm_os_window_close = 0;
-        linux_display_server = "x11";
-        # background_opacity = "0.50";
-        enabled_layouts = "grid, splits, tall, fat";
-      };
-    };
-
-    # Let Home Manager install and manage itself.
-    home-manager.enable = true;
-  };
-
-  xdg.configFile = {
-    "kitty/diff.conf".text = ''
-      # Load theme
-      include ${inputs.catppuccin-kitty}/themes/diff-mocha.conf
-    '';
-  };
+  programs.home-manager.enable = true; # Let Home Manager install and manage itself.
 
   xdg.desktopEntries = {
     # Obsidian won't run on Wayland without this
