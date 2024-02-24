@@ -65,7 +65,7 @@
           username = "bunny";
           name = "Bun";
           dewm = "hyprland";
-          pape = "BLACK_X_desktop.jpg";
+          pape = "GhostPaper-mocha.jpg";
           browser = "firefox";
           font = "ProggyClean Nerd Font";
         };
@@ -105,7 +105,7 @@
           username = "puppy";
           name = "Pup";
           dewm = "hyprland";
-          pape = "BLACK_X_desktop.jpg";
+          pape = "mandelbrot_gap_blue.png";
           browser = "firefox";
           font = "CommitMono";
         };
