@@ -65,7 +65,7 @@
           username = "bunny";
           name = "Bun";
           dewm = "hyprland";
-          pape = "GhostPaper-mocha.jpg";
+          pape = "Kurzgesagt-Galaxies.png";
           browser = "firefox";
           font = "ProggyClean Nerd Font";
         };
