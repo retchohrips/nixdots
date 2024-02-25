@@ -9,12 +9,13 @@
 
     ./user/shell/sh.nix
     ./user/shell/starship.nix
+    ./user/shell/tmux.nix
 
     ./user/dewm/${userSettings.dewm}
 
     ./user/app/${userSettings.browser}
     ./user/app/beets.nix
-    ./user/app/kitty.nix
+    ./user/app/foot.nix
     ./user/app/neovim.nix
 
     ./user/gaming.nix

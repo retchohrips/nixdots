@@ -187,11 +187,10 @@
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         arr = [1 2 3 4 5 6 7 8 9];
-        term = "kitty";
-        inherit (userSettings) browser;
+        inherit (userSettings) browser terminal;
       in
         [
-          "SUPER, RETURN, exec, ${term}"
+          "SUPER, RETURN, exec, ${terminal}"
           "SUPER, B, exec, ${browser}"
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"

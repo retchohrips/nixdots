@@ -72,6 +72,7 @@
           dewm = "hyprland";
           pape = "Kurzgesagt-Galaxies.png";
           browser = "firefox";
+          terminal = "foot";
           font = "VictorMono Nerd Font";
         };
       in
@@ -112,6 +113,7 @@
           dewm = "hyprland";
           pape = "mandelbrot_gap_blue.png";
           browser = "firefox";
+          terminal = "foot";
           font = "VictorMono Nerd Font";
         };
       in

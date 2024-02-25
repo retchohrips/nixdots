@@ -56,6 +56,11 @@
       ''
         set fish_greeting # Disable greeting
         set sponge_purge_only_on_exit true
+        if status is-interactive
+        and not set -q TMUX
+        and command -v tmux &> /dev/null
+          exec tmux new-session -A -s main
+        end
       '';
   };
 
