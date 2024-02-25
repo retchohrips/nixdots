@@ -23,6 +23,7 @@
     brightnessctl
     hyprpaper
     wlsunset
+    jq
     tesseract4
 
     (pkgs.writeScriptBin "screenshot-ocr"
@@ -36,6 +37,14 @@
         grim -g "$(slurp)" $imgname;
         tesseract $imgname $txtname;
         wl-copy -n < $txtfname
+      '')
+
+    (pkgs.writeScriptBin "wlsunset-auto"
+      /*
+      bash
+      */
+      ''
+        curl https://ipinfo.io/json | jq -r '.loc' | awk -F, '{print "-l " $1 " -L " $2}' | xargs wlsunset
       '')
   ];
 
@@ -90,6 +99,7 @@
         "waybar"
         "dunst"
         "hyprpaper"
+        "wlsunset-auto"
       ];
       monitor = [",preferred,auto,1"];
       general = {
