@@ -4,6 +4,8 @@
   ...
 }: {
   imports = [
+    ./hypridle.nix
+    ./hyprlock.nix
     ./waybar
     ./rofi
     ./dunst.nix
