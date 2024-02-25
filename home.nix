@@ -37,7 +37,7 @@
       vscode.fhs
       telegram-desktop
       # vesktop # Kinda sucks on nixos...
-      blender
+      # blender # broken rn???
       gimp-with-plugins
       krita
       vlc
