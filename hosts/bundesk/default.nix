@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
 
     # DNS and firewall. Majorly slows down laptop.
-    ./system/security/networking.nix
+    ../../system/security/networking.nix
   ];
 
   fileSystems = {
