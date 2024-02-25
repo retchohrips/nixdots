@@ -103,7 +103,7 @@
         };
 
         mpd = {
-          format = "<span color='#${palette.base0E}'></span>  {title}";
+          format = "<span color='#${palette.base0E}'></span> {title}";
           format-paused = "  {title}";
           format-stopped = "<span foreground='#${palette.base0E}'></span>";
           fromat-disconnected = "";
@@ -265,7 +265,7 @@
 
 
         data['text'] = WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-            "  "+weather['current_condition'][0]['FeelsLikeF']+"°"
+            " "+weather['current_condition'][0]['FeelsLikeF']+"°"
 
         data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°</b>\n"
         data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeF']}°\n"

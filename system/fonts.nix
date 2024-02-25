@@ -39,13 +39,13 @@
       noto-fonts-cjk
       noto-fonts-emoji
       liberation_ttf
-      # cozette
+      cozette
       (google-fonts.override {fonts = ["Inter"];})
       (nerdfonts.override {
         fonts = [
-          # "JetBrainsMono"
-          # "CommitMono"
-          # "CascadiaCode"
+          "JetBrainsMono"
+          "CommitMono"
+          "CascadiaCode"
           "ProggyClean"
           "NerdFontsSymbolsOnly"
         ];

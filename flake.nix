@@ -72,7 +72,7 @@
           dewm = "hyprland";
           pape = "Kurzgesagt-Galaxies.png";
           browser = "firefox";
-          font = "ProggyClean Nerd Font";
+          font = "CommitMono Nerd Font";
         };
       in
         lib.nixosSystem {
@@ -112,7 +112,7 @@
           dewm = "hyprland";
           pape = "mandelbrot_gap_blue.png";
           browser = "firefox";
-          font = "CommitMono";
+          font = "CommitMono Nerd Font";
         };
       in
         lib.nixosSystem {
