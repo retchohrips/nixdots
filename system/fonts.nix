@@ -15,11 +15,12 @@
       };
 
       antialias = true; # Fix pixelation
+      cache32Bit = true;
       hinting = {
         # Fix antialiasing blur
         enable = true;
-        autohint = true;
-        style = "full";
+        autohint = false;
+        style = "slight";
       };
       subpixel = {
         lcdfilter = "default";
@@ -27,10 +28,10 @@
       };
     };
 
-    fontDir = {
-      enable = true;
-      decompressFonts = true;
-    };
+    # fontDir = {
+    #   enable = true;
+    #   decompressFonts = true;
+    # };
 
     packages = with pkgs; [
       corefonts
@@ -46,6 +47,7 @@
           "JetBrainsMono"
           "CommitMono"
           "CascadiaCode"
+          "VictorMono"
           "ProggyClean"
           "NerdFontsSymbolsOnly"
         ];
