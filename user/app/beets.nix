@@ -5,6 +5,8 @@
 }: {
   programs.beets = {
     enable = true;
+    package = pkgs.beets-unstable;
+    mpdIntegration.enableUpdate = true;
     settings = {
       directory = "${config.home.homeDirectory}/Music";
       library = "${config.home.homeDirectory}/Music/library.db";
@@ -29,23 +31,34 @@
         "missing"
         "info"
         "albumtypes"
+        "mpdupdate"
+        "rewrite"
       ];
       fetchart = {
         sources = [
           "filesystem"
-          "coverart"
           "itunes"
           "amazon"
-          "albumart"
+          "lastfm"
           "spotify"
           # "bandcamp"
           "wikipedia"
+          "coverart"
+          "albumart"
         ];
       };
-      replaygain = {backend = "gstreamer";};
+      lyrics = {
+        auto = true;
+        sources = "*";
+      };
+      replaygain = {
+        auto = true;
+        backend = "ffmpeg";
+      };
       convert = {
         auto = true;
         delete_originals = true;
+        never_convert_lossy_files = true;
       };
       albumtypes = {
         types = [
@@ -57,6 +70,9 @@
         ];
         ignore_va = "compilation";
         bracket = "[]";
+      };
+      rewrite = {
+        "artist 𝐞𝐭𝐡𝐞𝐥 𝐜𝐚𝐢𝐧.*" = "Ethel Cain";
       };
       smartplaylist = {
         relative_to = "${config.home.homeDirectory}/Music";
@@ -85,6 +101,7 @@
         # discogs-client
         pyacoustid
         requests
+        beautifulsoup4
       ]))
   ];
 }
