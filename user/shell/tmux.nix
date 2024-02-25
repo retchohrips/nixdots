@@ -32,8 +32,8 @@ in {
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
       # Open panes in current directory
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
+      bind % split-window -v -c "#{pane_current_path}"
+      bind '"' split-window -h -c "#{pane_current_path}"
 
       # Status line
       # Make background transparent
