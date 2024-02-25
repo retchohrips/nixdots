@@ -14,7 +14,6 @@
 
     ./system/security/automount.nix
     ./system/security/doas.nix
-    ./system/security/networking.nix
 
     ./system/cleaning.nix
     ./system/fonts.nix
