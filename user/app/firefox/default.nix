@@ -344,7 +344,7 @@
 
         # Personal
         "browser.tabs.loadInBackground" = true;
-        "browser.startup.homepage" = "https://retchohrips.github.io/tide";
+        "browser.startup.homepage" = "https://retchohrips.github.io/tilde";
 
         # Theming
         "svg.context-properties.content.enabled" = true;
