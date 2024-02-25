@@ -17,6 +17,8 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
+    stylix.url = "github:danth/stylix";
+
     ranger-devicons = {
       url = "github:alexanderjeurissen/ranger_devicons";
       flake = false;
@@ -37,16 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin-kitty = {
-      url = "github:catppuccin/kitty";
-      flake = false;
-    };
-
-    catppuccin-btop = {
-      url = "github:catppuccin/btop";
-      flake = false;
-    };
-
     # firefox-gnome-theme = {
     #   url = "github:rafaelmardojai/firefox-gnome-theme";
     #   flake = false;
@@ -56,6 +48,7 @@
   outputs = {
     nixpkgs,
     nur,
+    stylix,
     home-manager,
     nixos-hardware,
     ...

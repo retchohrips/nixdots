@@ -9,7 +9,7 @@ in {
     enable = true;
     settings = {
       global = {
-        font = "${userSettings.font}";
+        # font = "${userSettings.font}";
         markup = "full";
         format = "<b>%s</b>\n%b";
         sort = "yes";
@@ -38,7 +38,7 @@ in {
         separator_height = 2;
         padding = 8;
         horizontal_padding = 8;
-        separator_color = "frame";
+        # separator_color = "frame";
         # Mouse
         # Left click
         mouse_left_click = "do_action";
@@ -48,21 +48,21 @@ in {
         mouse_right_click = "close_current";
 
         frame_width = 2;
-        frame_color = "#${palette.base0D}";
+        # frame_color = "#${palette.base0D}";
         corner_radius = 5;
       };
       urgency_low = {
-        background = "#${palette.base00}80";
-        foreground = "#${palette.base05}";
+        # background = "#${palette.base00}80";
+        # foreground = "#${palette.base05}";
       };
       urgency_normal = {
-        background = "#${palette.base00}80";
-        foreground = "#${palette.base05}";
+        # background = "#${palette.base00}80";
+        # foreground = "#${palette.base05}";
       };
       urgency_critical = {
-        background = "#${palette.base00}80";
-        foreground = "#${palette.base05}";
-        frame_color = "#${palette.base08}";
+        # background = "#${palette.base00}80";
+        # foreground = "#${palette.base05}";
+        # frame_color = "#${palette.base08}";
       };
     };
   };

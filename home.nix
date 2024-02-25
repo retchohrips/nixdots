@@ -6,10 +6,13 @@
 }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.homeManagerModules.stylix
 
     ./user/shell/sh.nix
     ./user/shell/starship.nix
     ./user/shell/tmux.nix
+
+    ./user/styles/stylix.nix
 
     ./user/dewm/${userSettings.dewm}
 
