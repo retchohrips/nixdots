@@ -13,6 +13,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/main";
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     ranger-devicons = {
@@ -88,7 +90,7 @@
             ./configuration.nix
             ./hosts/${systemSettings.hostname}
             home-manager.nixosModules.home-manager
-
+            inputs.nix-flatpak.nixosModules.nix-flatpak
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -129,6 +131,7 @@
             ./configuration.nix
             ./hosts/${systemSettings.hostname}
             home-manager.nixosModules.home-manager
+            inputs.nix-flatpak.nixosModules.nix-flatpak
             nixos-hardware.nixosModules.dell-inspiron-5509
             {
               home-manager = {

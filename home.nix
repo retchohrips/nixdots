@@ -64,5 +64,14 @@
       terminal = false;
       mimeType = ["x-scheme-handler/obsidian"];
     };
+
+    steam = {
+      name = "Steam";
+      genericName = "Game launcher";
+      exec = "flatpak run com.valvesoftware.Steam";
+      # categories = ["Games"];
+      icon = "steam";
+      terminal = false;
+    };
   };
 }
