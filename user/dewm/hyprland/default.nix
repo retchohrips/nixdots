@@ -1,6 +1,7 @@
 {
   pkgs,
   userSettings,
+  config,
   ...
 }: {
   imports = [
@@ -94,7 +95,7 @@
     systemd.enable = true;
     settings = {
       exec-once = [
-        "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
+        "hyprctl setcursor ${config.stylix.cursor.name} ${toString config.stylix.cursor.size}"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
         "telegram-desktop -startintray"
@@ -255,7 +256,7 @@
     };
 
     extraConfig = ''
-      env = XCURSOR_SIZE,24
+      env = XCURSOR_SIZE,${toString config.stylix.cursor.size}
       env = WLR_RENDERER_ALLOW_SOFTWARE,1
     '';
   };

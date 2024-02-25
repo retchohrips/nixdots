@@ -68,7 +68,7 @@
           pape = "Kurzgesagt-Galaxies.png";
           browser = "firefox";
           terminal = "foot";
-          font = "VictorMono Nerd Font";
+          font = "VictorMono";
         };
       in
         lib.nixosSystem {
@@ -109,7 +109,7 @@
           pape = "mandelbrot_gap_blue.png";
           browser = "firefox";
           terminal = "foot";
-          font = "VictorMono Nerd Font";
+          font = "VictorMono";
         };
       in
         lib.nixosSystem {

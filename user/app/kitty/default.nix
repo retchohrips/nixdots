@@ -6,10 +6,8 @@
 }: {
   programs.kitty = {
     enable = true;
-    theme = "Catppuccin-Mocha";
     shellIntegration.enableFishIntegration = true;
     settings = {
-      font = "${userSettings.font}";
       font_size = 12;
       cursor_shape = "beam";
       window_padding_width = 5;

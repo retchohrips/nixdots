@@ -163,11 +163,11 @@ with config.lib.stylix.colors; {
       ''
           * {
             border-radius: 1rem;
-            font-family: monospace;
+            font-family: ${config.stylix.fonts.monospace.name};
             color: ${withHashtag.base05};
             font-size: 1rem;
             transition-property: background-color;
-            background-color: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.9);
+            background-color: ${withHashtag.base00};
           }
 
           @keyframes blink_red {
@@ -215,7 +215,7 @@ with config.lib.stylix.colors; {
 
           /* Workspaces */
           #workspaces:hover {
-            background-color: rgb(base0B);
+            background-color: ${withHashtag.base0B};
           }
 
           #workspaces button {
