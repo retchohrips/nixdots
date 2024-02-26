@@ -20,7 +20,7 @@
     ./system/syncthing.nix
 
     ./system/gaming.nix
-    ./system/flatpak.nix
+    # ./system/flatpak.nix
 
     ./system/dewm/${userSettings.dewm}.nix
   ];
