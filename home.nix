@@ -9,7 +9,6 @@
 
     ./user/shell/sh.nix
     ./user/shell/starship.nix
-    ./user/shell/tmux.nix
 
     ./user/styles/stylix.nix
 
@@ -17,7 +16,7 @@
 
     ./user/app/${userSettings.browser}
     ./user/app/beets.nix
-    ./user/app/foot.nix
+    ./user/app/kitty.nix
     ./user/app/neovim.nix
 
     ./user/gaming.nix

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.shellAliases = {
     ls = "eza --icons --no-quotes --group-directories-first";
     ll = "eza --long --git --icons --header --total-size --time-style relative --smart-group";
@@ -26,8 +22,8 @@
       gcl = "git clone";
       gs = "git status";
       gss = "git status --short";
-      gd = "git diff --no-symlinks --dir-diff";
-      gds = "git diff --no-symlinks --dir-diff --staged";
+      gd = "git difftool --no-symlinks --dir-diff";
+      gds = "git difftool --no-symlinks --dir-diff --staged";
       gf = "git fetch";
       gi = "git init";
       gl = "git log --oneline --decorate --graph -n 10";
@@ -55,11 +51,6 @@
       ''
         set fish_greeting # Disable greeting
         set sponge_purge_only_on_exit true
-        if status is-interactive
-        and not set -q TMUX
-        and command -v tmux &> /dev/null
-          exec tmux new-session -A -s main
-        end
       '';
   };
 

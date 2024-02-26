@@ -39,8 +39,8 @@
     system = "x86_64-linux";
     commonSettings = {
       browser = "firefox";
-      terminal = "foot";
-      font = "VictorMono";
+      terminal = "kitty";
+      font = "JetBrainsMono";
       theme = "catppuccin-mocha";
     };
   in {

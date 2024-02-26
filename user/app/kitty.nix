@@ -1,9 +1,4 @@
-{
-  userSettings,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
@@ -25,12 +20,5 @@
     difftool.trustExitCode = true;
     "difftool \"kitty\"".cmd = "${pkgs.kitty}/bin/kitty +kitten diff $LOCAL $REMOTE";
     "difftool \"kitty.gui\"".cmd = "${pkgs.kitty}/bin/kitty kitty +kitten diff $LOCAL $REMOTE";
-  };
-
-  xdg.configFile = {
-    "kitty/diff.conf".text = ''
-      # Load theme
-      include ${inputs.catppuccin-kitty}/themes/diff-mocha.conf
-    '';
   };
 }
