@@ -28,10 +28,11 @@
       };
     };
 
-    # fontDir = {
-    #   enable = true;
-    #   decompressFonts = true;
-    # };
+    fontDir = {
+      # Needed for flatpaks
+      enable = true;
+      decompressFonts = true;
+    };
 
     packages = with pkgs; [
       corefonts
