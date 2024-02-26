@@ -26,8 +26,8 @@
       gcl = "git clone";
       gs = "git status";
       gss = "git status --short";
-      gd = "git difftool --no-symlinks --dir-diff";
-      gds = "git difftool --no-symlinks --dir-diff --staged";
+      gd = "git diff --no-symlinks --dir-diff";
+      gds = "git diff --no-symlinks --dir-diff --staged";
       gf = "git fetch";
       gi = "git init";
       gl = "git log --oneline --decorate --graph -n 10";
@@ -43,7 +43,6 @@
       nr = "nix run";
       ncg = "sudo nix-collect-garbage -d";
       nrb = "sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
-      # nvd = "nvd --color always diff /run/current-system result | less -R";
       c = "clear";
       e = "exit";
       v = "nvim";
