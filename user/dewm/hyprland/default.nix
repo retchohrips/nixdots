@@ -108,8 +108,8 @@
       general = {
         layout = "dwindle";
         border_size = 0;
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 3;
+        gaps_out = 6;
         allow_tearing = false;
       };
       misc = {
