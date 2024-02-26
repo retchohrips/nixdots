@@ -1,4 +1,4 @@
-{userSettings, ...}:
+{config, ...}:
 /*
 rasi
 */
@@ -18,9 +18,9 @@ rasi
       element-padding:             55px 60px;
       element-border-radius:       100%;
 
-      prompt-font:                 "${userSettings.font} Bold Italic 64";
-      textbox-font:                "${userSettings.font} 16";
-      icon-font:                   "${userSettings.font} 64";
+      prompt-font:                 "${config.stylix.fonts.monospace.name} Bold Italic 64";
+      textbox-font:                "${config.stylix.fonts.monospace.name} 16";
+      icon-font:                   "${config.stylix.fonts.monospace.name} 64";
 
       background-window:           black/5%;
       background-normal:           white/5%;

@@ -7,6 +7,7 @@
 in {
   xdg.configFile."rofi/powermenuhack/style.rasi".text = import ./powermenu-style.nix {
     inherit userSettings;
+    inherit config;
   };
   xdg.configFile."rofi/powermenuhack/powermenu.sh".source = ./powermenu.sh;
   programs.rofi = {
