@@ -42,14 +42,30 @@ in {
       {
         plugin = catppuccin-tmux;
         extraConfig = with config.lib.stylix.colors; ''
-          set -g @catppuccin_flavour 'dynamic'
+          set -g @catppuccin_flavour "dynamic"
+          set -g @catppuccin_window_left_separator "█"
+          set -g @catppuccin_window_right_separator "█ "
+          set -g @catppuccin_window_number_position "right"
+          set -g @catppuccin_window_middle_separator "  █"
+
+          set -g @catppuccin_window_default_fill "number"
+
+          set -g @catppuccin_window_current_fill "number"
+          set -g @catppuccin_window_current_text "#{pane_current_path}"
+
+          set -g @catppuccin_status_modules_right "application"
+          set -g @catppuccin_status_left_separator  ""
+          set -g @catppuccin_status_right_separator " "
+          set -g @catppuccin_status_right_separator_inverse "yes"
+          set -g @catppuccin_status_fill "all"
+          set -g @catppuccin_status_connect_separator "no"
         '';
       }
     ];
     prefix = "C-Space";
     mouse = true;
     keyMode = "vi";
-    extraConfig = with config.lib.stylix.colors; ''
+    extraConfig = ''
       # Start Windows and panes at 1, not 0
       set -g base-index 1
       set -g pane-base-index 1
@@ -72,10 +88,19 @@ in {
       # Make background transparent
       set -g status-bg default
       set -g status-style bg=default
-
-      # pane borders
-      # set -g pane-border-style "fg=colour1"
-      # set -g pane-active-border-style "fg=colour3"
+      set -g status-position top # Move bar to top
     '';
+  };
+  programs.fish = {
+    interactiveShellInit =
+      /*
+      fish
+      */
+      ''
+        if status is-interactive
+        and not set -q TMUX
+        and command -v tmux &> /dev/null
+          exec tmux new-session -A -s main
+        end'';
   };
 }
