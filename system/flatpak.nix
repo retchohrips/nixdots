@@ -1,4 +1,14 @@
 {
+  config,
+  pkgs,
+  ...
+}: let
+  mkRoSymBind = path: {
+    device = path;
+    fsType = "fuse.bindfs";
+    options = ["ro" "resolve-symlinks" "x-gvfs-hide"];
+  };
+in {
   services.flatpak = {
     enable = true;
     update.onActivation = true;
@@ -20,4 +30,6 @@
       "org.upscayl.Upscayl"
     ];
   };
+  system.fsPackages = [pkgs.bindfs];
+  fileSystems."/usr/share/icons" = mkRoSymBind (config.system.path + "/share/icons");
 }
