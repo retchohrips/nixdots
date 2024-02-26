@@ -6,6 +6,7 @@ return {
 
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.pack.nix" },
+  { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.toml" },
@@ -15,4 +16,5 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
+  { import = "astrocommunity.completion.tabnine-nvim" },
 }
