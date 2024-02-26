@@ -16,5 +16,4 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
-  { import = "astrocommunity.completion.tabnine-nvim" },
 }
