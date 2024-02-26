@@ -7,7 +7,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        -- "lua_ls",
+        "nil_ls", "astro", "bashls", "html", "cssls", "emmet_ls", "jsonls", "lua_ls", "marksman", "yamlls"
       })
     end,
   },
@@ -18,8 +18,7 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        -- "prettier",
-        -- "stylua",
+        "shfmt", "stylua", "luacheck", "prettierd",
       })
     end,
   },
@@ -28,8 +27,8 @@ return {
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        -- "python",
+      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, { 
+        "js", "bash",
       })
     end,
   },
