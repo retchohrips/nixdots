@@ -1,11 +1,9 @@
 {
   inputs,
   config,
-  userSettings,
   ...
-}: let
-  inherit (config.colorScheme) palette;
-in {
+}:
+with config.lib.stylix.colors; {
   imports = [
     inputs.hyprlock.homeManagerModules.default
   ];
@@ -35,9 +33,9 @@ in {
         size.height = 40;
         outline_thickness = 3;
         dots_center = true;
-        outer_color = "0xff${palette.base00}";
-        inner_color = "0xff${palette.base05}";
-        font_color = "0xff${palette.base00}";
+        outer_color = withHashtag.base00;
+        inner_color = withHashtag.base05;
+        font_color = withHashtag.base00;
         fade_on_empty = false;
         dots_spacing = 0.3;
         placeholder_text = "";
@@ -58,9 +56,9 @@ in {
           x = 0;
           y = 30;
         };
-        font_family = "${userSettings.font}";
+        font_family = "${config.stylix.fonts.monospace.name}";
         font_size = 40;
-        color = "0xff${palette.base07}";
+        color = withHashtag.base07;
       }
     ];
   };

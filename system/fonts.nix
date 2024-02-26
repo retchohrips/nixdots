@@ -7,21 +7,16 @@
     fontconfig = {
       enable = true;
 
-      defaultFonts = {
-        emoji = ["Noto Color Emoji"];
-        monospace = ["${userSettings.font}" "Noto Color Emoji" "Symbols Nerd Font"];
-        serif = ["Noto Serif" "Noto Color Emoji"];
-        sansSerif = ["Inter" "Noto Color Emoji"];
-      };
-
       antialias = true; # Fix pixelation
       cache32Bit = true;
+
       hinting = {
         # Fix antialiasing blur
         enable = true;
         autohint = false;
         style = "slight";
       };
+
       subpixel = {
         lcdfilter = "default";
         rgba = "rgb";

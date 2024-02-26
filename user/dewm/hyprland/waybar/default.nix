@@ -1,24 +1,13 @@
 {
   config,
-  inputs,
   systemSettings,
   pkgs,
   ...
-}: {
+}:
+with config.lib.stylix.colors; {
   programs.waybar = {
     enable = true;
-    style = let
-      inherit (builtins) attrNames attrValues map readFile replaceStrings;
-
-      baseNames = attrNames config.colorscheme.palette;
-      baseValues = attrValues config.colorscheme.palette;
-      baseRGB = map (inputs.nix-colors.lib-core.conversions.hexToRGBString ", ") baseValues;
-      style = readFile ./style.css;
-    in
-      replaceStrings baseNames baseRGB style;
-    settings = let
-      inherit (config.colorScheme) palette;
-    in {
+    settings = {
       mainBar = {
         layer = "top";
         modules-left = ["custom/launcher" "hyprland/workspaces" "temperature" "wireplumber" "mpd"];
@@ -103,9 +92,9 @@
         };
 
         mpd = {
-          format = "<span color='#${palette.base0E}'></span> {title}";
+          format = "<span color='${withHashtag.base0E}'></span> {title}";
           format-paused = "  {title}";
-          format-stopped = "<span foreground='#${palette.base0E}'></span>";
+          format-stopped = "<span foreground='${withHashtag.base0E}'></span>";
           fromat-disconnected = "";
           max-length = 25;
           tooltip-format = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
@@ -167,6 +156,170 @@
         };
       };
     };
+    style =
+      /*
+      css
+      */
+      ''
+          * {
+            border-radius: 1rem;
+            font-family: ${config.stylix.fonts.monospace.name};
+            color: ${withHashtag.base05};
+            font-size: 1rem;
+            transition-property: background-color;
+            background-color: ${withHashtag.base00};
+          }
+
+          @keyframes blink_red {
+            to {
+              background-color: ${withHashtag.base08};
+              color: ${withHashtag.base00};
+            }
+          }
+
+          .warning,
+          .critical,
+          .urgent {
+            animation-name: blink_red;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+          }
+
+          #clock,
+          #temperature,
+          #custom-weather,
+          #mpd,
+          #backlight,
+          #bluetooth,
+          #wireplumber,
+          #network,
+          #battery,
+          #custom-launcher,
+          #tray {
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+          }
+
+        /* Bar */
+          window#waybar {
+            background-color: transparent;
+          }
+
+          window > box {
+            background-color: transparent;
+            margin: 0.3rem;
+            margin-bottom: 0;
+          }
+
+          /* Workspaces */
+          #workspaces:hover {
+            background-color: ${withHashtag.base0B};
+          }
+
+          #workspaces button {
+            padding-right: 0.4rem;
+            padding-left: 0.4rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            background: transparent;
+          }
+
+          #workspaces button.focused,
+          #workspaces button.active * {
+            color: ${withHashtag.base0D};
+          }
+
+          #workspaces button.hover {
+            color: ${withHashtag.base06};
+          }
+
+          /* Tooltips */
+          tooltip {
+            background-color: ${withHashtag.base00};
+          }
+
+          tooltip label {
+            color: ${withHashtag.base06};
+          }
+
+          /* Battery */
+          #battery {
+            color: ${withHashtag.base0E};
+          }
+
+          #battery.full {
+            color: ${withHashtag.base0B};
+          }
+
+          #battery.charging {
+            color: ${withHashtag.base0C};
+          }
+
+          #battery.discharging {
+            color: ${withHashtag.base09};
+          }
+
+          #battery.critical:not(.charging) {
+            color: ${withHashtag.base0F};
+          }
+
+          /* MPD */
+          #mpd.paused {
+            color: ${withHashtag.base0F};
+            font-style: italic;
+          }
+
+          #mpd.stopped {
+            color: ${withHashtag.base06};
+          }
+
+          #mpd {
+            color: ${withHashtag.base07};
+          }
+
+          /* Extra */
+          #custom-launcher {
+            color: ${withHashtag.base0A};
+          }
+
+          #clock {
+            color: ${withHashtag.base06};
+          }
+
+          #temperature {
+            color: ${withHashtag.base09};
+          }
+
+          #backlight {
+            color: ${withHashtag.base0A};
+          }
+
+          #wireplumber {
+            color: ${withHashtag.base0E};
+          }
+
+          #network {
+            color: ${withHashtag.base0F};
+          }
+
+          #network.disconnected {
+            color: ${withHashtag.base05};
+          }
+
+          #custom-weather {
+            color: ${withHashtag.base08};
+          }
+
+          #bluetooth {
+            color: ${withHashtag.base05};
+          }
+
+          #bluetooth.connected {
+            color: ${withHashtag.base0D};
+          }
+      '';
   };
   home.packages = [
     (pkgs.writeScriptBin "waybar-weather"

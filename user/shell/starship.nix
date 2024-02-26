@@ -2,25 +2,24 @@
   lib,
   config,
   ...
-}: {
-  programs.starship = let
-    inherit (config.colorScheme) palette;
-  in {
+}:
+with config.lib.stylix.colors; {
+  programs.starship = {
     enable = true;
     enableTransience = true;
     settings = {
       format = lib.concatStrings [
-        "[](#${palette.base08})"
+        "[](${withHashtag.base08})"
         "$os"
         "$hostname"
-        "[](bg:#${palette.base09} fg:#${palette.base08})"
+        "[](bg:${withHashtag.base09} fg:${withHashtag.base08})"
         "$directory"
-        "[](bg:#${palette.base0A} fg:#${palette.base09})"
+        "[](bg:${withHashtag.base0A} fg:${withHashtag.base09})"
         "$git_branch"
         "$git_status"
-        "[](bg:#${palette.base0B} fg:#${palette.base0A})"
+        "[](bg:${withHashtag.base0B} fg:${withHashtag.base0A})"
         "$cmd_duration"
-        "[](fg:#${palette.base0B})"
+        "[](fg:${withHashtag.base0B})"
         "$line_break"
         "$character"
       ];
@@ -28,11 +27,11 @@
       hostname = {
         ssh_symbol = " ";
         format = "[ $hostname ]($style)";
-        style = "bg:#${palette.base08} fg:#${palette.base01}";
+        style = "bg:${withHashtag.base08} fg:${withHashtag.base01}";
       };
 
       directory = {
-        style = "fg:#${palette.base01} bg:#${palette.base09}";
+        style = "fg:${withHashtag.base01} bg:${withHashtag.base09}";
         fish_style_pwd_dir_length = 1;
         truncation_length = 5;
         format = "[ $path ]($style)";
@@ -47,17 +46,17 @@
 
       git_branch = {
         symbol = "󰘬";
-        style = "fg:#${palette.base01} bg:#${palette.base0A}";
-        format = "[[ $symbol $branch ](fg:#${palette.base01} bg:#${palette.base0A})]($style)";
+        style = "fg:${withHashtag.base01} bg:${withHashtag.base0A}";
+        format = "[[ $symbol $branch ](fg:${withHashtag.base01} bg:${withHashtag.base0A})]($style)";
       };
 
       git_status = {
-        style = "bg:#${palette.base0A}";
-        format = "[[($all_status$ahead_behind )](fg:#${palette.base01} bg:#${palette.base0A})]($style)";
+        style = "bg:${withHashtag.base0A}";
+        format = "[[($all_status$ahead_behind )](fg:${withHashtag.base01} bg:${withHashtag.base0A})]($style)";
       };
 
       cmd_duration = {
-        style = "fg:#${palette.base01} bg:#${palette.base0B}";
+        style = "fg:${withHashtag.base01} bg:${withHashtag.base0B}";
         format = "[ $duration]($style)";
       };
 
@@ -65,7 +64,7 @@
 
       os = {
         disabled = false;
-        style = "fg:#${palette.base01} bg:#${palette.base08}";
+        style = "fg:${withHashtag.base01} bg:${withHashtag.base08}";
       };
 
       os.symbols = {

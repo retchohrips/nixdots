@@ -1,6 +1,7 @@
 {
   pkgs,
   userSettings,
+  config,
   ...
 }: {
   imports = [
@@ -56,32 +57,32 @@
     splash = false
   '';
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.catppuccin-cursors.mochaDark;
-    name = "Catppuccin-Mocha-Dark-Cursors";
-    size = 24;
-  };
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   package = pkgs.catppuccin-cursors.mochaDark;
+  #   name = "Catppuccin-Mocha-Dark-Cursors";
+  #   size = 24;
+  # };
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        accent = "blue";
-        flavor = "mocha";
-      };
-    };
-    theme = {
-      package = pkgs.catppuccin-gtk.override {
-        size = "standard";
-        accents = ["blue"];
-        variant = "mocha";
-        tweaks = ["normal"];
-      };
-      name = "Catppuccin-Mocha-Standard-Blue-Dark";
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   iconTheme = {
+  #     name = "Papirus-Dark";
+  #     package = pkgs.catppuccin-papirus-folders.override {
+  #       accent = "blue";
+  #       flavor = "mocha";
+  #     };
+  #   };
+  #   theme = {
+  #     package = pkgs.catppuccin-gtk.override {
+  #       size = "standard";
+  #       accents = ["blue"];
+  #       variant = "mocha";
+  #       tweaks = ["normal"];
+  #     };
+  #     name = "Catppuccin-Mocha-Standard-Blue-Dark";
+  #   };
+  # };
 
   services.udiskie = {
     enable = true;
@@ -94,7 +95,7 @@
     systemd.enable = true;
     settings = {
       exec-once = [
-        "hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 24"
+        "hyprctl setcursor ${config.stylix.cursor.name} ${toString config.stylix.cursor.size}"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
         "telegram-desktop -startintray"
@@ -153,8 +154,8 @@
         drop_shadow = true;
         shadow_range = 10;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(00000088)";
-        "col.shadow_inactive" = "rgba(00000070)";
+        # "col.shadow" = "rgba(00000088)";
+        # "col.shadow_inactive" = "rgba(00000070)";
         dim_inactive = true;
         dim_strength = 0.1;
         dim_special = 0;
@@ -255,7 +256,7 @@
     };
 
     extraConfig = ''
-      env = XCURSOR_SIZE,24
+      env = XCURSOR_SIZE,${toString config.stylix.cursor.size}
       env = WLR_RENDERER_ALLOW_SOFTWARE,1
     '';
   };
