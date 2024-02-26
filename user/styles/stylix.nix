@@ -7,7 +7,7 @@
   ...
 }: {
   stylix.image = ../../wallpapers/${userSettings.pape};
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
   stylix.targets.rofi.enable = false;
   stylix.targets.waybar.enable = false;
   stylix.targets.fish.enable = false; # Fish can just use terminal colors

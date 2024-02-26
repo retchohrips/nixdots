@@ -1,10 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
-  inherit (config.colorscheme) palette;
-in {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [

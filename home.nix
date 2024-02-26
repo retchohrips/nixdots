@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.nix-colors.homeManagerModules.default
     inputs.stylix.homeManagerModules.stylix
 
     ./user/shell/sh.nix
@@ -23,8 +22,6 @@
 
     ./user/gaming.nix
   ];
-
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = {
     # Do not change the below value. It determines the Home Manager release
