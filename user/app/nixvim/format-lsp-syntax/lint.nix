@@ -4,7 +4,7 @@
       enable = true;
       lintersByFt = {
         text = ["vale"];
-        nix = ["statix" "deadnix"];
+        nix = ["statix"];
         lua = ["selene"];
         markdown = ["vale"];
         python = ["flake8"];
@@ -15,6 +15,7 @@
         json = ["jsonlint"];
         java = ["checkstyle"];
         dockerfile = ["hadolint"];
+        css = ["stylelint"];
       };
     };
   };
