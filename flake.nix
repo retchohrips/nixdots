@@ -24,6 +24,9 @@
     hypridle.url = "github:hyprwm/hypridle";
     hypridle.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
     # firefox-gnome-theme.url = "github:rafaelmardojai/firefox-gnome-theme";
     # firefox-gnome-theme.flake = false;
   };

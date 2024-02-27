@@ -17,7 +17,7 @@
     ./user/app/${userSettings.browser}
     ./user/app/beets.nix
     ./user/app/kitty.nix
-    ./user/app/neovim.nix
+    ./user/app/nixvim
 
     ./user/gaming.nix
   ];
