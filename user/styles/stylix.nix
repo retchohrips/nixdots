@@ -8,7 +8,6 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
     targets.rofi.enable = false;
     targets.waybar.enable = false;
-    targets.fish.enable = false; # Fish can just use terminal colors
 
     cursor = {
       size = 24;
