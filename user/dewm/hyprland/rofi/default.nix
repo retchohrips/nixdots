@@ -1,12 +1,13 @@
 {
   config,
-  userSettings,
+  pkgs,
   ...
 }: {
   xdg.configFile."rofi/powermenuhack/style.rasi".text = import ./powermenu-style.nix {
     inherit config;
   };
   xdg.configFile."rofi/powermenuhack/powermenu.sh".source = ./powermenu.sh;
+  home.packages = with pkgs; [rofi-emoji rofi-calc];
   programs.rofi = {
     enable = true;
     theme = let

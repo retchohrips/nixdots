@@ -195,6 +195,7 @@
         [
           "SUPER, RETURN, exec, ${terminal}"
           "SUPER, B, exec, ${browser}"
+          "SUPER, Period, exec, rofi -modi emoji -show emoji"
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
           "SUPER, C, killactive"
