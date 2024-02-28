@@ -42,6 +42,7 @@
     ./utils/oil.nix
     ./utils/persistence.nix
     ./utils/project.nix
+    ./utils/rainbow.nix
     ./utils/surround.nix
     ./utils/todo.nix
     ./utils/toggleterm.nix
