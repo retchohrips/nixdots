@@ -14,5 +14,5 @@
     enable = true;
     extraCompatPackages = [inputs.nix-gaming.packages.${pkgs.system}.proton-ge];
   };
-  services.pipewire.lowLatency = {enable = true;};
+  # services.pipewire.lowLatency = {enable = true;};
 }
