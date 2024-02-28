@@ -52,8 +52,8 @@
   ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = $HOME/.local/share/backgrounds/${userSettings.pape}
-    wallpaper = ,$HOME/.local/share/backgrounds/${userSettings.pape}
+    preload = ${config.stylix.image}
+    wallpaper = ,${config.stylix.image}
     splash = false
   '';
 

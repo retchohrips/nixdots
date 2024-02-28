@@ -57,7 +57,8 @@
           username = "bunny";
           name = "Bun";
           dewm = "hyprland";
-          pape = "Kurzgesagt-Galaxies.png";
+          genPape = "yes";
+          pape = "nix-wallpaper-binary-black.png";
         };
       in
         lib.nixosSystem {
@@ -92,6 +93,7 @@
           username = "puppy";
           name = "Pup";
           dewm = "hyprland";
+          genPape = "no";
           pape = "mandelbrot_gap_blue.png";
         };
       in
