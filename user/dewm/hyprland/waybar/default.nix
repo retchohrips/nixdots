@@ -5,6 +5,7 @@
   ...
 }:
 with config.lib.stylix.colors; {
+  stylix.targets.waybar.enable = false;
   programs.waybar = {
     enable = true;
     settings = {

@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  stylix.targets.rofi.enable = false;
   xdg.configFile."rofi/powermenuhack/style.rasi".text = import ./powermenu-style.nix {
     inherit config;
   };

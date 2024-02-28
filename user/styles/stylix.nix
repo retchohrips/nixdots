@@ -6,8 +6,6 @@
   stylix = {
     image = ../../wallpapers/${userSettings.pape};
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
-    targets.rofi.enable = false;
-    targets.waybar.enable = false;
 
     cursor = {
       size = 24;
