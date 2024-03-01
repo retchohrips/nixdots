@@ -8,8 +8,8 @@
   ];
 
   fileSystems = {
-    "/mnt/Hardy".device = "/dev/disk/by-label/Hardy";
-    "/mnt/Harvey".device = "/dev/disk/by-label/Harvey";
+    "/mnt/Cass".device = "/dev/disk/by-label/Cass";
+    "/mnt/Cart".device = "/dev/disk/by-label/Cart";
     "/mnt/Win".device = "/dev/nvme0n1p2";
   };
 }
