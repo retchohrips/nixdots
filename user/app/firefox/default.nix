@@ -15,31 +15,31 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox.override {
-      extraPrefs =
-        /*
-        javascript
-        */
-        ''
-          var {classes:Cc,interfaces:Ci,utils:Cu} = Components;
-          /* set new tab page */
-          try {
-            Cu.import("resource:///modules/AboutNewTab.jsm");
-            var newTabURL = "https://retchohrips.github.io/tilde";
-            AboutNewTab.newTabURL = newTabURL;
-          } catch(e){Cu.reportError(e);} // report errors in the Browser Console
-          // Auto focus new tab content
-          try {
-            Cu.import("resource://gre/modules/Services.jsm");
-            Cu.import("resource:///modules/BrowserWindowTracker.jsm");
+    # package = pkgs.firefox.override {
+    #   extraPrefs =
+    #     /*
+    #     javascript
+    #     */
+    #     ''
+    #       var {classes:Cc,interfaces:Ci,utils:Cu} = Components;
+    #       /* set new tab page */
+    #       try {
+    #         Cu.import("resource:///modules/AboutNewTab.jsm");
+    #         var newTabURL = "https://retchohrips.github.io/tilde";
+    #         AboutNewTab.newTabURL = newTabURL;
+    #       } catch(e){Cu.reportError(e);} // report errors in the Browser Console
+    #       // Auto focus new tab content
+    #       try {
+    #         Cu.import("resource://gre/modules/Services.jsm");
+    #         Cu.import("resource:///modules/BrowserWindowTracker.jsm");
 
-            Services.obs.addObserver((event) => {
-              window = BrowserWindowTracker.getTopWindow();
-              window.gBrowser.selectedBrowser.focus();
-            }, "browser-open-newtab-start");
-          } catch(e) { Cu.reportError(e); }
-        '';
-    };
+    #         Services.obs.addObserver((event) => {
+    #           window = BrowserWindowTracker.getTopWindow();
+    #           window.gBrowser.selectedBrowser.focus();
+    #         }, "browser-open-newtab-start");
+    #       } catch(e) { Cu.reportError(e); }
+    #     '';
+    # };
     profiles.default = {
       name = "Default";
       settings = {
@@ -344,7 +344,7 @@
 
         # Personal
         "browser.tabs.loadInBackground" = true;
-        "browser.startup.homepage" = "https://retchohrips.github.io/tilde";
+        # "browser.startup.homepage" = "https://retchohrips.github.io/tilde";
 
         # Theming
         "svg.context-properties.content.enabled" = true;
