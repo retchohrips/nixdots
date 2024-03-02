@@ -20,6 +20,10 @@
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    neovim-flake.url = "github:notashelf/neovim-flake";
+    neovim-flake.inputs.nixpkgs.follows = "nixpkgs";
+
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprlock.inputs.nixpkgs.follows = "nixpkgs";
 

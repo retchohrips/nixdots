@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
+    inputs.neovim-flake.homeManagerModules.default
 
     ./user/shell/sh.nix
     ./user/shell/starship.nix
@@ -17,7 +18,7 @@
     ./user/app/${userSettings.browser}
     ./user/app/beets.nix
     ./user/app/kitty.nix
-    ./user/app/astronvim.nix
+    ./user/app/neovim-flake.nix
 
     ./user/gaming.nix
   ];
