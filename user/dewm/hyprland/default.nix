@@ -174,7 +174,11 @@
           noise = 2.0e-2;
         };
       };
-      windowrule = ["float, ^Rofi" "tile, ^(kitty)$"];
+      windowrule = [
+        "float, ^Rofi"
+        "tile, ^(kitty)$"
+      ];
+      windowrulev2 = ["float, class:(firefox),title:^(Extension: \(Bitwarden - Free Password Manager\))"];
       layerrule = [
         # "blur, waybar$"
         "ignorezero, rofi$"
