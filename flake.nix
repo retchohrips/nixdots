@@ -99,8 +99,8 @@
           username = "puppy";
           name = "Pup";
           dewm = "hyprland";
-          genPape = "no";
-          pape = "mandelbrot_gap_blue.png";
+          genPape = "yes";
+          pape = "Y2K.png";
         };
       in
         lib.nixosSystem {
