@@ -18,17 +18,19 @@
     astronvim.url = "github:AstroNvim/AstroNvim/main";
     astronvim.flake = false;
 
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprlock.inputs.nixpkgs.follows = "nixpkgs";
 
     hypridle.url = "github:hyprwm/hypridle";
     hypridle.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-gnome-theme.url = "github:rafaelmardojai/firefox-gnome-theme";
+    firefox-gnome-theme.flake = false;
 
-    # firefox-gnome-theme.url = "github:rafaelmardojai/firefox-gnome-theme";
-    # firefox-gnome-theme.flake = false;
+    one-fox.url = "github:Perseus333/One-Fox";
+    one-fox.flake = false;
   };
 
   outputs = {

@@ -1,16 +1,18 @@
 {
-  # inputs,
-  pkgs,
+  inputs,
   lib,
   userSettings,
   ...
 }: {
-  # home.file."firefox-gnome-theme" = {
+  # home.file."firefox-chrome" = {
   #   target =
   #     if (userSettings.dewm == "gnome")
   #     then ".mozilla/firefox/default/chrome/firefox-gnome-theme"
-  #     else "";
-  #   source = inputs.firefox-gnome-theme;
+  #     else "./mozilla/firefox/default/chrome/one-fox";
+  #   source =
+  #     if (userSettings.dewm == "gnome")
+  #     then inputs.firefox-gnome-theme
+  #     else inputs.one-fox;
   # };
 
   programs.firefox = {
@@ -42,6 +44,16 @@
     # };
     profiles.default = {
       name = "Default";
+      userChrome =
+        if (userSettings.dewm == "gnome")
+        then lib.readFile ./gnome-catppuccin.css
+        # else lib.readFile "${inputs.one-fox}/chrome/userChrome.css";
+        else "";
+      userContent =
+        if (userSettings.dewm == "gnome")
+        then lib.readFile "${inputs.firefox-chrome}/userContent.css"
+        # else lib.readFile "${inputs.one-fox}/chrome/userContent.css";
+        else "";
       settings = {
         # Betterfox
 
@@ -359,20 +371,6 @@
         "general.smoothScroll" = true;
         "mousewheel.default.delta_multiplier_y" = 275;
       };
-      userChrome =
-        if (userSettings.dewm == "gnome")
-        then lib.readFile ./gnome-catppuccin.css
-        else "";
-      userContent =
-        if (userSettings.dewm == "gnome")
-        then
-          /*
-          css
-          */
-          ''
-            @import "firefox-gnome-theme/userContent.css";
-          ''
-        else "";
     };
   };
 
