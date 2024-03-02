@@ -188,7 +188,7 @@
       ];
       bind = let
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
-        mvfocus = binding "SUPER" "movefocus";
+        # mvfocus = binding "SUPER" "movefocus";
         ws = binding "SUPER" "workspace";
         resizeactive = binding "SUPER CTRL" "resizeactive";
         mvactive = binding "SUPER ALT" "moveactive";
@@ -215,10 +215,10 @@
           "SUPER, S, exec, grimblast copy area"
           "SUPERSHIFT, T, exec, screenshot-ocr"
 
-          (mvfocus "k" "u")
-          (mvfocus "j" "d")
-          (mvfocus "l" "r")
-          (mvfocus "h" "l")
+          # (mvfocus "k" "u")
+          # (mvfocus "j" "d")
+          # (mvfocus "l" "r")
+          # (mvfocus "h" "l")
           (ws "left" "e-1")
           (ws "right" "e+1")
           (mvtows "left" "e-1")
