@@ -8,6 +8,7 @@
     fd = "fd -Lu";
     fetch = "disfetch";
     gitfetch = "onefetch";
+    rcp = "rsync --compress --verbose --human-readable --partial --progress";
   };
 
   programs.fish = {
