@@ -64,7 +64,7 @@
           name = "Bun";
           dewm = "hyprland";
           genPape = "yes";
-          pape = "nix-wallpaper-binary-black.png";
+          pape = "Y2K.png";
         };
       in
         lib.nixosSystem {
