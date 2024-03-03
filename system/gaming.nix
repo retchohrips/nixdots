@@ -8,7 +8,7 @@
     inputs.nix-gaming.nixosModules.steamCompat
   ];
   hardware.opengl.driSupport32Bit = true;
-  environment.systemPackages = with pkgs; [gamemode prismlauncher];
+  environment.systemPackages = with pkgs; [gamemode];
   programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
