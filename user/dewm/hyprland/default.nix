@@ -178,7 +178,10 @@
         "float, ^Rofi"
         "tile, ^(kitty)$"
       ];
-      windowrulev2 = ["float, class:(firefox),title:^(Extension: \(Bitwarden - Free Password Manager\))"];
+      windowrulev2 = [
+        "float, class:(firefox), title:^(Extension: \(Bitwarden - Free Password Manager\))"
+        "float, class:^(org.telegram.desktop|telegramdesktop)$, title:^(Media viewer)$"
+      ];
       layerrule = [
         # "blur, waybar$"
         "ignorezero, rofi$"
