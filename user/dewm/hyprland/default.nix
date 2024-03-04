@@ -20,6 +20,7 @@
     wl-clipboard
     cliphist
     gnome.nautilus
+    xarchiver
     grimblast
     grim
     slurp
@@ -56,6 +57,8 @@
     wallpaper = ,${config.stylix.image}
     splash = false
   '';
+
+  xdg.mimeApps.defaultApplications."inode/directory" = "nautilus.desktop";
 
   # home.pointerCursor = {
   #   gtk.enable = true;
