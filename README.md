@@ -1,4 +1,7 @@
-# My NixOS dotfiles
+<div align="center">
+
+<h1>NixOS dotfiles</h1>
+</div>
 
 This repo contains configuration for two different computers, my desktop
 (`bundesk`) and my laptop (`pawpad`).
@@ -14,4 +17,9 @@ This repo contains configuration for two different computers, my desktop
 
 I'm using [Stylix](https://github.com/danth/stylix) to theme everything, meaning I can switch themes in one place and have everything follow!
 
-My NeoVim config is **_heavily_** based on [Neve](https://github.com/redyf/Neve), and uses [NixVim](https://github.com/nix-community/nixvim).
+### Inspiration
+
+There are no doubt too many sources to list! However, here are a few:
+
+- [LibrePhoenix](https://www.youtube.com/@librephoenix/videos)
+- Soooo many people on [r/unixporn](https://reddit.com/r/unixporn)!
