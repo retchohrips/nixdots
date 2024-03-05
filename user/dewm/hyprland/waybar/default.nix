@@ -35,7 +35,7 @@ with config.lib.stylix.colors; {
 
         backlight = {
           tooltip = false;
-          format = "{icon} {percent}%";
+          format = "{icon}";
           format-icons = [
             ""
             ""
