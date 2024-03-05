@@ -178,9 +178,9 @@ with config.lib.stylix.colors; {
             }
           }
 
-          .warning,
-          .critical,
-          .urgent {
+          .warning:not(.charging),
+          .critical:not(.charging),
+          .urgent:not(.charging) {
             animation-name: blink_red;
             animation-duration: 1s;
             animation-timing-function: linear;
