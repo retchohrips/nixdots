@@ -37,7 +37,15 @@
       noto-fonts-emoji
       liberation_ttf
       cozette
-      (google-fonts.override {fonts = ["Inter"];})
+      (google-fonts.override {
+        fonts = [
+          "Inter"
+          "Indie Flower"
+          "Playpen Sans"
+          "Redacted Script"
+          "Pangolin"
+        ];
+      })
       (nerdfonts.override {
         fonts = [
           "JetBrainsMono"
