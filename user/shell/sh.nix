@@ -87,13 +87,10 @@
     libnotify
   ];
 
-  # xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
-
   programs = {
     btop = {
       enable = true;
       settings = {
-        # color_theme = "catppuccin_mocha";
         theme_background = false; # Makes btop transparent
       };
     };
@@ -105,7 +102,6 @@
 
     bat = {
       enable = true;
-      config = {theme = "ansi";};
     };
 
     git = {

@@ -87,15 +87,15 @@
 
         theme = {
           enable = true;
-          name = "catppuccin";
-          style = "mocha";
+          name = "gruvbox";
+          style = "dark";
           transparent = false;
         };
 
         statusline = {
           lualine = {
             enable = true;
-            theme = "catppuccin";
+            theme = "gruvbox";
           };
         };
 
@@ -179,7 +179,7 @@
           borders.enable = true;
           noice.enable = true;
           colorizer.enable = true;
-          modes-nvim.enable = false; # the theme looks terrible with catppuccin
+          modes-nvim.enable = true; # the theme looks terrible with catppuccin
           illuminate.enable = true;
           breadcrumbs = {
             enable = true;

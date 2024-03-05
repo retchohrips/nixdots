@@ -60,33 +60,6 @@
 
   xdg.mimeApps.defaultApplications."inode/directory" = "nautilus.desktop";
 
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   package = pkgs.catppuccin-cursors.mochaDark;
-  #   name = "Catppuccin-Mocha-Dark-Cursors";
-  #   size = 24;
-  # };
-
-  # gtk = {
-  #   enable = true;
-  #   iconTheme = {
-  #     name = "Papirus-Dark";
-  #     package = pkgs.catppuccin-papirus-folders.override {
-  #       accent = "blue";
-  #       flavor = "mocha";
-  #     };
-  #   };
-  #   theme = {
-  #     package = pkgs.catppuccin-gtk.override {
-  #       size = "standard";
-  #       accents = ["blue"];
-  #       variant = "mocha";
-  #       tweaks = ["normal"];
-  #     };
-  #     name = "Catppuccin-Mocha-Standard-Blue-Dark";
-  #   };
-  # };
-
   services.udiskie = {
     enable = true;
     tray = "auto";

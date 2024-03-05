@@ -17,9 +17,9 @@ in {
     base16Scheme = theme;
 
     cursor = {
+      name = "Bibata-Modern-Ice";
       size = 24;
-      package = pkgs.catppuccin-cursors.mochaDark;
-      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.bibata-cursors;
     };
 
     fonts = {
@@ -42,10 +42,7 @@ in {
     };
   };
   gtk.iconTheme = {
-    name = "Papirus-Dark";
-    package = pkgs.catppuccin-papirus-folders.override {
-      accent = "blue";
-      flavor = "mocha";
-    };
+    name = "oomox-gruvbox-dark";
+    package = pkgs.gruvbox-dark-icons-gtk;
   };
 }

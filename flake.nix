@@ -50,7 +50,7 @@
       browser = "firefox";
       terminal = "kitty";
       font = "JetBrainsMono";
-      theme = "catppuccin-mocha";
+      theme = "gruvbox-material-dark-medium";
     };
   in {
     nixosConfigurations = {
@@ -100,7 +100,7 @@
           name = "Pup";
           dewm = "hyprland";
           genPape = "yes";
-          pape = "Y2K.png";
+          pape = "mandelbrot_gap_blue.png";
         };
       in
         lib.nixosSystem {
