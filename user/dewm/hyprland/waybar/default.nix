@@ -11,7 +11,13 @@ with config.lib.stylix.colors; {
     settings = {
       mainBar = {
         layer = "top";
-        modules-left = ["custom/launcher" "hyprland/workspaces" "temperature" "wireplumber" "mpd"];
+        modules-left = [
+          #"custom/launcher"
+          "hyprland/workspaces"
+          # "temperature"
+          "wireplumber"
+          "mpd"
+        ];
         modules-center = ["custom/weather" "clock"];
         modules-right =
           if (systemSettings.hostname == "pawpad")
@@ -96,7 +102,7 @@ with config.lib.stylix.colors; {
           format = "<span color='${withHashtag.base0E}'></span> {title}";
           format-paused = "  {title}";
           format-stopped = "<span foreground='${withHashtag.base0E}'></span>";
-          fromat-disconnected = "";
+          format-disconnected = "";
           max-length = 25;
           tooltip-format = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
           on-click = "mpc --quiet toggle";
@@ -125,7 +131,7 @@ with config.lib.stylix.colors; {
         network = {
           format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
           format-wifi = "{icon}";
-          format-disconneced = "󰤮";
+          format-disconnected = "󰤮";
           tooltip-format = "{signaldBm}dBm {essid} {frequency}GHz";
           on-click = "nmtui-connect";
         };
@@ -165,16 +171,16 @@ with config.lib.stylix.colors; {
           * {
             border-radius: 1rem;
             font-family: ${config.stylix.fonts.monospace.name};
-            color: ${withHashtag.base05};
+            color: ${withHashtag.base00};
             font-size: 1rem;
             transition-property: background-color;
-            background-color: ${withHashtag.base00};
+            background-color: transparent;
           }
 
           @keyframes blink_red {
             to {
-              background-color: ${withHashtag.base08};
-              color: ${withHashtag.base00};
+              /* background-color: ${withHashtag.base08}; */
+              color: ${withHashtag.base08};
             }
           }
 
@@ -188,21 +194,6 @@ with config.lib.stylix.colors; {
             animation-direction: alternate;
           }
 
-          #clock,
-          #temperature,
-          #custom-weather,
-          #mpd,
-          #backlight,
-          #bluetooth,
-          #wireplumber,
-          #network,
-          #battery,
-          #custom-launcher,
-          #tray {
-            padding-left: 0.6rem;
-            padding-right: 0.6rem;
-          }
-
         /* Bar */
           window#waybar {
             background-color: transparent;
@@ -211,7 +202,22 @@ with config.lib.stylix.colors; {
           window > box {
             background-color: transparent;
             margin: 0.3rem;
+            margin-top: 0;
             margin-bottom: 0;
+          }
+
+          #workspaces,
+          #wireplumber,
+          #mpd,
+          #custom-weather,
+          #clock,
+          #bluetooth,
+          #network,
+          #tray,
+          #backlight,
+          #battery {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
           }
 
           /* Workspaces */
@@ -220,12 +226,12 @@ with config.lib.stylix.colors; {
           }
 
           #workspaces button {
-            padding-right: 0.4rem;
-            padding-left: 0.4rem;
-            padding-top: 0.1rem;
-            padding-bottom: 0.1rem;
+            padding-right: 0.2rem;
+            padding-left: 0.2rem;
+            /* padding-top: 0.1rem; */
+            /* padding-bottom: 0.1rem; */
             background: transparent;
-          }
+           }
 
           #workspaces button.focused,
           #workspaces button.active * {
@@ -286,7 +292,7 @@ with config.lib.stylix.colors; {
           }
 
           #clock {
-            color: ${withHashtag.base06};
+            color: ${withHashtag.base07};
           }
 
           #temperature {

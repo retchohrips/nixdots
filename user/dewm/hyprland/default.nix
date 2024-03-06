@@ -189,7 +189,7 @@
         "float, class:^(org.telegram.desktop|telegramdesktop)$, title:^(Media viewer)$"
       ];
       layerrule = [
-        # "blur, waybar$"
+        "blur, waybar$"
         "ignorezero, rofi$"
         "blur, rofi$"
         "blur, notifications$"
