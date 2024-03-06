@@ -1,10 +1,22 @@
-{
+{pkgs, ...}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
-  services.gnome.gnome-keyring.enable = true;
+  environment.systemPackages = with pkgs; [polkit_gnome];
 
-  security.pam.services.login.enableGnomeKeyring = true;
+  security = {
+    pam.services = {
+      hyprlock.text = "auth include login";
+      greetd.enableGnomeKeyring = true;
+    };
+
+    polkit.enable = true;
+  };
+
+  services = {
+    gnome.gnome-keyring.enable = true;
+    dbus.packages = [pkgs.gcr]; # GNOME services outside of GNOME
+  };
 }

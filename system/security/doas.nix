@@ -6,6 +6,7 @@
   # Use Doas instead of sudo
   security.doas = {
     enable = true;
+    wheelNeedsPassword = false;
     extraRules = [
       {
         users = ["${userSettings.username}"];

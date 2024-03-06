@@ -10,6 +10,7 @@
     ./waybar
     ./rofi
     ./dunst.nix
+    ./mimelist.nix
     ../../app/ranger
     ../../app/ncmpcpp.nix
     ../../app/mpd.nix
@@ -20,7 +21,13 @@
     wl-clipboard
     cliphist
     gnome.nautilus
+    gnome.sushi # File previewer for Nautilus
+    gnome.seahorse
+    gnome.totem
+    gnome-text-editor
+    gnome.gnome-calculator
     xarchiver
+    zathura
     grimblast
     grim
     slurp
@@ -29,6 +36,8 @@
     wlsunset
     jq
     tesseract4
+    gnupg
+    hyprpicker
 
     (pkgs.writeScriptBin "screenshot-ocr"
       /*
@@ -65,6 +74,27 @@
     tray = "auto";
   };
 
+  qt.enable = true;
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Unit = {
+      Description = "Polkit GNOME Authentication Agent";
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+      Slice = "session.slice";
+    };
+
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -74,13 +104,15 @@
         "hyprctl setcursor ${config.stylix.cursor.name} ${toString config.stylix.cursor.size}"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
+        "gnome-keyring-daemon --start --components=secrets"
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "telegram-desktop -startintray"
         "waybar"
         "dunst"
         "hyprpaper"
         "wlsunset-auto"
       ];
-      monitor = [",preferred,auto,1"];
+      monitor = [",highres,auto,auto"];
       general = {
         layout = "dwindle";
         border_size = 0;
@@ -130,9 +162,7 @@
         drop_shadow = true;
         shadow_range = 10;
         shadow_render_power = 3;
-        # "col.shadow" = "rgba(00000088)";
-        # "col.shadow_inactive" = "rgba(00000070)";
-        dim_inactive = true;
+        dim_inactive = false;
         dim_strength = 0.1;
         dim_special = 0;
         blur = {
@@ -167,7 +197,7 @@
       ];
       bind = let
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
-        # mvfocus = binding "SUPER" "movefocus";
+        mvfocus = binding "SUPER" "movefocus";
         ws = binding "SUPER" "workspace";
         resizeactive = binding "SUPER CTRL" "resizeactive";
         mvactive = binding "SUPER ALT" "moveactive";
@@ -180,24 +210,22 @@
           "SUPER, B, exec, ${browser}"
           "SUPER, Period, exec, rofi -modi emoji -show emoji"
           "ALT, Tab, focuscurrentorlast"
-          "CTRL ALT, Delete, exit"
           "SUPER, C, killactive"
           "SUPER, F, togglefloating"
           "SUPER, G, fullscreen"
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
-          "SUPER SHIFT, X, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
+          "CTRL ALT, Delete, exec, $HOME/.config/rofi/powermenuhack/powermenu.sh"
           "SUPER, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-          "SUPER, L, exec, hyprlock"
           "SUPER, T, exec, telegram-desktop"
           "SUPER, E, exec, nautilus"
           "SUPER, S, exec, grimblast copy area"
           "SUPERSHIFT, T, exec, screenshot-ocr"
 
-          # (mvfocus "k" "u")
-          # (mvfocus "j" "d")
-          # (mvfocus "l" "r")
-          # (mvfocus "h" "l")
+          (mvfocus "k" "u")
+          (mvfocus "j" "d")
+          (mvfocus "l" "r")
+          (mvfocus "h" "l")
           (ws "left" "e-1")
           (ws "right" "e+1")
           (mvtows "left" "e-1")
@@ -237,11 +265,12 @@
         ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
         ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
       ];
-    };
 
-    extraConfig = ''
-      env = XCURSOR_SIZE,${toString config.stylix.cursor.size}
-      env = WLR_RENDERER_ALLOW_SOFTWARE,1
-    '';
+      env = [
+        "XCURSOR_SIZE,${toString config.stylix.cursor.size}"
+        "WLR_RENDERER_ALLOW_SOFTWARE,1"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+      ];
+    };
   };
 }
