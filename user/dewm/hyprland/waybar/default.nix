@@ -171,7 +171,7 @@ with config.lib.stylix.colors; {
           * {
             border-radius: 1rem;
             font-family: ${config.stylix.fonts.monospace.name};
-            color: ${withHashtag.base00};
+            color: ${withHashtag.base05};
             font-size: 1rem;
             transition-property: background-color;
             background-color: transparent;
