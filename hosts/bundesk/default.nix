@@ -8,8 +8,14 @@
   ];
 
   fileSystems = {
-    "/mnt/Cass".device = "/dev/disk/by-label/Cass";
-    "/mnt/Cart".device = "/dev/disk/by-label/Cart";
+    "/mnt/Cass" = {
+      device = "/dev/disk/by-label/CASS";
+      options = ["rw" "noatime" "nofail"];
+    };
+    "/mnt/Cart" = {
+      device = "/dev/disk/by-label/CART";
+      options = ["rw" "noatime" "nofail"];
+    };
     "/mnt/Win".device = "/dev/nvme0n1p2";
   };
 }
