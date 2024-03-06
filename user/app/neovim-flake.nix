@@ -179,7 +179,7 @@
           borders.enable = true;
           noice.enable = true;
           colorizer.enable = true;
-          modes-nvim.enable = true; # the theme looks terrible with catppuccin
+          modes-nvim.enable = false; # actually theming looks pretty bad
           illuminate.enable = true;
           breadcrumbs = {
             enable = true;
