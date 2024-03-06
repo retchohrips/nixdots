@@ -64,7 +64,7 @@
           name = "Bun";
           dewm = "hyprland";
           genPape = "yes";
-          pape = "Y2K.png";
+          pape = "flowers.jpg";
         };
       in
         lib.nixosSystem {
@@ -100,7 +100,7 @@
           name = "Pup";
           dewm = "hyprland";
           genPape = "yes";
-          pape = "mandelbrot_gap_blue.png";
+          pape = "Y2K.png";
         };
       in
         lib.nixosSystem {
