@@ -950,16 +950,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1709578243,
-        "narHash": "sha256-hF96D+c2PBmAFhymMw3z8hou++lqKtZ7IzpFbYeL1/Y=",
-        "owner": "nix-community",
+        "lastModified": 1709537473,
+        "narHash": "sha256-pOIDIKSxk2eoQpBu1HOBBaiPbC0OL3aqRxQjV8I5uYw=",
+        "owner": "xopclabs",
         "repo": "home-manager",
-        "rev": "23ff9821bcaec12981e32049e8687f25f11e5ef3",
+        "rev": "3792ef15e8831889e6f75ef2c401bc19007473f7",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
-        "ref": "master",
+        "owner": "xopclabs",
+        "ref": "floorp-browser",
         "repo": "home-manager",
         "type": "github"
       }

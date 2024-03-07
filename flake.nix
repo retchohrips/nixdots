@@ -4,8 +4,12 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      # url = "github:nix-community/home-manager";
+      # https://github.com/nix-community/home-manager/issues/4912
+      url = "github:xopclabs/home-manager/floorp-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -47,7 +51,7 @@
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
     commonSettings = {
-      browser = "firefox";
+      browser = "floorp";
       terminal = "kitty";
       font = "JetBrainsMono";
       theme = "gruvbox-material-dark-medium";
