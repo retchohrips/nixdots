@@ -15,7 +15,10 @@
               }
             ];
           };
-          "MyNixOS" = {urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];};
+          "MyNixOS" = {
+            urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
+            definedAliases = ["@mn"];
+          };
           "Nix Packages" = {
             urls = [
               {
@@ -40,11 +43,25 @@
         };
       };
       settings = {
-        "floorp.tabbar.style" = 2;
-        "floorp.browser.tabbar.settings" = 2;
-        "browser.display.statusbar" = true;
-        "floorp.navbar.bottom" = true;
-        "floorp.bookmarks.fakestatus.mode" = true;
+        "floorp.tabbar.style" = 0;
+        "floorp.browser.tabbar.settings" = 0;
+        "floorp.browser.tabs.verticaltab" = false;
+        "browser.display.statusbar" = false;
+        "floorp.navbar.bottom" = false;
+        "floorp.bookmarks.fakestatus.mode" = false;
+        "browser.toolbars.bookmarks.visibility" = "never";
+
+        "floorp.lepton.interface" = 3;
+        "userChrome.autohide.back_button" = true;
+        "userChrome.autohide.forward_button" = true;
+        "userChrome.autohide.page_action" = true;
+
+        "floorp.browser.sidebar.enable" = false;
+        "floorp.browser.workspaces.enabled" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+        "browser.tabs.warnOnClose" = false;
+
         # Enable drm
         "media.eme.enabled" = true;
 
@@ -64,6 +81,8 @@
         #speed
         "network.http.max-persistent-connections-per-server" = 30;
         "browser.cache.disk.enable" = false;
+
+        "signon.rememberSignons" = false;
       };
     };
   };
