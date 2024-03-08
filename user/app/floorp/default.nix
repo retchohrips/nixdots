@@ -43,9 +43,9 @@
         };
       };
       settings = {
-        "floorp.tabbar.style" = 0;
-        "floorp.browser.tabbar.settings" = 0;
-        "floorp.browser.tabs.verticaltab" = false;
+        "floorp.tabbar.style" = 2;
+        "floorp.browser.tabbar.settings" = 2;
+        "floorp.browser.tabs.verticaltab" = true;
         "browser.display.statusbar" = false;
         "floorp.navbar.bottom" = false;
         "floorp.bookmarks.fakestatus.mode" = false;
