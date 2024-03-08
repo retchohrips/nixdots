@@ -5,7 +5,7 @@
       name = "default";
       isDefault = true;
       search = {
-        default = "Perplexity";
+        default = "DuckDuckGo";
         force = true;
         engines = {
           "Perplexity" = {
