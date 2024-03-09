@@ -83,6 +83,14 @@
         "browser.cache.disk.enable" = false;
 
         "signon.rememberSignons" = false;
+
+        "floorp.custom.shortcutkeysAndActions.customAction1" =
+          /*
+          javascript
+          */
+          ''
+            var toggletarget = 'TabsToolbar'; if (document.getElementById(toggletarget).style.display == 'none') { document.getElementById(toggletarget).style.display = 'unset'; } else { document.getElementById(toggletarget).style.display = 'none' }
+          '';
       };
     };
   };
