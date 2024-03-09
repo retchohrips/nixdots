@@ -87,15 +87,15 @@
 
         theme = {
           enable = true;
-          name = "gruvbox";
-          style = "dark";
-          transparent = false;
+          name = "catppuccin";
+          style = "frappe";
+          transparent = true;
         };
 
         statusline = {
           lualine = {
             enable = true;
-            theme = "gruvbox";
+            theme = "catppuccin";
           };
         };
 

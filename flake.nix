@@ -54,7 +54,7 @@
       browser = "floorp";
       terminal = "kitty";
       font = "JetBrainsMono";
-      theme = "gruvbox-material-dark-medium";
+      theme = "catppuccin-frappe";
     };
   in {
     nixosConfigurations = {
