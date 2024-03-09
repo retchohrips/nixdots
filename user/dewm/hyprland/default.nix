@@ -17,9 +17,9 @@
   ];
 
   home.packages = with pkgs; [
-    feh
     wl-clipboard
     cliphist
+    loupe
     gnome.nautilus
     gnome.sushi # File previewer for Nautilus
     gnome.seahorse

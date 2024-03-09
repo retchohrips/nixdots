@@ -70,7 +70,7 @@ with config.lib.stylix.colors; {
         };
 
         clock = {
-          format = "{:%I:%M %p %A %b %d}";
+          format = "{:%I:%M %p %a, %b %d}";
           tooltip-format = "{:%A, %B %d %Y}\n<tt>{calendar}</tt>";
           interval = 1;
         };
