@@ -185,8 +185,10 @@
         "tile, ^(kitty)$"
       ];
       windowrulev2 = [
-        "float, class:(firefox), title:^(Extension: \(Bitwarden - Free Password Manager\))"
-        "float, class:^(org.telegram.desktop|telegramdesktop)$, title:^(Media viewer)$"
+        "float, class:(firefox|floorp), title:^(Extension: \(Bitwarden - Free Password Manager\))"
+        "float, class:^(org.telegram.desktop|telegramdesktop)$, title:^(Media viewer)$" # Fixes Telegram's distortion after opening an image
+        "stayfocused, title:^()$,class:^(steam)$" # Fixes Steam menus disappearing
+        "minsize 1 1, title:^()$,class:^(steam)$"
       ];
       layerrule = [
         "blur, waybar$"
