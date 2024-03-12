@@ -21,7 +21,6 @@
 
     ./system/gaming.nix
     ./system/docker.nix
-    ./system/vm.nix
     # ./system/flatpak.nix
 
     ./system/dewm/${userSettings.dewm}.nix
