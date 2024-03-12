@@ -36,9 +36,6 @@
 
     firefox-gnome-theme.url = "github:rafaelmardojai/firefox-gnome-theme";
     firefox-gnome-theme.flake = false;
-
-    one-fox.url = "github:Perseus333/One-Fox";
-    one-fox.flake = false;
   };
 
   outputs = {
@@ -130,6 +127,40 @@
                 };
               };
             }
+          ];
+        };
+
+      cuddlenode = let
+        systemSettings = {
+          hostname = "cuddlenode";
+        };
+        userSettings = {
+          inherit (commonSettings) browser terminal font theme;
+          username = "bunny";
+          name = "Bun";
+        };
+      in
+        lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs userSettings systemSettings;
+          };
+          modules = [
+            # nur.nixosModules.nur
+            ./hosts/${systemSettings.hostname}
+            # home-manager.nixosModules.home-manager
+            # inputs.nix-flatpak.nixosModules.nix-flatpak
+            # {
+            #   home-manager = {
+            #     useGlobalPkgs = true;
+            #     useUserPackages = true;
+            #     users.${userSettings.username} = import ./home.nix;
+            #
+            #     extraSpecialArgs = {
+            #       inherit inputs userSettings systemSettings;
+            #     };
+            #   };
+            # }
           ];
         };
     };

@@ -2179,22 +2179,6 @@
         "type": "github"
       }
     },
-    "one-fox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1709059447,
-        "narHash": "sha256-SiMuCgOgQ0ltIgGo6ZsbynFJ3mQnr3vgTsOf2tufeWs=",
-        "owner": "Perseus333",
-        "repo": "One-Fox",
-        "rev": "887adac085e1acab90de3ed1dee197d0d5773a53",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Perseus333",
-        "repo": "One-Fox",
-        "type": "github"
-      }
-    },
     "onedark": {
       "flake": false,
       "locked": {
@@ -2370,7 +2354,6 @@
         "nixpkgs": "nixpkgs_5",
         "nixvim": "nixvim",
         "nur": "nur",
-        "one-fox": "one-fox",
         "ranger-devicons": "ranger-devicons",
         "stylix": "stylix"
       }
