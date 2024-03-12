@@ -85,6 +85,7 @@
     fd
     fzf
     libnotify
+    ncdu
   ];
 
   programs = {
