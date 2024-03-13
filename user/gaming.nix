@@ -5,8 +5,17 @@
 }: {
   home.packages = with pkgs;
     [
-      lutris
+      (lutris.override {
+        extraPkgs = pkgs: [
+          gnome.zenity
+          pixman
+          libjpeg
+        ];
+      })
       prismlauncher # Minecraft
     ]
-    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [wine-ge]);
+    ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
+      wine-ge
+      winetricks
+    ]);
 }

@@ -6,7 +6,7 @@
   imports = [
     inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
-  environment.systemPackages = with pkgs; [winetricks gamescope];
+  environment.systemPackages = with pkgs; [gamescope];
   hardware.opengl.driSupport32Bit = true;
   # environment.systemPackages = with pkgs; [gamemode];
   # programs.gamemode.enable = true;
