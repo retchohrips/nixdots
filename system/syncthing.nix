@@ -10,8 +10,8 @@
       bash
       */
       ''
-        if [[ ! -h "$HOME/Music"]]; then
-          ln -s "$HOME/Music" "/mnt/Cass/Music"
+        if [[ ! -h "$HOME/Music" ]]; then
+          ln -s "/mnt/Cass/Music" "$HOME/Music"
         fi
       ''
     else "";
