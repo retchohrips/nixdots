@@ -115,5 +115,7 @@
     };
 
     gh.enable = true;
+
+    thefuck.enable = true;
   };
 }
