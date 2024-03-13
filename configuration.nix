@@ -58,8 +58,10 @@
     shells = with pkgs; [fish];
 
     # This makes VSCode work on wayland
-    sessionVariables.NIXOS_OZONE_WL = "1";
-
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      DEFAULT_BROWSER = "${pkgs.${userSettings.browser}}/bin/${userSettings.browser}";
+    };
     # Packages installed in system profile
     systemPackages = with pkgs; [
       wget
@@ -120,12 +122,6 @@
     };
 
     udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-  };
-
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   # Enable sound with pipewire.

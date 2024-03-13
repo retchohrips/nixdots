@@ -32,4 +32,10 @@ in {
   };
   system.fsPackages = [pkgs.bindfs];
   fileSystems."/usr/share/icons" = mkRoSymBind (config.system.path + "/share/icons");
+
+  xdg.portal = {
+    enable = true;
+    # xdgOpenUsePortal = true; # This breaks xdg-open???
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
 }

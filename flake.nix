@@ -13,7 +13,7 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/main";
+    # nix-flatpak.url = "github:gmodena/nix-flatpak/main";
     stylix.url = "github:danth/stylix";
 
     ranger-devicons.url = "github:alexanderjeurissen/ranger_devicons";
@@ -78,7 +78,7 @@
             ./configuration.nix
             ./hosts/${systemSettings.hostname}
             home-manager.nixosModules.home-manager
-            inputs.nix-flatpak.nixosModules.nix-flatpak
+            # inputs.nix-flatpak.nixosModules.nix-flatpak
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -114,7 +114,7 @@
             ./configuration.nix
             ./hosts/${systemSettings.hostname}
             home-manager.nixosModules.home-manager
-            inputs.nix-flatpak.nixosModules.nix-flatpak
+            # inputs.nix-flatpak.nixosModules.nix-flatpak
             nixos-hardware.nixosModules.dell-inspiron-5509
             {
               home-manager = {

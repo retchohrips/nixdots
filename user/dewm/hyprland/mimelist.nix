@@ -8,7 +8,6 @@
 in {
   xdg.mimeApps = rec {
     enable = true;
-    associations.added = defaultApplications;
     defaultApplications = {
       "inode/directory" = file-manager;
 
