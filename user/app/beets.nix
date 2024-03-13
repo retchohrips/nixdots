@@ -9,7 +9,7 @@
     mpdIntegration.enableUpdate = true;
     settings = {
       directory = "${config.home.homeDirectory}/Music";
-      library = "${config.home.homeDirectory}/Music/library.db";
+      library = "${config.home.homeDirectory}/.beets/library.db";
       import = {
         move = true;
         incremental = true;
@@ -33,14 +33,16 @@
         "albumtypes"
         "mpdupdate"
         "rewrite"
+        "spotify"
       ];
       fetchart = {
         sources = [
           "filesystem"
+          "spotify"
+          "fanarttv"
           "itunes"
           "amazon"
-          "lastfm"
-          "spotify"
+          # "lastfm" # Need API key
           # "bandcamp"
           "wikipedia"
           "coverart"
