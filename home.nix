@@ -38,7 +38,7 @@
       telegram-desktop
       # vesktop # Kinda sucks on nixos...
       blender
-      gimp-with-plugins
+      # gimp-with-plugins
       krita
       inkscape
       vlc
