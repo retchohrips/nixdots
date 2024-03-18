@@ -96,6 +96,7 @@
   };
 
   home.packages = with pkgs; [
+    nicotine-plus
     chromaprint
     gst_all_1.gstreamer
     (pkgs.python3.withPackages (ps:
