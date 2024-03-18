@@ -6,6 +6,8 @@
   ...
 }: {
   imports = [
+    inputs.sops-nix.nixosModules.sops
+
     ./system/hardware/bluetooth.nix
     ./system/hardware/kernel.nix
     ./system/hardware/opengl.nix
@@ -14,6 +16,7 @@
 
     ./system/security/automount.nix
     ./system/security/doas.nix
+    ./system/security/sops.nix
 
     ./system/cleaning.nix
     ./system/fonts.nix

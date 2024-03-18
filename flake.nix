@@ -36,6 +36,8 @@
 
     firefox-gnome-theme.url = "github:rafaelmardojai/firefox-gnome-theme";
     firefox-gnome-theme.flake = false;
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
