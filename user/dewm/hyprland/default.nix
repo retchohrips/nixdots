@@ -74,8 +74,6 @@
     tray = "auto";
   };
 
-  qt.enable = true;
-
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit = {
       Description = "Polkit GNOME Authentication Agent";

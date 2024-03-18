@@ -65,4 +65,13 @@
       rust.symbol = " ";
     };
   };
+  programs.fish.interactiveShellInit =
+    lib.mkAfter
+    /*
+    fish
+    */
+    ''
+      function transient_prompt_func
+        starship module character
+      end'';
 }

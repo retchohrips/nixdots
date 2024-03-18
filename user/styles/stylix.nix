@@ -5,8 +5,13 @@
   ...
 }: let
   theme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
+  inputImage = ../../wallpapers/${userSettings.pape};
+
   genWallpaper = pkgs.runCommand "image.png" {} ''
-    ${pkgs.lutgen}/bin/lutgen apply -o $out ${../../wallpapers}/${userSettings.pape} -- ${config.lib.stylix.colors.base00} ${config.lib.stylix.colors.base01} ${config.lib.stylix.colors.base02} ${config.lib.stylix.colors.base03} ${config.lib.stylix.colors.base04} ${config.lib.stylix.colors.base05} ${config.lib.stylix.colors.base06} ${config.lib.stylix.colors.base07} ${config.lib.stylix.colors.base08} ${config.lib.stylix.colors.base09} ${config.lib.stylix.colors.base0A} ${config.lib.stylix.colors.base0B} ${config.lib.stylix.colors.base0C} ${config.lib.stylix.colors.base0D} ${config.lib.stylix.colors.base0E} ${config.lib.stylix.colors.base0F}
+    tmp="$(mktemp -d)"
+        ${pkgs.lutgen}/bin/lutgen apply -o $tmp ${inputImage} -- ${config.lib.stylix.colors.base00} ${config.lib.stylix.colors.base01} ${config.lib.stylix.colors.base02} ${config.lib.stylix.colors.base03} ${config.lib.stylix.colors.base04} ${config.lib.stylix.colors.base05} ${config.lib.stylix.colors.base06} ${config.lib.stylix.colors.base07} ${config.lib.stylix.colors.base08} ${config.lib.stylix.colors.base09} ${config.lib.stylix.colors.base0A} ${config.lib.stylix.colors.base0B} ${config.lib.stylix.colors.base0C} ${config.lib.stylix.colors.base0D} ${config.lib.stylix.colors.base0E} ${config.lib.stylix.colors.base0F}
+      ${pkgs.imagemagick}/bin/convert $tmp/* $tmp/wallpaper.png
+      mv $tmp/wallpaper.png $out
   '';
 in {
   stylix = {
@@ -15,6 +20,8 @@ in {
       then genWallpaper
       else ../../wallpapers/${userSettings.pape};
     base16Scheme = theme;
+
+    # targets.kde.enable = false;
 
     cursor = {
       name = "Catppuccin-Frappe-Dark-Cursors";
