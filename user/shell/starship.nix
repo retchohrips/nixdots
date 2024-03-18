@@ -2,11 +2,13 @@
   programs.starship = {
     enable = true;
     enableTransience = true;
+    enableFishIntegration = true;
     settings = {
       format = lib.concatStrings [
         "$username"
         "$hostname"
         "$directory"
+        "$nix_shell"
         "$git_branch"
         "$git_state"
         "$git_status"
@@ -17,9 +19,8 @@
       ];
       directory = {style = "blue";};
       character = {
-        success_symbol = "[❯](purple)";
-        error_symbol = "[❯](red)";
-        vimcmd_symbol = "[❮](green)";
+        success_symbol = "[»](bold green)";
+        error_symbol = "[»](bold red)";
       };
       git_branch = {
         format = "[$branch]($style)";
@@ -48,6 +49,20 @@
         format = "[$virtualenv]($style) ";
         style = "bright-black";
       };
+      c.symbol = " ";
+      docker_context.symbol = " ";
+      git_branch.symbol = " ";
+      golang.symbol = " ";
+      hg_branch.symbol = " ";
+      java.symbol = " ";
+      julia.symbol = " ";
+      lua.symbol = " ";
+      memory_usage.symbol = "󰍛 ";
+      nix_shell.symbol = " ";
+      nodejs.symbol = " ";
+      package.symbol = " ";
+      python.symbol = " ";
+      rust.symbol = " ";
     };
   };
 }
