@@ -64,6 +64,7 @@
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       DEFAULT_BROWSER = "${pkgs.${userSettings.browser}}/bin/${userSettings.browser}";
+      EDITOR = "nvim";
     };
     # Packages installed in system profile
     systemPackages = with pkgs; [

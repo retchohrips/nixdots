@@ -21,14 +21,12 @@
   programs.fuse.userAllowOther = true;
   system.fsPackages = with pkgs; [sshfs];
   fileSystems."/mnt/cuddlenode" = {
-    device = "cuddlenode:/home/bunny/";
-    fsType = "sshfs";
+    device = "bunny@cuddlenode:/home/bunny/";
+    fsType = "fuse.sshfs";
     options = [
       "allow_other" # non-root access
-      "_netdev" # network filesystem
-
+      "_netdev"
       "reconnect" # handle connection drops
-      "delay_connect" # wait for network
       "ServerAliveInterval=15" # keep connections alive
       "IdentityFile=/home/bunny/.ssh/id_ed25519"
     ];
