@@ -15,7 +15,7 @@
     extraOptions = [
       "--network=bridge"
       "--mount=type=bind,source=/mnt/cuddlenode/storage,destination=/storage"
-      "--mount=type=bind,source=/mnt/cuddlenode/.config/appdata/tdarrnode/cache,destination=/temp"
+      "--mount=type=bind,source=/mnt/cuddlenode/.cache/tdarr,destination=/temp"
     ];
   };
   programs.fuse.userAllowOther = true;
