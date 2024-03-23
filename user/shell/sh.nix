@@ -125,6 +125,6 @@
 
     gh.enable = true;
 
-    thefuck.enable = true;
+    # thefuck.enable = true;
   };
 }

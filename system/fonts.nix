@@ -44,6 +44,8 @@
           "Playpen Sans"
           "Redacted Script"
           "Pangolin"
+          "Ubuntu"
+          "Ubuntu Mono"
         ];
       })
       (nerdfonts.override {

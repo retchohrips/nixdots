@@ -8,11 +8,11 @@
   ];
   environment.systemPackages = with pkgs; [gamescope];
   hardware.opengl.driSupport32Bit = true;
-  # environment.systemPackages = with pkgs; [gamemode];
-  # programs.gamemode.enable = true;
+
+  programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
-    extraCompatPackages = [inputs.nix-gaming.packages.${pkgs.system}.proton-ge];
+    extraCompatPackages = with pkgs; [proton-ge-bin];
     gamescopeSession.enable = true;
   };
   services.pipewire.lowLatency = {enable = true;};
