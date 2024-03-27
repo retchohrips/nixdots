@@ -75,6 +75,7 @@
       };
       rewrite = {
         "artist 𝐞𝐭𝐡𝐞𝐥 𝐜𝐚𝐢𝐧.*" = "Ethel Cain";
+        "albumartist Atlas feat\. Fats’e" = "Atlas";
       };
       smartplaylist = {
         relative_to = "${config.home.homeDirectory}/Music";
