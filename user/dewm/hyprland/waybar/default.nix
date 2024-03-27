@@ -170,7 +170,7 @@ with config.lib.stylix.colors; {
       ''
           * {
             border-radius: 1rem;
-            font-family: ${config.stylix.fonts.monospace.name};
+            font-family: "Symbols Nerd Font", ${config.stylix.fonts.sansSerif.name};
             color: ${withHashtag.base05};
             font-size: 1rem;
             transition-property: background-color;
