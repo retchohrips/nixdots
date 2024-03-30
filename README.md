@@ -4,7 +4,7 @@
 </div>
 
 This repo contains configuration for two different computers, my desktop
-(`bundesk`) and my laptop (`pawpad`).
+(`bundesk`) and my laptop (`pawpad`). I am no doubt doing something, somewhere, wrong.
 
 ## Stars of the Show
 
@@ -21,5 +21,7 @@ I'm using [Stylix](https://github.com/danth/stylix) to theme everything, meaning
 
 There are no doubt too many sources to list! However, here are a few:
 
+- The whole structure of my dots is _heavily_ based on [notashelf's](https://github.com/NotAShelf/nyx). Many comments and sections of code have been copied directly.
 - [LibrePhoenix](https://www.youtube.com/@librephoenix/videos)
+- My neovim config is heavily inspired by [Neve](https://github.com/redyf/Neve)
 - Soooo many people on [r/unixporn](https://reddit.com/r/unixporn)!
