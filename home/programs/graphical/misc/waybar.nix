@@ -292,7 +292,7 @@ with config.lib.stylix.colors; {
           }
 
           #clock {
-            color: ${withHashtag.base07};
+            color: ${withHashtag.base05};
           }
 
           #temperature {

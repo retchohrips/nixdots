@@ -35,8 +35,8 @@ in {
         package = with pkgs; (nerdfonts.override {fonts = ["${userSettings.font}"];});
       };
       sansSerif = {
-        name = "Inter";
-        package = pkgs.inter;
+        name = "Lexend";
+        package = pkgs.lexend;
       };
       serif = {
         name = "Noto Serif";
