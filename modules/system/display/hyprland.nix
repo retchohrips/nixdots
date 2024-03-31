@@ -34,6 +34,7 @@
     ANKI_WAYLAND = "1";
     MOZ_ENABLE_WAYLAND = "1";
     XDG_SESSION_TYPE = "wayland";
+    GTK_USE_PORTAL = "true";
   };
 
   xdg.portal = {
