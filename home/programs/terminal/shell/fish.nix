@@ -54,5 +54,6 @@
     fishPlugins.sponge
     fishPlugins.pisces
     fishPlugins.colored-man-pages
+    fishPlugins.forgit
   ];
 }
