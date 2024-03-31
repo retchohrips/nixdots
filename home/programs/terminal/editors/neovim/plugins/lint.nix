@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins.lint = {
-    enable = true;
+    enable = false;
     lintersByFt = {
       nix = ["statix"];
       lua = ["selene"];
