@@ -63,6 +63,7 @@
       # Set fold settings
       # These options were reccommended by nvim-ufo
       # See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+      # foldmethod = "indent";
       foldcolumn = "0";
       foldlevel = 99;
       foldlevelstart = 99;

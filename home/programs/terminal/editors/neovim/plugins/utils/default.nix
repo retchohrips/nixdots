@@ -8,6 +8,7 @@
     ./persistence.nix
     ./surround.nix
     ./todo-comments.nix
+    ./ufo.nix
     ./ultimate-autopair.nix
     ./vim-be-good.nix
     ./wakatime.nix
