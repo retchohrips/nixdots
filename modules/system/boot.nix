@@ -4,12 +4,6 @@
   config,
   ...
 }: {
-  options.modules.system.boot = {
-    enableKernelTweaks = lib.mkEnableOption "security and performance related kernel parameters";
-    silentBoot = lib.mkEnableOption ''
-      almost entirely silent boot process through `quiet` kernel parameter
-    '';
-  };
   config.boot = let
     sys = config.modules.system;
   in {

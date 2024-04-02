@@ -1,0 +1,1 @@
+{imports = [./intel.nix];}

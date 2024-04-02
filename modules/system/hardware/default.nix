@@ -1,7 +1,8 @@
 {lib, ...}: {
   imports = [
     ./bluetooth.nix
-    ./gpu.nix
+    ./cpu
+    ./gpu
     ./sound.nix
     ./video.nix
   ];
