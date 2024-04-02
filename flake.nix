@@ -11,7 +11,10 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     stylix.url = "github:danth/stylix";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ranger-devicons = {
       url = "github:alexanderjeurissen/ranger_devicons";
@@ -37,7 +40,10 @@
     };
 
     # anyrun program launcher
-    anyrun.url = "github:Kirottu/anyrun";
+    anyrun= {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
