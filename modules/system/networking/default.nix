@@ -5,7 +5,7 @@
 }: let
   inherit (lib) mkForce mkDefault;
 in {
-  imports = [./ssh.nix];
+  imports = [./optimise.nix ./ssh.nix];
   services = {
     resolved = {
       # enable systemd DNS resolver daemon
