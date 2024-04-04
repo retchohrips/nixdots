@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins.mini = {
-    enable = true;
+    enable = false;
 
     modules = {
       animate = {};
