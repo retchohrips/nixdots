@@ -29,7 +29,8 @@
 
     "/mnt/Cass" = {
       device = "/dev/disk/by-label/CASS";
-      options = ["rw" "noatime" "nofail"];
+      fsType = "btrfs";
+      options = ["rw" "noatime" "nofail" "compress=zstd"];
     };
 
     "/mnt/Cart" = {

@@ -13,8 +13,7 @@
     kernelPackages = lib.mkOverride 500 pkgs.linuxPackages_xanmod_latest;
     extraModulePackages = with config.boot.kernelPackages; [zenpower];
 
-    # Need to be able to access Windows drives
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = ["ntfs" "vfat" "ext4" "btrfs"];
 
     loader = {
       systemd-boot = {
