@@ -1,6 +1,7 @@
 {
   imports = [
     ./betterescape.nix
+    ./commentary.nix
     ./colorizer.nix
     ./markdown-preview.nix
     ./mini.nix
