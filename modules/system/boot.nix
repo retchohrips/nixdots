@@ -75,6 +75,9 @@
         # rd prefix means systemd-udev will be used instead of initrd
         "systemd.show_status=auto"
         "rd.systemd.show_status=auto"
-      ]);
+      ])
+      ++ [
+        "uvcvideo" # let webcam work
+      ];
   };
 }

@@ -1,5 +1,5 @@
 {lib, ...}: let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption mkEnableOption types;
 in {
   options.modules = {
     device = {
@@ -33,16 +33,21 @@ in {
         };
       };
     };
-    system.boot = {
-      enableKernelTweaks = mkOption {
-        type = types.bool;
-        default = true;
-        description = "security and performance related kernel parameters";
+    system = {
+      security = {
+        fixWebcam = mkEnableOption "Unblacklist the related kernel module";
       };
-      silentBoot = mkOption {
-        type = types.bool;
-        default = true;
-        description = "almost entirely silent boot process through `quiet` kernel parameter";
+      boot = {
+        enableKernelTweaks = mkOption {
+          type = types.bool;
+          default = true;
+          description = "security and performance related kernel parameters";
+        };
+        silentBoot = mkOption {
+          type = types.bool;
+          default = true;
+          description = "almost entirely silent boot process through `quiet` kernel parameter";
+        };
       };
     };
   };
