@@ -18,34 +18,13 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/71f9cfec-82d6-439b-8a43-158c33b41d52";
+      device = "/dev/disk/by-partlabel/NixOS";
       fsType = "btrfs";
       options = [
         "subvol=@"
         "compress=zstd"
-        # "noatime"
       ];
     };
-
-    # TODO: make this actually work by booting from usb and creating proper subvolumes: https://nixos.wiki/wiki/Btrfs
-
-    #"/nix" = {
-    #  device = "/dev/disk/by-uuid/71f9cfec-82d6-439b-8a43-158c33b41d52";
-    #  fsType = "btrfs";
-    #  options = ["subvol=nix" "compress=zstd" "noatime"];
-    #};
-
-    #"/home" = {
-    #  device = "/dev/disk/by-uuid/71f9cfec-82d6-439b-8a43-158c33b41d52";
-    #  fsType = "btrfs";
-    #  options = ["subvol=home" "compress=zstd" "noatime"];
-    #};
-
-    #"/var/log" = {
-    #  device = "/dev/disk/by-uuid/71f9cfec-82d6-439b-8a43-158c33b41d52";
-    #  fsType = "btrfs";
-    #  options = ["subvol=log" "compress=zstd" "noatime"];
-    #};
 
     "/boot" = {
       device = "/dev/disk/by-uuid/3C6F-6984";
