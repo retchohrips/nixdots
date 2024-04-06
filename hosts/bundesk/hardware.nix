@@ -25,6 +25,26 @@
         "compress=zstd"
       ];
     };
+    
+    "/home" = {
+      device = "/dev/disk/by-partlabel/NixOS";
+      fsType = "btrfs";
+      options = [
+        "subvol=@home"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+    
+     "/nix" = {
+      device = "/dev/disk/by-partlabel/NixOS";
+      fsType = "btrfs";
+      options = [
+        "subvol=@nix"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/3C6F-6984";
