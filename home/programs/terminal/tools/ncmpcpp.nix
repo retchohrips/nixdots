@@ -19,7 +19,7 @@
           })
         ];
       });
-    mpdMusicDir = "${config.home.homeDirectory}/Music";
+    mpdMusicDir = "${config.xdg.userDirs.music}";
     settings = {
       ignore_leading_the = "yes"; # Don't use "the" when sorting
       external_editor = "nvim";

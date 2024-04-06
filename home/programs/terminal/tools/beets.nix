@@ -8,7 +8,7 @@
     package = pkgs.beets-unstable;
     mpdIntegration.enableUpdate = true;
     settings = {
-      directory = "${config.home.homeDirectory}/Music";
+      directory = "${config.xdg.userDirs.music}";
       library = "${config.home.homeDirectory}/.beets/library.db";
       import = {
         move = true;
@@ -75,11 +75,11 @@
       };
       rewrite = {
         "artist 𝐞𝐭𝐡𝐞𝐥 𝐜𝐚𝐢𝐧.*" = "Ethel Cain";
-        "albumartist Atlas feat\. Fats’e" = "Atlas";
+        "albumartist Atlas feat\. Fats.e" = "Atlas";
       };
       smartplaylist = {
-        relative_to = "${config.home.homeDirectory}/Music";
-        playlist_dir = "${config.home.homeDirectory}/Music/Playlists";
+        relative_to = "${config.xdg.userDirs.music}";
+        playlist_dir = "${config.xdg.userDirs.music}/Playlists";
 
         playlists = [
           {

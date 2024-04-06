@@ -7,8 +7,8 @@
 
   services.mpd = {
     enable = true;
-    musicDirectory = "${config.home.homeDirectory}/Music";
-    playlistDirectory = "${config.home.homeDirectory}/Music/Playlists";
+    musicDirectory = "${config.home.homeDirectory}/Media/Music";
+    playlistDirectory = "${config.home.homeDirectory}/Media/Music/Playlists";
     dataDir = "${config.home.homeDirectory}/.config/mpd";
     extraConfig = ''
       auto_update "yes"
