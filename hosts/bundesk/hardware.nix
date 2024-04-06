@@ -25,7 +25,7 @@
         "compress=zstd"
       ];
     };
-    
+
     "/home" = {
       device = "/dev/disk/by-partlabel/NixOS";
       fsType = "btrfs";
@@ -35,8 +35,8 @@
         "noatime"
       ];
     };
-    
-     "/nix" = {
+
+    "/nix" = {
       device = "/dev/disk/by-partlabel/NixOS";
       fsType = "btrfs";
       options = [
