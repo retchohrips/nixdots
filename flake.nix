@@ -11,9 +11,10 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     stylix.url = "github:danth/stylix";
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     ranger-devicons = {
@@ -40,13 +41,14 @@
     };
 
     # anyrun program launcher
-    anyrun= {
+    anyrun = {
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     nixos-hardware,
@@ -78,7 +80,7 @@
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs userSettings systemSettings;
+            inherit self inputs userSettings systemSettings;
           };
           modules = [
             ./hosts/${systemSettings.hostname}
@@ -113,7 +115,7 @@
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs userSettings systemSettings;
+            inherit self inputs userSettings systemSettings;
           };
           modules = [
             ./hosts/${systemSettings.hostname}

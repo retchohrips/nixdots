@@ -4,7 +4,7 @@
     endpoints = {
       "last.fm" = {
         username = "cryptidrabbit";
-        passwordFile = config.sops.secrets."lastfm/pass".path;
+        passwordFile = config.age.secrets.lastfm-account.path;
       };
     };
   };
