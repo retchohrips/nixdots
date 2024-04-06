@@ -7,7 +7,8 @@
     krita
     inkscape
     vlc
-    foliate
+    foliate # ebook viewer
+    zathura # pdf viewer
   ];
 
   xdg.desktopEntries = {
