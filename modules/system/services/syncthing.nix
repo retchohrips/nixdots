@@ -3,18 +3,6 @@
   systemSettings,
   ...
 }: {
-  system.activationScripts.linktomusic.text =
-    if (systemSettings.hostname == "bundesk")
-    then
-      /*
-      bash
-      */
-      ''
-        if [[ ! -h "/home/${userSettings.username}/Music" ]]; then
-          ln -s "/mnt/Cass/Music" "/home/${userSettings.username}/Music"
-        fi
-      ''
-    else "";
   services.syncthing = {
     enable = true;
     dataDir = "/home/${userSettings.username}";
@@ -29,7 +17,7 @@
           path =
             if (systemSettings.hostname == "bundesk")
             then "/mnt/Cass/Music"
-            else "/home/${userSettings.username}/Music";
+            else "/home/${userSettings.username}/Media/Music";
         };
         Obsidian = {
           enable = true;
