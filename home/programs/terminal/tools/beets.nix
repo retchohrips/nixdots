@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  systemSettings,
   ...
 }: {
   programs.beets = {
@@ -8,16 +9,36 @@
     package = pkgs.beets-unstable;
     mpdIntegration.enableUpdate = true;
     settings = {
-      directory = "${config.xdg.userDirs.music}";
+      directory =
+        if (systemSettings.hostname == "bundesk")
+        then "/mnt/Cass/Music"
+        else "${config.xdg.userDirs.music}";
       library = "${config.home.homeDirectory}/.beets/library.db";
       import = {
         move = true;
         incremental = true;
       };
+      asciify_paths = true;
+      paths = {
+        default = "%the{$albumartist}/%if{year, [$year]} $album/$track $title";
+        comp = "Compilations/$album %if{year, [$year]}/$track $title";
+        singleton = "%the{$artist}/Singles/%if{year, [$year]} $title";
+      };
+      match.max_rec = {
+        # Don't rate media that differs from our guess with anymore than medium confidence
+        media = "medium";
+        unmatched_tracks = "medium";
+      };
+      musicbrainz = {
+        # genres = true; # conflicts with lastgenre
+        extra_tags = ["year"];
+
+        searchlimit = 10;
+      };
       plugins = [
+        # broken :()
         # "bandcamp"
         "chroma"
-        # "discogs"
         "edit"
         "embedart"
         "fetchart"
@@ -28,26 +49,37 @@
         "smartplaylist"
         "lastgenre"
         "convert"
-        "missing"
         "info"
-        "albumtypes"
         "mpdupdate"
         "rewrite"
         "spotify"
+        "zero"
       ];
       fetchart = {
+        auto = true;
+
+        cautious = true;
+        high_resolution = true;
+
+        enforce_ratio = "0.5%";
+
+        cover_names = ["cover" "front" "art" "album" "folder"];
+
         sources = [
           "filesystem"
+          # "bandcamp"
+          {coverart = "release releasegroup";}
           "spotify"
-          "fanarttv"
           "itunes"
           "amazon"
-          # "lastfm" # Need API key
-          # "bandcamp"
-          "wikipedia"
-          "coverart"
-          "albumart"
         ];
+      };
+      lastgenre = {
+        auto = true;
+        separator = ";";
+        count = 5;
+        prefer_specific = true;
+        title_case = false;
       };
       lyrics = {
         auto = true;
@@ -62,22 +94,17 @@
         delete_originals = true;
         never_convert_lossy_files = true;
       };
-      albumtypes = {
-        types = [
-          {ep = "EP";}
-          {single = "Single";}
-          {soundtrack = "OST";}
-          {live = "Live";}
-          {compilation = "Anthology";}
-        ];
-        ignore_va = "compilation";
-        bracket = "[]";
+      zero = {
+        auto = true;
+        fields = ["genre"];
+        update_database = true;
       };
       rewrite = {
         "artist 𝐞𝐭𝐡𝐞𝐥 𝐜𝐚𝐢𝐧.*" = "Ethel Cain";
         "albumartist Atlas feat\. Fats.e" = "Atlas";
       };
       smartplaylist = {
+        auto = true;
         relative_to = "${config.xdg.userDirs.music}";
         playlist_dir = "${config.xdg.userDirs.music}/Playlists";
 
@@ -92,11 +119,6 @@
           }
         ];
       };
-      paths = {
-        comp = "Various Artists/$album [$year]$atypes/$track $title";
-        singleton = "%the{$artist}/[$year][Single] $title/$title";
-        default = "%the{$albumartist}/[$year]$atypes $album/$track $title";
-      };
     };
   };
 
@@ -106,8 +128,8 @@
     gst_all_1.gstreamer
     (pkgs.python3.withPackages (ps:
       with ps; [
-        # discogs-client
         pyacoustid
+        pylast
         requests
         beautifulsoup4
       ]))
