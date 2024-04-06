@@ -1,4 +1,35 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  general = ''
+    .cache/
+    tmp/
+    *.tmp
+    log/
+  '';
+
+  nix = ''
+    result
+    result-*
+    .direnv/
+  '';
+
+  node = ''
+    node_modules/
+  '';
+
+  python = ''
+    venv
+    .venv
+    *pyc
+    *.egg-info/
+    __pycached__/
+    .mypy_cache
+  '';
+  ignore = lib.concatStringsSep "\n" [general nix node python];
+in {
   home.packages = with pkgs; [
     gist # manage github gists
     act # local github actions
@@ -17,6 +48,7 @@
     git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
+      ignores = map (v: "${toString v}") (builtins.split "\n" ignore);
       userEmail = "44993244+retchohrips@users.noreply.github.com";
       userName = "retchohrips";
       extraConfig = {
