@@ -31,7 +31,7 @@ with config.lib.stylix.colors; {
     labels = [
       {
         # Time
-        text = ''cmd[update:30000] echo "$(date +"%R")"'';
+        text = ''cmd[update:30000] echo "$(date +"%_I:%M %P")"'';
         position = {
           x = -30;
           y = 0;
