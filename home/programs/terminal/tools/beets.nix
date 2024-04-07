@@ -2,8 +2,13 @@
   config,
   pkgs,
   systemSettings,
+  inputs,
   ...
 }: {
+  home.file."lastloved" = {
+    target = ".config/beets/plugins/lastloved";
+    source = inputs.beets-lastloved;
+  };
   programs.beets = {
     enable = true;
     package = pkgs.beets-unstable;
@@ -35,9 +40,9 @@
 
         searchlimit = 10;
       };
+      pluginpath = ["~/.config/beets/plugins/lastloved/beetsplug"];
       plugins = [
-        # broken :()
-        # "bandcamp"
+        "lastloved"
         "chroma"
         "edit"
         "embedart"
@@ -116,6 +121,10 @@
           {
             name = "nicolethel.m3u";
             query = "albumartist::('Nicole Dollanganger'|'Ethel Cain')";
+          }
+          {
+            name = "loved.m3u";
+            query = "loved:1";
           }
         ];
       };

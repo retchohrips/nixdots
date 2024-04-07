@@ -193,6 +193,22 @@
         "type": "github"
       }
     },
+    "beets-lastloved": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712455387,
+        "narHash": "sha256-nh3JxL1GVTNl5ZdYR1NZ1yTlfWQJWFuo/T8ry9zqQT0=",
+        "owner": "retchohrips",
+        "repo": "lastloved",
+        "rev": "87c913556d0c0f25315a4d2f066651cfdda2e7d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "retchohrips",
+        "repo": "lastloved",
+        "type": "github"
+      }
+    },
     "betterfox": {
       "flake": false,
       "locked": {
@@ -789,6 +805,7 @@
       "inputs": {
         "agenix": "agenix",
         "anyrun": "anyrun",
+        "beets-lastloved": "beets-lastloved",
         "betterfox": "betterfox",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
