@@ -11,7 +11,7 @@
   };
   programs.beets = {
     enable = true;
-    package = pkgs.beets-unstable;
+    # package = pkgs.beets-unstable;
     mpdIntegration.enableUpdate = true;
     settings = {
       directory =
@@ -60,6 +60,7 @@
         "spotify"
         "zero"
       ];
+      lastfm.user = "cryptidrabbit";
       fetchart = {
         auto = true;
 
@@ -110,7 +111,10 @@
       };
       smartplaylist = {
         auto = true;
-        relative_to = "${config.xdg.userDirs.music}";
+        relative_to =
+          if (systemSettings.hostname == "bundesk")
+          then "/mnt/Cass/Music"
+          else "${config.xdg.userDirs.music}";
         playlist_dir = "${config.xdg.userDirs.music}/Playlists";
 
         playlists = [
