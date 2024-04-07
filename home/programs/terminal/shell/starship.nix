@@ -1,68 +1,102 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   programs.starship = {
     enable = true;
     enableTransience = true;
     enableFishIntegration = true;
-    settings = {
+    settings = with config.lib.stylix.colors; {
       format = lib.concatStrings [
-        "$username"
+        "[](red)"
+        "$os"
         "$hostname"
+        "[](bg:${withHashtag.base09} fg:red)"
         "$directory"
-        "$nix_shell"
+        "[](bg:yellow fg:${withHashtag.base09})"
         "$git_branch"
-        "$git_state"
         "$git_status"
-        "$cmd_duration"
-        "$line_break"
+        "[](fg:yellow bg:green)"
+        "$nodejs"
         "$python"
+        "[](fg:green bg:blue)"
+        "$cmd_duration"
+        "[ ](fg:blue)"
+        "$line_break"
         "$character"
       ];
-      directory = {style = "blue";};
-      character = {
-        success_symbol = "[»](bold green)";
-        error_symbol = "[»](bold red)";
+      os = {
+        disabled = false;
+        style = "bg:red fg:${withHashtag.base01}";
+        symbols = {
+          Android = " ";
+          Arch = " ";
+          Linux = " ";
+          NixOS = " ";
+          Unknown = " ";
+          Windows = "󰍲 ";
+        };
+      };
+      hostname = {
+        style = "bg:red fg:${withHashtag.base01}";
+        format = "[ $user]($style)";
+      };
+      directory = {
+        style = "bg:${withHashtag.base09} fg:${withHashtag.base01}";
+        format = "[ $path]($style)[$read_only ]($style)";
+        read_only = " ";
+        home_symbol = " ";
+        truncation_length = 3;
+        fish_style_pwd_dir_length = 1;
+        truncation_symbol = "…/";
+        truncate_to_repo = true;
+
+        substitutions = {
+          "Documents" = "󰈙 ";
+          "Downloads" = " ";
+          "Music" = " ";
+          "Pictures" = " ";
+        };
       };
       git_branch = {
-        format = "[$branch]($style)";
-        style = "bright-black";
+        symbol = "";
+        style = "bg:yellow";
+        format = "[[ $symbol $branch ](fg:${withHashtag.base01} bg:yellow)]($style)";
       };
       git_status = {
-        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
-        style = "cyan";
-        conflicted = "​";
-        untracked = "​";
-        modified = "​";
-        staged = "​";
-        renamed = "​";
-        deleted = "​";
-        stashed = "≡";
+        style = "bg:yellow";
+        format = "[[($all_status$ahead_behind )](fg:${withHashtag.base01} bg:yellow)]($style)";
+        conflicted = " ";
+        ahead = " ";
+        behind = " ";
+        diverged = "󰆗 ";
+        up_to_date = " ";
+        untracked = " ";
+        stashed = " ";
+        modified = " ";
+        staged = " ";
+        renamed = " ";
+        deleted = " ";
       };
-      git_state = {
-        format = "\([$state( $progress_current/$progress_total)]($style)\) ";
-        style = "bright-black";
-      };
-      cmd_duration = {
-        format = "[$duration]($style) ";
-        style = "yellow";
+      nodejs = {
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:${withHashtag.base01} bg:green)]($style)";
       };
       python = {
-        format = "[$virtualenv]($style) ";
-        style = "bright-black";
+        symbol = "";
+        style = "bg:green";
+        format = "[[ $symbol( $version) ](fg:${withHashtag.base01} bg:green)]($style)";
       };
-      c.symbol = " ";
-      docker_context.symbol = " ";
-      git_branch.symbol = " ";
-      golang.symbol = " ";
-      hg_branch.symbol = " ";
-      java.symbol = " ";
-      julia.symbol = " ";
-      lua.symbol = " ";
-      memory_usage.symbol = "󰍛 ";
-      nix_shell.symbol = " ";
-      nodejs.symbol = " ";
-      package.symbol = " ";
-      python.symbol = " ";
-      rust.symbol = " ";
+      cmd_duration = {
+        style = "bg:blue fg:${withHashtag.base01}";
+        format = "[  $duration]($style)";
+      };
+      character = {
+        success_symbol = "[λ](bold green)";
+        error_symbol = "[λ](bold red)";
+      };
     };
   };
   programs.fish.interactiveShellInit =

@@ -102,7 +102,7 @@
       };
       zero = {
         auto = true;
-        fields = ["genre"];
+        fields = ["genre" "comment"];
         update_database = true;
       };
       rewrite = {
