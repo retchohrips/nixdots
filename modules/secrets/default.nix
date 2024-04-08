@@ -38,6 +38,11 @@ in {
   imports = [inputs.agenix.nixosModules.default];
   environment.systemPackages = [inputs.agenix.packages.${pkgs.system}.default];
 
+  age.identityPaths = [
+    "/etc/ssh/ssh_host_ed25519_key"
+    "${homeDir}/.ssh/id_ed25519"
+  ];
+
   age.secrets = {
     lastfm-account = mkSecret true {file = "lastfm-account";};
     wakatime = mkSecretWithPath true {
