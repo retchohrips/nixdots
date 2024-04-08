@@ -31,6 +31,7 @@
     ];
 
     layerrule = [
+      "blur, logout_dialog$"
       "blur, waybar$"
       "blur, swaync-control-center$"
       "blur, swaync-notification-window$"

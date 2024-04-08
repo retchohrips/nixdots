@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   xdg.configFile = {
     "wlogout/layout".text = ''
       {
@@ -8,16 +12,10 @@
         "keybind" : "l"
       }
       {
-        "label" : "hibernate",
-        "action" : "systemctl hibernate",
-        "text" : "Hibernate",
-        "keybind" : "h"
-      }
-      {
-        "label" : "logout",
-        "action" : "hyprctl dispatch exit",
-        "text" : "Logout",
-        "keybind" : "e"
+        "label" : "reboot",
+        "action" : "systemctl reboot",
+        "text" : "Reboot",
+        "keybind" : "r"
       }
       {
         "label" : "shutdown",
@@ -26,36 +24,55 @@
         "keybind" : "s"
       }
       {
+        "label" : "logout",
+        "action" : "hyprctl dispatch exit",
+        "text" : "Logout",
+        "keybind" : "e"
+      }
+      {
         "label" : "suspend",
         "action" : "systemctl suspend",
         "text" : "Suspend",
         "keybind" : "u"
       }
       {
-        "label" : "reboot",
-        "action" : "systemctl reboot",
-        "text" : "Reboot",
-        "keybind" : "r"
+        "label" : "hibernate",
+        "action" : "systemctl hibernate",
+        "text" : "Hibernate",
+        "keybind" : "h"
       }
     '';
-    "wlogout/style.css".text = let
+    "wlogout/style.css".text = with config.lib.stylix.colors; let
       iconPath = "${pkgs.wlogout}/share/wlogout/icons";
     in
       /*
       css
       */
       ''
-        button {
-          color: @theme_text_color;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 24px;
-          margin: 5px;
+        window {
+          font-family: ${config.stylix.fonts.sansSerif.name};
+          font-size: 14pt;
+          color: ${withHashtag.base05};
+          background-color: alpha(${withHashtag.base00}, 0.5);
         }
 
-        button:focus, button:active, button:hover {
-          box-shadow: 0 0 0 1px @theme_selected_bg_color;
+        button {
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 25%;
+          border: none;
+          background-color: alpha(${withHashtag.base00}, 0);
+          margin: 5px;
+          transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+          background-color: alpha(${withHashtag.base02}, 0.2);
+        }
+
+        button:focus {
+          background-color: ${withHashtag.base02};
+          color: ${withHashtag.base07};
         }
 
         #lock {
