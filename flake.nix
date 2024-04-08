@@ -64,7 +64,7 @@
     commonSettings = {
       browser = "firefox";
       terminal = "kitty";
-      font = "JetBrainsMono";
+      font = "CaskaydiaCove";
       theme = "catppuccin-frappe";
     };
   in {

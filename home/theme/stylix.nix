@@ -32,7 +32,12 @@ in {
     fonts = {
       monospace = {
         name = "${userSettings.font} Nerd Font";
-        package = with pkgs; (nerdfonts.override {fonts = ["${userSettings.font}"];});
+        package = with pkgs; (nerdfonts.override {
+          fonts = [
+            # "${userSettings.font}"
+            "CascadiaCode"
+          ];
+        });
       };
       sansSerif = {
         name = "Lexend";
