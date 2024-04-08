@@ -26,6 +26,7 @@
         "SUPER, E, exec, nautilus"
         "SUPER, S, exec, grimblast copy area"
         "SUPERSHIFT, T, exec, ocr"
+        "SUPERSHIFT, N, exec, swaync-client -t -sw"
 
         (mvfocus "k" "u")
         (mvfocus "j" "d")

@@ -1,1 +1,6 @@
-{imports = [./programs/vivid.nix];}
+{
+  imports = [
+    ./programs
+    ./services
+  ];
+}
