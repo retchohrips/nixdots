@@ -1,7 +1,11 @@
 {
   imports = [./hardware.nix];
-  config.modules.device = {
-    type = "laptop";
-    cpu.type = "intel";
+  config = {
+    modules.device = {
+      type = "laptop";
+      cpu.type = "intel";
+    };
+    
+    services.teamviewer.enable = true;
   };
 }
