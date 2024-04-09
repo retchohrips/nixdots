@@ -180,8 +180,8 @@ with config.lib.stylix.colors; {
 
         battery = {
           format = "{icon} {capacity}%";
-          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-          format-charging = "󰂄 {capacity}%";
+          format-icons = ["" "" "" "" ""];
+          format-charging = " {capacity}%";
           interval = 10;
           states = {
             warning = 20;
