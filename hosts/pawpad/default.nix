@@ -5,7 +5,5 @@
       type = "laptop";
       cpu.type = "intel";
     };
-    
-    services.teamviewer.enable = true;
   };
 }
