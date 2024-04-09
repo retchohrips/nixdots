@@ -5,7 +5,6 @@
     "wl-paste --type image --watch cliphist store" # Stores only image data
     "gnome-keyring-daemon --start --components=secrets"
     "waybar"
-    "dunst"
     "wlsunset-auto"
     "sleep 5 ; telegram-desktop -startintray"
   ];
