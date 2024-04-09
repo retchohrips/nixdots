@@ -30,6 +30,7 @@
     "/home" = {
       device = "/dev/disk/by-partlabel/NixOS";
       fsType = "btrfs";
+      neededForBoot = true;
       options = [
         "subvol=@home"
         "compress=zstd"
