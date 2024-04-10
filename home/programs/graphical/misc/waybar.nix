@@ -163,7 +163,7 @@ with config.lib.stylix.colors; {
           format = " {title}";
           format-paused = "  {title}";
           format-stopped = "";
-          format-disconnected = "";
+          format-disconnected = "";
           max-length = 25;
           tooltip-format = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
           on-click = "mpc --quiet toggle";
