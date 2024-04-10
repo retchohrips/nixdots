@@ -341,7 +341,7 @@ with config.lib.stylix.colors; {
 
         #bluetooth {
           color: ${withHashtag.base04};
-          margin-right: 2px;
+          margin-right: 4px;
         }
 
         #bluetooth.connected {
@@ -383,7 +383,7 @@ with config.lib.stylix.colors; {
 
         #backlight {
           color: ${withHashtag.base0A};
-          margin-right: 2px;
+          margin-right: 4px;
         }
       '';
   };
