@@ -12,6 +12,7 @@
     file
     fd
     fzf
+    just
     libnotify
     ncdu
     sshfs
