@@ -7,7 +7,7 @@
     */
     ''
       if [[ ! -h "/home/${userSettings.username}/Media/Music" ]]; then
-        ln -s "/mnt/Cass/Music" "/home/${userSettings.username}/Media/Music"
+        ln -s "/mnt/Cass/Media/Music" "/home/${userSettings.username}/Media/Music"
       fi
     '';
 

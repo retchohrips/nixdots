@@ -16,7 +16,7 @@
           id = "jfvxq-2lb67";
           path =
             if (systemSettings.hostname == "bundesk")
-            then "/mnt/Cass/Music"
+            then "/mnt/Cass/Media/Music"
             else "/home/${userSettings.username}/Media/Music";
         };
         Obsidian = {

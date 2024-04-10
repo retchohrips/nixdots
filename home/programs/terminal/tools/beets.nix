@@ -98,7 +98,7 @@ in {
     settings = {
       directory =
         if (systemSettings.hostname == "bundesk")
-        then "/mnt/Cass/Music"
+        then "/mnt/Cass/Media/Music"
         else "${config.xdg.userDirs.music}";
       library = "${config.home.homeDirectory}/.beets/library.db";
       import = {
@@ -203,7 +203,7 @@ in {
         auto = true;
         relative_to =
           if (systemSettings.hostname == "bundesk")
-          then "/mnt/Cass/Music"
+          then "/mnt/Cass/Media/Music"
           else "${config.xdg.userDirs.music}";
         playlist_dir = "${config.xdg.userDirs.music}/Playlists";
 
