@@ -2,16 +2,98 @@
   config,
   pkgs,
   systemSettings,
-  inputs,
   ...
-}: {
-  home.file."lastloved" = {
-    target = ".config/beets/plugins/lastloved";
-    source = inputs.beets-lastloved;
-  };
+}: let
+  beetcamp = pkgs.callPackage ({
+    lib,
+    fetchFromGitHub,
+    beets,
+    python3Packages,
+  }:
+    python3Packages.buildPythonApplication rec {
+      pname = "beetcamp";
+      version = "0.17.2";
+      pyproject = true;
+
+      src = fetchFromGitHub {
+        repo = pname;
+        owner = "snejus";
+        rev = version;
+        hash = "sha256-qvfNo92NeDa5F7bV+zgMCan4CMIF38oyuJFsmRp+J4g=";
+      };
+
+      propagatedBuildInputs = with python3Packages; [
+        poetry-core
+        ordered-set
+        pycountry
+        requests
+      ];
+
+      nativeBuildInputs = [beets];
+
+      meta = with lib; {
+        description = "Use Bandcamp as a autotagger source for beets";
+        homepage = "https://github.com/snejus/beetcamp";
+        maintainers = with maintainers; [retchohrips];
+        license = licenses.gpl2;
+      };
+    })
+  {beets = pkgs.beetsPackages.beets-minimal;};
+  lastloved =
+    pkgs.callPackage
+    (
+      {
+        lib,
+        fetchFromGitHub,
+        beets,
+        python3Packages,
+      }:
+        python3Packages.buildPythonApplication rec {
+          pname = "beets-lastloved";
+          version = "main";
+          pyproject = true;
+
+          src = fetchFromGitHub {
+            repo = pname;
+            owner = "retchohrips";
+            rev = version;
+            hash = "sha256-K4fyFNYjXAmDsVwQh1mUwKp58AOsWwjnOPdIY4N4m7c=";
+          };
+
+          # there are no tests
+          doCheck = false;
+
+          nativeBuildInputs = [beets];
+
+          propagatedBuildInputs = with python3Packages; [
+            poetry-core
+            pylast
+          ];
+
+          meta = with lib; {
+            description = "Plugin for beets to import loved tracks from last.fm.";
+            homepage = "https://github.com/retchohrips/beets-LastLoved";
+            maintainers = with maintainers; [retchohrips];
+            inherit (beets.meta) platforms;
+          };
+        }
+    )
+    {beets = pkgs.beetsPackages.beets-minimal;};
+in {
   programs.beets = {
     enable = true;
-    # package = pkgs.beets-unstable;
+    package = pkgs.beets.override {
+      pluginOverrides = {
+        beetcamp = {
+          enable = true;
+          propagatedBuildInputs = [beetcamp];
+        };
+        lastloved = {
+          enable = true;
+          propagatedBuildInputs = [lastloved];
+        };
+      };
+    };
     mpdIntegration.enableUpdate = true;
     settings = {
       directory =
@@ -42,25 +124,34 @@
       };
       pluginpath = ["~/.config/beets/plugins/lastloved/beetsplug"];
       plugins = [
+        "zero"
+        "scrub"
         "lastloved"
+        "bandcamp"
+        "spotify"
+        "lastgenre"
         "chroma"
         "edit"
-        "embedart"
         "fetchart"
+        "embedart"
         "lyrics"
         "replaygain"
         "the"
         "fish"
         "smartplaylist"
-        "lastgenre"
         "convert"
         "info"
         "mpdupdate"
         "rewrite"
-        "spotify"
-        "zero"
       ];
       lastfm.user = "cryptidrabbit";
+      bandcamp = {
+        art = true;
+        exclude_extra_fields = ["comments"];
+        genre = {
+          capitalize = true;
+        };
+      };
       fetchart = {
         auto = true;
 
@@ -73,7 +164,7 @@
 
         sources = [
           "filesystem"
-          # "bandcamp"
+          "bandcamp"
           {coverart = "release releasegroup";}
           "spotify"
           "itunes"
@@ -83,9 +174,14 @@
       lastgenre = {
         auto = true;
         separator = ";";
-        count = 5;
-        prefer_specific = true;
-        title_case = false;
+        canonical = true;
+        count = 2;
+        title_case = true;
+      };
+      zero = {
+        auto = true;
+        fields = ["albumtype" "albumtypes" "comments"];
+        update_database = true;
       };
       lyrics = {
         auto = true;
@@ -99,11 +195,6 @@
         auto = true;
         delete_originals = true;
         never_convert_lossy_files = true;
-      };
-      zero = {
-        auto = true;
-        fields = ["genre" "comment"];
-        update_database = true;
       };
       rewrite = {
         "artist 𝐞𝐭𝐡𝐞𝐥 𝐜𝐚𝐢𝐧.*" = "Ethel Cain";

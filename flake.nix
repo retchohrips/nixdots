@@ -45,11 +45,6 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    beets-lastloved = {
-      url = "github:retchohrips/lastloved";
-      flake = false;
-    };
   };
 
   outputs = {
