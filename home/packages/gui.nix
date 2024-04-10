@@ -1,14 +1,15 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    obsidian
-    vscode.fhs
-    telegram-desktop
-    blender
-    krita
-    inkscape
-    vlc
+    obsidian # notes program
+    vscode.fhs # code editor
+    telegram-desktop # messenger
+    blender # 3d modelling
+    krita # drawing program
+    inkscape # vector editor
+    vlc # video player
     foliate # ebook viewer
     zathura # pdf viewer
+    calibre # ebook manager
   ];
 
   xdg.desktopEntries = {
