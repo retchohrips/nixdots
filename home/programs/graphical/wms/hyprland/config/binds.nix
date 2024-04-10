@@ -1,4 +1,14 @@
-{userSettings, ...}: {
+{
+  userSettings,
+  pkgs,
+  ...
+}: let
+  ocr =
+    pkgs.writeShellScript "ocr"
+    ''
+      ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.tesseract}/bin/tesseract -l eng - - | ${pkgs.wl-clipboard}/bin/wl-copy
+    '';
+in {
   wayland.windowManager.hyprland.settings = {
     bind = let
       binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
@@ -25,7 +35,7 @@
         "SUPER, T, exec, telegram-desktop"
         "SUPER, E, exec, nautilus"
         "SUPER, S, exec, grimblast copy area"
-        "SUPERSHIFT, T, exec, ocr"
+        "SUPERSHIFT, T, exec, ${ocr}"
         "SUPERSHIFT, N, exec, swaync-client -t -sw"
 
         (mvfocus "k" "u")
