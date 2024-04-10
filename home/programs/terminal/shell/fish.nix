@@ -29,7 +29,6 @@
       ns = "nix shell";
       nr = "nix run";
       ncg = "sudo nix-collect-garbage -d";
-      nrb = "sudo nix-collect-garbage -d && sudo nixos-rebuild switch --flake ~/.dotfiles && nix-store --optimise";
       c = "clear";
       e = "exit";
       v = "nvim";
