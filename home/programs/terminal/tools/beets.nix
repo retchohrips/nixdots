@@ -122,7 +122,6 @@ in {
 
         searchlimit = 10;
       };
-      pluginpath = ["~/.config/beets/plugins/lastloved/beetsplug"];
       plugins = [
         "zero"
         "scrub"
