@@ -23,7 +23,7 @@
       "stayfocused, title:^()$,class:^(steam)$"
       "minsize 1 1, title:^()$,class:^(steam)$"
 
-      "float, class:(firefox|floorp), title:^(Extension: \(Bitwarden - Free Password Manager\))"
+      "float, title:\(Extension: \(Bitwarden"
 
       # pip browser
       "float, title:^(Picture-in-Picture)$"
