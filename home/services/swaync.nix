@@ -49,8 +49,6 @@
       };
     };
 
-    # TODO: https://github.com/zDyanTB/HyprNova/blob/main/.config/swaync/themes/nova-dark/central_control.css
-
     style = with config.lib.stylix.colors; ''
       * {
         color: ${withHashtag.base05};
