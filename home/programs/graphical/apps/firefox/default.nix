@@ -20,7 +20,14 @@
 
       search = {
         force = true;
+        default = "Startpage";
         engines = {
+          "Startpage" = {
+            urls = [{template = "https://www.startpage.com/search?q={searchTerms}";}];
+            iconUpdateURL = "https://www.startpage.com/sp/cdn/favicons/favicon--default.ico";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = ["@s"];
+          };
           "GitHub" = {
             iconUpdateURL = "https://github.githubassets.com/favicons/favicon.svg";
             updateInterval = 24 * 60 * 60 * 1000;
