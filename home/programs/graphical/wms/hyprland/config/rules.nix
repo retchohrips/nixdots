@@ -23,7 +23,8 @@
       "stayfocused, title:^()$,class:^(steam)$"
       "minsize 1 1, title:^()$,class:^(steam)$"
 
-      "float, title:Extension:.*Bitwarden"
+      "float, title:(Extension:.*Bitwarden)"
+      "float, class:firefox,title:(Opening:)"
 
       # pip browser
       "float, title:^(Picture-in-Picture)$"
