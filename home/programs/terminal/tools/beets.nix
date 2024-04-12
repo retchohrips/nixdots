@@ -211,11 +211,11 @@ in {
         playlists = [
           {
             name = "4lung.m3u";
-            query = "albumartist::(4lung|rawrdcore|'Bleak Fortune'|'Blueberry Sunshine'|Dalmatrix|minxmax|P9|'Rat King World Champion'|'Yo-Yo Bingo')";
+            query = "albumartist::(4lung|rawrdcore|'Bleak Fortune'|'Blueberry Sunshine'|Dalmatrix|minxmax|P9|'Rat King World Champion'|'Yo-Yo Bingo') year+";
           }
           {
             name = "nicolethel.m3u";
-            query = "albumartist::('Nicole Dollanganger'|'Ethel Cain'|'White Silas')";
+            query = "albumartist::('Nicole Dollanganger'|'Ethel Cain'|'White Silas') year+";
           }
           {
             name = "loved.m3u";
