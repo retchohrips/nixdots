@@ -53,6 +53,7 @@ in {
       userName = "retchohrips";
       extraConfig = {
         init = {defaultBranch = "main";};
+        push = {autoSetupRemote = true;};
         url = {
           "https://github.com/".insteadOf = "github:";
         };
