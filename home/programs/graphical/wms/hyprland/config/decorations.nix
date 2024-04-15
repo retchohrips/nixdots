@@ -1,9 +1,12 @@
-{
+{osConfig, ...}: {
   wayland.windowManager.hyprland.settings = {
     decoration = {
       rounding = 5;
       blur = {
-        enabled = true;
+        enabled =
+          if (osConfig.modules.device.type == "laptop")
+          then true
+          else false;
         special = true;
         popups = true;
         ignore_opacity = true;
