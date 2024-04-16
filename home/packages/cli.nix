@@ -3,7 +3,6 @@
     pre-commit
     commitizen
     lazygit
-    tldr
     alejandra # nix formatter
     nil # nix lsp
     unzip
