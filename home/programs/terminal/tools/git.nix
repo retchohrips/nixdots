@@ -8,6 +8,7 @@
     tmp/
     *.tmp
     log/
+    .DS_STORE
   '';
 
   nix = ''
