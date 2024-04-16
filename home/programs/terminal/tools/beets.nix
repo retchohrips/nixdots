@@ -218,7 +218,7 @@ in {
           }
           {
             name = "loved.m3u";
-            query = "loved:1";
+            query = "loved:1 title+";
           }
         ];
       };
