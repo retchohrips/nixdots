@@ -5,8 +5,8 @@
       blur = {
         enabled =
           if (osConfig.modules.device.type == "laptop")
-          then true
-          else false;
+          then false
+          else true;
         special = true;
         popups = true;
         ignore_opacity = true;
