@@ -13,6 +13,8 @@
         ];
       })
       prismlauncher # Minecraft
+      protontricks
+      gnome.zenity
     ]
     ++ (with inputs.nix-gaming.packages.${pkgs.system}; [
       winetricks

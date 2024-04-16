@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nix-index-db.hmModules.nix-index];
   home.packages = with pkgs; [
     pre-commit
     commitizen
@@ -7,15 +12,16 @@
     nil # nix lsp
     unzip
     p7zip
-    ripgrep
+    ripgrep # improved grep
     file
     fd
     fzf
     just
     libnotify
-    ncdu
+    ncdu # storage visualization
     sshfs
     trash-cli
+    comma # run programs without installing them
     gcc # home-manager must be able to compile c
 
     # Package management
