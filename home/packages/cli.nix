@@ -15,7 +15,6 @@
     ripgrep # improved grep
     file
     fd
-    fzf
     just
     libnotify
     ncdu # storage visualization
