@@ -6,6 +6,7 @@
     "gnome-keyring-daemon --start --components=secrets"
     "waybar"
     "wlsunset-auto"
-    "sleep 5 ; telegram-desktop -startintray ; discord --start-minimized"
+    "sleep 5 ; telegram-desktop -startintray"
+    "sleep 5 ; discord --start-minimized"
   ];
 }
