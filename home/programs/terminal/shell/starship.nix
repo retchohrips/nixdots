@@ -87,7 +87,8 @@
       python = {
         symbol = "";
         style = "bg:green";
-        format = "[[ $symbol( $version) ](fg:${withHashtag.base01} bg:green)]($style)";
+        format = "[[ $symbol( $version )(\($virtualenv\) )](fg:${withHashtag.base01} bg:green)]($style)";
+        python_binary = ["./venv/bin/python" "python" "python3" "python2"];
       };
       cmd_duration = {
         style = "bg:blue fg:${withHashtag.base01}";
