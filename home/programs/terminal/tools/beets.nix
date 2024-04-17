@@ -58,7 +58,7 @@
             repo = pname;
             owner = "retchohrips";
             rev = version;
-            hash = "sha256-K4fyFNYjXAmDsVwQh1mUwKp58AOsWwjnOPdIY4N4m7c=";
+            hash = "sha256-EQy5vWPTaSjw8L+bKxUux+iSClDk31XXn3Rz9ILYqPU=";
           };
 
           # there are no tests
