@@ -2,6 +2,7 @@
   config,
   pkgs,
   systemSettings,
+  lib,
   ...
 }: let
   beetcamp = pkgs.callPackage ({
@@ -237,4 +238,25 @@ in {
         beautifulsoup4
       ]))
   ];
+
+  systemd.user.services.beets-lastloved = lib.mkIf (systemSettings.hostname == "bundesk") {
+    Unit.Description = "beets last.fm loved tracks synchronization";
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${config.programs.beets.package}/bin/beet lastloved";
+    };
+  };
+
+  systemd.user.timers.beets-lastloved = lib.mkIf (systemSettings.hostname == "bundesk") {
+    Unit = {Description = "Timer for beets last.fm loved tracks synchronization";};
+
+    Timer = {
+      OnBootSec = "15min";
+      OnUnitActiveSec = "1d";
+      Unit = "beets-lastloved.service";
+    };
+
+    Install = {WantedBy = ["timers.target"];};
+  };
 }
