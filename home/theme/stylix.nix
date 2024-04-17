@@ -40,8 +40,8 @@ in {
         });
       };
       sansSerif = {
-        name = "Lexend";
-        package = pkgs.lexend;
+        name = "Inter";
+        package = pkgs.inter;
       };
       serif = {
         name = "Noto Serif";
