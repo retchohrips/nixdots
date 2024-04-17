@@ -6,17 +6,19 @@
     ];
 
     windowrulev2 = [
+      "suppressevent maximize, class:.*" # don't let windows request maximizing
+
       # only allow shadows for floating windows
       "noshadow, floating:0"
 
-      "float,class:udiskie"
+      "float, class:udiskie"
 
       # Telegram media viewer
       "float, title:^(Media viewer)$"
 
       # wlogout
-      "fullscreen,class:wlogout"
-      "fullscreen,title:wlogout"
+      "fullscreen, class:wlogout"
+      "fullscreen, title:wlogout"
       "noanim, title:wlogout"
 
       # Make steam menus stay put
