@@ -31,11 +31,10 @@ in {
 
     fonts = {
       monospace = {
-        name = "${userSettings.font} Nerd Font";
+        name = "FantasqueSansM Nerd Font";
         package = with pkgs; (nerdfonts.override {
           fonts = [
-            # "${userSettings.font}"
-            "CascadiaCode"
+            "FantasqueSansMono"
           ];
         });
       };

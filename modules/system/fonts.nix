@@ -33,6 +33,7 @@
           "JetBrainsMono"
           "CommitMono"
           "CascadiaCode"
+          "FantasqueSansMono"
           "VictorMono"
           "ProggyClean"
           "NerdFontsSymbolsOnly"
