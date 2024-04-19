@@ -57,11 +57,12 @@
     };
 
     # Garbage collection, remove packages that are older than 7d
-    gc = {
-      automatic = true;
-      dates = "Mon *-*-* 03:00";
-      options = "--delete-older-than 7d";
-    };
+    # Disabled, using nh instead
+    # gc = {
+    #   automatic = true;
+    #   dates = "Mon *-*-* 03:00";
+    #   options = "--delete-older-than 7d";
+    # };
 
     # automatically optimize nix store my removing hard links
     # (after the gc)
