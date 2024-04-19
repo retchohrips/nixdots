@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  userSettings,
+  ...
+}: {
   programs = {
     less.enable = true;
     fish.enable = true; # home-manager wants this to be set everywhere
@@ -56,4 +60,12 @@
   };
 
   environment.systemPackages = with pkgs; [wineWowPackages.waylandFull];
+
+  programs.nh = {
+    # "yet-another-nix-helper"
+    enable = true;
+    package = pkgs.nh;
+    clean.enable = true;
+    flake = "/home/${userSettings.username}/.dotfiles";
+  };
 }
