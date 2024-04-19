@@ -80,7 +80,7 @@
           name = "Bun";
           dewm = "hyprland";
           genPape = "yes";
-          pape = "flowers.jpg";
+          pape = "flowers.png";
         };
       in
         lib.nixosSystem {
