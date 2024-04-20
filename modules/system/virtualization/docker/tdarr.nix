@@ -35,6 +35,7 @@
         "reconnect" # handle connection drops
         "ServerAliveInterval=15" # keep connections alive
         "IdentityFile=/home/bunny/.ssh/id_ed25519"
+        "nofail" # Don't break the build if this can't mount
       ];
     };
   };
