@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SOURCE: https://git.sr.ht/~grtcdr/startpages/tree/master/item/g/README.md -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>New Tab</title>
+    <style>
+      :root {
+        --bg: #303446;
+        --fg: #c6d0f5;
+        --comment: #737994;
+        --link: #babbf1;
+        --hl: #8caaee;
+      }
+
+      body {
+        color: var(--fg);
+        background-color: var(--bg);
+        font-family: "monospace";
+        margin: 20px;
+      }
+
+      h1 {
+        color: var(--comment);
+      }
+
+      h3 {
+        color: var(--fg);
+        font-size: 24px;
+        margin-bottom: 0;
+      }
+
+      h3:before {
+        content: "(";
+        padding-right: 4px;
+      }
+
+      a {
+        color: var(--link);
+        font-size: 20px;
+        text-decoration: none;
+      }
+
+      a:visited,
+      a:link,
+      a:active {
+        color: var(--link);
+      }
+
+      a:hover {
+        color: var(--hl);
+      }
+
+      ul {
+        list-style: none;
+        margin-top: 0;
+        padding-left: 0;
+        text-indent: 30px;
+      }
+
+      ul li {
+        display: inline;
+        padding: 4px;
+      }
+
+      li {
+        font-size: 20px;
+        color: var(--fg);
+      }
+
+      li:first-child:before {
+        content: "(";
+        padding-right: 4px;
+      }
+
+      li:last-child:after {
+        content: "))";
+        padding-left: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Greeting -->
+    <h1>;; ʕ•ᴥ•ʔ <span style="font-size: 0.5em">Greetings!</span></h1>
+
+    <!-- Categories and links, you can have as many as you wish. -->
+    <h3>devel</h3>
+    <ul>
+      <li><a href="https://github.com">github</a></li>
+    </ul>
+
+    <h3>social</h3>
+    <ul>
+      <li><a href="https://blahaj.zone">blåhaj zone</a></li>
+      <li><a href="https://reddit.com">reddit</a></li>
+      <li><a href="https://tumblr.com">tumblr</a></li>
+    </ul>
+
+    <h3>wiki</h3>
+    <ul>
+      <li><a href="https://en.wikipedia.org">wikipedia</a></li>
+    </ul>
+  </body>
+</html>

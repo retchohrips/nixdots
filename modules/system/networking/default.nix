@@ -9,6 +9,7 @@ in {
     # ./optimise.nix
     ./ssh.nix
     ./riseup.nix
+    ./startpage.nix
   ];
   services = {
     resolved = {
