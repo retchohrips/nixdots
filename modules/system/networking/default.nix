@@ -8,6 +8,7 @@ in {
   imports = [
     # ./optimise.nix
     ./ssh.nix
+    ./riseup.nix
   ];
   services = {
     resolved = {
