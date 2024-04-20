@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  imports = [inputs.nix-index-db.hmModules.nix-index];
+{pkgs, ...}: {
   home.packages = with pkgs; [
     pre-commit
     commitizen
@@ -20,7 +15,6 @@
     ncdu # storage visualization
     sshfs
     trash-cli
-    comma # run programs without installing them
     gcc # home-manager must be able to compile c
 
     # Package management

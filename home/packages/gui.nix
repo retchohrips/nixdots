@@ -9,7 +9,7 @@
     vlc # video player
     foliate # ebook viewer
     zathura # pdf viewer
-    calibre # ebook manager
+    # calibre # ebook manager # broken rn
   ];
 
   xdg.desktopEntries = {
