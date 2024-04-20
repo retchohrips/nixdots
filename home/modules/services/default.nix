@@ -1,7 +1,6 @@
 {lib, ...}: let
   inherit (builtins) filter map toString;
   inherit (lib.filesystem) listFilesRecursive;
-  inherit (lib.modules) mkIf;
   inherit (lib.strings) hasSuffix;
 in {
   imports = filter (hasSuffix ".nix") (

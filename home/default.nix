@@ -30,6 +30,6 @@
 
   programs.home-manager.enable = true; # Let HM manage itself
 
-  # reload system units when changing configs
+  # reload systemd units when changing configs
   systemd.user.startServices = lib.mkDefault "sd-switch";
 }

@@ -2,6 +2,7 @@
 # Yeah everything about this is probably super insecure and messed up. But I don't know the proper ways to do any of this instead
 
 working_dir="/home/$USER/.config/openvpn/client"
+echo "$working_dir"
 gateways_json=$working_dir/gateways.json
 ca_cert_file=$working_dir/vpn-ca.pem
 cert_file=$working_dir/cert.pem
@@ -14,6 +15,7 @@ chmod 777 "$working_dir"
 # SETTINGS
 port=53
 server="vpn09-mia.riseup.net"
+proto="tcp"
 
 update_gateways() {
   curl https://api.black.riseup.net/3/config/eip-service.json -o"$gateways_json"
@@ -33,14 +35,17 @@ update_vpn_client_credentials() {
 
 generate_configuration() {
   server_info=$(jq ".gateways[] | select(.host == \"$server\")" "$gateways_json")
+  ip_address=$(echo "$server_info" | jq .ip_address | tr -d \")
+  host=$(echo "$server_info" | jq .host | tr -d \")
+  location=$(echo "$server_info" | jq .location | tr -d \")
 
-  read -r -d '' config <<-EOM
+  cat <<EOF >"$ovpn_file"
 client
 dev tun
 
-remote $(echo "$server_info" | jq .ip_address | tr -d \") $port # $(echo "$server_info" | jq .host | tr -d \") in $(echo "$server_info" | jq .location | tr -d \")
-proto udp
-verify-x509-name $(echo "$server_info" | jq .host | cut -d '.' -f 1 | tr -d \") name
+remote $ip_address $port # $host in $location
+proto $proto
+verify-x509-name $(echo "$host" | cut -d '.' -f 1) name
 
 cipher AES-256-GCM
 tls-version-min 1.3
@@ -62,9 +67,8 @@ route 170.114.52.3 255.255.255.255 net_gateway
 ca $(realpath "$ca_cert_file")
 cert $(realpath "$cert_file")
 key $(realpath "$key_file")
-EOM
+EOF
 
-  echo "$config" >"$ovpn_file"
 }
 
 update_gateways

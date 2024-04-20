@@ -17,13 +17,16 @@
       gpu.type = "amd";
       cpu.type = "intel";
     };
-    system.virtualization = {
-      enable = true;
-      docker = {
+    system = {
+      vpn.enable = true;
+      virtualization = {
         enable = true;
-        tdarr-node.enable = true;
+        docker = {
+          enable = true;
+          tdarr-node.enable = true;
+        };
+        virt.enable = true;
       };
-      virt.enable = true;
     };
   };
 }
