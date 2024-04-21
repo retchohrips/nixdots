@@ -32,7 +32,6 @@
       c = "clear";
       e = "exit";
       v = "nvim";
-      cd = "z";
     };
     interactiveShellInit =
       /*
@@ -41,6 +40,28 @@
       ''
         set fish_greeting # Disable greeting
         set sponge_purge_only_on_exit true
+
+        set fish_color_autosuggestion brwhite
+        set fish_color_command brcyan
+        set fish_color_comment yellow
+        set fish_color_cwd green
+        set fish_color_cwd_root red
+        set fish_color_end magenta
+        set fish_color_error red
+        set fish_color_escape cyan
+        set fish_color_history_current --bold
+        set fish_color_host normal
+        set fish_color_host_remote yellow
+        set fish_color_match brblue
+        set fish_color_normal normal
+        set fish_color_operator brblue
+        set fish_color_param white
+        set fish_color_quote yellow
+        set fish_color_redirection brwhite
+        set fish_color_search_match 'bryellow'  '--background=brblack'
+        set fish_color_selection 'white'  '--bold'  '--background=brblack'
+        set fish_color_status red
+        set fish_color_user brgreen
       '';
   };
 

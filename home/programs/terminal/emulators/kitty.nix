@@ -5,22 +5,13 @@
     settings = {
       font_size = 12;
       cursor_shape = "beam";
-      window_padding_width = 15;
-      window_margin_width = 10;
+      window_padding_width = 5;
       confirm_os_window_close = 0;
       linux_display_server = "x11";
       # enabled_layouts = "grid, splits, tall, fat";
       disable_ligatures = "never";
-      cursor_blink_interval = "0.5";
-      cursor_stop_blinking_after = "15.0";
-      scrollback_lines = 10000;
-      click_interval = "0.5";
-      select_by_word_characters = ":@-./_~?&=%+#";
       remember_window_size = false;
-      repaint_delay = 15;
       input_delay = 3;
-      url_style = "double";
-      open_url_with = "default";
     };
 
     keybindings = {
