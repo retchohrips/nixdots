@@ -240,7 +240,7 @@ with config.lib.stylix.colors; {
           background-color: transparent;
           color: ${withHashtag.base05};
           transition-property: none;
-          border-radius: 10px;
+          border-radius: 0px;
           border-color: transparent;
         }
 
@@ -258,13 +258,13 @@ with config.lib.stylix.colors; {
           padding-bottom: 2px;
           padding-left: 4px;
           padding-right: 4px;
-          border-radius: 10px;
+          border-radius: 5px;
         }
 
         tooltip {
           background: ${withHashtag.base00};
           opacity: 0.8;
-          border-radius: 10px;
+          border-radius: 5px;
           border: 2px solid ${withHashtag.base01};
         }
 
