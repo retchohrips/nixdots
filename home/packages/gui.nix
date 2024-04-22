@@ -4,7 +4,7 @@
   osConfig,
   ...
 }: let
-  acceptedTypes = ["desktop " "laptop"];
+  acceptedTypes = ["desktop" "laptop"];
 in {
   config = lib.mkIf (builtins.elem osConfig.modules.device.type acceptedTypes) {
     home.packages = with pkgs; [
