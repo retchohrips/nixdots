@@ -5,6 +5,7 @@
     telegram-desktop # messenger
     blender # 3d modelling
     krita # drawing program
+    gimp-with-plugins # raster image editor
     inkscape # vector editor
     vlc # video player
     foliate # ebook viewer

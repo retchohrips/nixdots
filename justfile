@@ -14,7 +14,15 @@ trace target_host=hostname: (build target_host "--show-trace")
 
 # Build and switch
 switch target_host=hostname:
-  sudo nixos-rebuild switch --flake .#{{target_host}}
+  nh os switch -H {{target_host}}
+
+# Build and switch after boot
+boot target_host=hostname:
+  nh os boot -H {{target_host}}
+
+# Build and activate, but do not switch (good for testing settings without keeping them)
+test target_host=hostname:
+  nh os test -H {{target_host}}
 
 check flags="":
   nix flake check {{flags}}
@@ -22,7 +30,7 @@ check flags="":
 check-trace: (check "--show-trace")
 
 update:
-  nix flake update
+  nh os switch --update
 
 # Add flake.lock and commit
 upgit:
@@ -31,10 +39,5 @@ upgit:
   git push
 
 # Collect garbage
-gc:
-  nix-collect-garbage -d
-  sudo nix-collect-garbage -d
-  nix-store --gc
-  sudo nix-store --gc
-  nix-store --optimise
-  sudo nix-store --optimise
+clean:
+  nh clean all
