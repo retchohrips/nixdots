@@ -14,8 +14,6 @@
       tray = "auto";
     };
 
-    services.gvfs.enable = true; # mount, trash, and stuff
-
     services.hypridle = {
       enable = true;
       lockCmd = "hyprlock";
