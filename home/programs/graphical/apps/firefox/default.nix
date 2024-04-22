@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
 
@@ -18,50 +22,106 @@
         "mousewheel.default.delta_multiplier_y" = 275;
       };
 
-      search = {
+      search = let
+        updateInterval = 24 * 60 * 60 * 1000;
+      in {
         force = true;
-        default = "Startpage";
+        default = "Brave";
         engines = {
+          "Brave" = {
+            urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
+            iconUpdateURL = "https://brave.com/static-assets/images/brave-favicon.png";
+            inherit updateInterval;
+            definedAliases = ["@b"];
+          };
+
           "Startpage" = {
             urls = [{template = "https://www.startpage.com/search?q={searchTerms}";}];
             iconUpdateURL = "https://www.startpage.com/sp/cdn/favicons/favicon--default.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # every day
+            inherit updateInterval;
             definedAliases = ["@s"];
           };
-          "GitHub" = {
-            iconUpdateURL = "https://github.githubassets.com/favicons/favicon.svg";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = ["@gh"];
 
-            urls = [
-              {
-                template = "https://github.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
+          "GitHub" = {
+            urls = [{template = "https://github.com/search?q={searchTerms}&type=code";}];
+            iconUpdateURL = "https://github.githubassets.com/favicons/favicon.svg";
+            inherit updateInterval;
+            definedAliases = ["@gh"];
           };
 
           "YouTube" = {
+            urls = [{template = "https://youtube.com/results?search_query={searchTerms}";}];
             iconUpdateURL = "https://youtube.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
+            inherit updateInterval;
             definedAliases = ["@yt"];
+          };
+
+          "Nix Packages" = {
             urls = [
               {
-                template = "https://youtube.com/results";
+                template = "https://search.nixos.org/packages";
                 params = [
                   {
-                    name = "search_query";
+                    name = "channel";
+                    value = "unstable";
+                  }
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
                     value = "{searchTerms}";
                   }
                 ];
               }
             ];
+
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@np"];
           };
+
+          "Home-Manager" = {
+            urls = [{template = "https://rycee.gitlab.io/home-manager/options.html";}];
+            definedAliases = ["@hm"];
+          };
+
+          "NixOS Options" = {
+            urls = [
+              {
+                template = "https://search.nixos.org/options";
+                params = [
+                  {
+                    name = "channel";
+                    value = "unstable";
+                  }
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@no"];
+          };
+
+          "NixOS Wiki" = {
+            urls = [{template = "https://wiki.nixos.org/wiki/{searchTerms}";}];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nw"];
+          };
+
+          "Bing".metaData.hidden = true;
+          "Amazon.com".metaData.hidden = true;
+          "Google".metaData.alias = "@g";
+          "DuckDuckGo".metaData.alias = "@d";
+          "Wikipedia (en)".metaData.alias = "@wiki";
         };
       };
 
