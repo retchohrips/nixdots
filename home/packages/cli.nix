@@ -1,19 +1,19 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     pre-commit
-    commitizen
+    commitizen # conventional commits cli
     lazygit
     alejandra # nix formatter
     nil # nix lsp
     unzip
     p7zip
-    ripgrep # improved grep
+    ripgrep # better grep
     file
-    fd
-    just
+    fd # better find
+    just # justfiles
     libnotify
     ncdu # storage visualization
-    sshfs
+    sshfs # mount filesystem over ssh
     trash-cli
     gcc # home-manager must be able to compile c
 
