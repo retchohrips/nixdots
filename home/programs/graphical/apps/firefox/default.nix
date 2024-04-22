@@ -27,103 +27,76 @@ in {
           "mousewheel.default.delta_multiplier_y" = 275;
         };
 
-        search = let
-          updateInterval = 24 * 60 * 60 * 1000;
-        in {
+        search = {
           force = true;
           default = "Brave";
-          engines = {
-            "Brave" = {
-              urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
+          engines = let
+            icons = pkgs.nixos-icons + "/share/icons/hicolor/scalable/apps";
+            engine = {
+              search,
+              definedAliases ? [],
+              icon ? null,
+              iconUpdateURL ? null,
+            }: {
+              inherit icon iconUpdateURL definedAliases;
+              urls = [{template = search;}];
+              updateInterval = 24 * 60 * 60 * 1000;
+            };
+          in {
+            "Brave" = engine {
+              search = "https://search.brave.com/search?q={searchTerms}";
               iconUpdateURL = "https://brave.com/static-assets/images/brave-favicon.png";
-              inherit updateInterval;
               definedAliases = ["@b"];
             };
 
-            "Startpage" = {
-              urls = [{template = "https://www.startpage.com/search?q={searchTerms}";}];
+            "Startpage" = engine {
+              search = "https://www.startpage.com/search?q={searchTerms}";
               iconUpdateURL = "https://www.startpage.com/sp/cdn/favicons/favicon--default.ico";
-              inherit updateInterval;
               definedAliases = ["@s"];
             };
 
-            "GitHub" = {
-              urls = [{template = "https://github.com/search?q={searchTerms}&type=code";}];
+            "GitHub" = engine {
+              search = "https://github.com/search?q={searchTerms}&type=code";
               iconUpdateURL = "https://github.githubassets.com/favicons/favicon.svg";
-              inherit updateInterval;
               definedAliases = ["@gh"];
             };
 
-            "YouTube" = {
-              urls = [{template = "https://youtube.com/results?search_query={searchTerms}";}];
+            "YouTube" = engine {
+              search = "https://youtube.com/results?search_query={searchTerms}";
               iconUpdateURL = "https://youtube.com/favicon.ico";
-              inherit updateInterval;
               definedAliases = ["@yt"];
             };
 
-            "Nix Packages" = {
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@np"];
+            "Nix Packages" = engine {
+              search = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
+              icon = icons + "/nix-snowflake.svg";
+              definedAliases = ["@np" "@nixp" "@nix-packages"];
             };
 
-            "Home-Manager" = {
-              urls = [{template = "https://rycee.gitlab.io/home-manager/options.html";}];
-              definedAliases = ["@hm"];
-            };
+            "Home Manager Options" = let
+              base_url = "https://mipmip.github.io/home-manager-option-search";
+            in
+              engine {
+                search = "${base_url}/?query={searchTerms}";
+                icon = icons + "/nix-snowflake-white.svg";
+                definedAliases = ["@hm" "@home-manager"];
+              };
 
-            "NixOS Options" = {
-              urls = [
-                {
-                  template = "https://search.nixos.org/options";
-                  params = [
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@no"];
+            "NixOS Options" = engine {
+              search = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
+              icon = icons + "/nix-snowflake-white.svg";
+              definedAliases = ["@no" "@nixo" "@nix-options"];
             };
 
             "NixOS Wiki" = {
               urls = [{template = "https://wiki.nixos.org/wiki/{searchTerms}";}];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@nw"];
+              icon = icons + "/nix-snowflake.svg";
+              definedAliases = ["@nw" "@nixw" "@nix-wiki"];
             };
 
             "Bing".metaData.hidden = true;
             "Amazon.com".metaData.hidden = true;
+            "eBay".metaData.hidden = true;
             "Google".metaData.alias = "@g";
             "DuckDuckGo".metaData.alias = "@d";
             "Wikipedia (en)".metaData.alias = "@wiki";
