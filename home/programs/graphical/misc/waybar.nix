@@ -2,11 +2,12 @@
   config,
   osConfig,
   pkgs,
+  lib,
   ...
 }:
 with config.lib.stylix.colors; {
   stylix.targets.waybar.enable = false;
-  programs.waybar = {
+  programs.waybar = lib.mkIf osConfig.programs.hyprland.enable {
     enable = true;
     settings = {
       mainBar = {
@@ -387,7 +388,7 @@ with config.lib.stylix.colors; {
         }
       '';
   };
-  home.packages = [
+  home.packages = lib.mkIf osConfig.programs.hyprland.enable [
     pkgs.rofi-bluetooth
     (pkgs.writeScriptBin "waybar-weather"
       /*

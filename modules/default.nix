@@ -1,7 +1,7 @@
 {
   imports = [
     ./options
-    ./roles/laptop
+    ./roles
     ./secrets
     ./system
   ];

@@ -1,5 +1,12 @@
-{pkgs, ...}: {
-  programs.kitty = {
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}: let
+  acceptedTypes = ["desktop" "laptop"];
+in {
+  programs.kitty = lib.mkIf (builtins.elem osConfig.modules.device.type acceptedTypes) {
     enable = true;
     shellIntegration.enableFishIntegration = true;
     settings = {

@@ -1,9 +1,10 @@
 {
-  userSettings,
+  lib,
+  osConfig,
   config,
   ...
 }: let
-  browser = ["${userSettings.browser}.desktop"];
+  browser = ["firefox.desktop"];
   file-manager = ["org.gnome.Nautilus.desktop"];
   image-viewer = ["org.gnome.Loupe.desktop"];
   pdf-viewer = ["org.pwmt.zathura.desktop"];
@@ -39,8 +40,9 @@
 
     "application/pdf" = pdf-viewer;
   };
+  acceptedTypes = ["laptop" "desktop"];
 in {
-  xdg = {
+  xdg = lib.mkIf (builtins.elem osConfig.modules.device.type acceptedTypes) {
     enable = true;
     cacheHome = "${config.home.homeDirectory}/.cache";
     configHome = "${config.home.homeDirectory}/.config";

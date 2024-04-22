@@ -1,5 +1,12 @@
-{pkgs, ...}: {
-  fonts = {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  acceptedTypes = ["laptop" "desktop"];
+in {
+  fonts = lib.mkIf (builtins.elem config.modules.device.type acceptedTypes) {
     fontDir = {
       enable = true;
       decompressFonts = true;

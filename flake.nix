@@ -61,33 +61,21 @@
   } @ inputs: let
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
-    commonSettings = {
-      browser = "firefox";
-      terminal = "kitty";
-      theme = "catppuccin-frappe";
-    };
   in {
     nixosConfigurations = {
       bundesk = let
-        systemSettings = {
-          hostname = "bundesk";
-        };
         userSettings = {
-          inherit (commonSettings) browser terminal font theme;
           username = "bunny";
           name = "Bun";
-          dewm = "hyprland";
-          genPape = "yes";
-          pape = "flowers.png";
         };
       in
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit self inputs userSettings systemSettings;
+            inherit self inputs userSettings;
           };
           modules = [
-            ./hosts/${systemSettings.hostname}
+            ./hosts/bundesk
             ./modules
             home-manager.nixosModules.home-manager
             {
@@ -97,32 +85,25 @@
                 users.${userSettings.username} = import ./home;
 
                 extraSpecialArgs = {
-                  inherit inputs userSettings systemSettings;
+                  inherit inputs userSettings;
                 };
               };
             }
           ];
         };
       pawpad = let
-        systemSettings = {
-          hostname = "pawpad";
-        };
         userSettings = {
-          inherit (commonSettings) browser terminal font theme;
           username = "puppy";
           name = "Pup";
-          dewm = "hyprland";
-          genPape = "yes";
-          pape = "Y2K.png";
         };
       in
         lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit self inputs userSettings systemSettings;
+            inherit self inputs userSettings;
           };
           modules = [
-            ./hosts/${systemSettings.hostname}
+            ./hosts/pawpad
             ./modules
             home-manager.nixosModules.home-manager
             nixos-hardware.nixosModules.dell-inspiron-5509
@@ -133,7 +114,7 @@
                 users.${userSettings.username} = import ./home;
 
                 extraSpecialArgs = {
-                  inherit inputs userSettings systemSettings;
+                  inherit inputs userSettings;
                 };
               };
             }

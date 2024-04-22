@@ -59,8 +59,6 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [wineWowPackages.waylandFull];
-
   programs.nh = {
     # "yet-another-nix-helper"
     enable = true;

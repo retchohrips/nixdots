@@ -1,10 +1,14 @@
 {
   config,
   pkgs,
+  lib,
+  osConfig,
   ...
-}: {
+}: let
+  acceptedTypes = ["laptop" "desktop"];
+in {
   imports = [./settings.nix ./binds.nix];
-  programs.ncmpcpp = {
+  programs.ncmpcpp = lib.mkIf (builtins.elem osConfig.modules.device.type acceptedTypes) {
     enable = true;
     package =
       (pkgs.ncmpcpp.override

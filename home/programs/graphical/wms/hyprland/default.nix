@@ -9,7 +9,7 @@
   inherit (lib.strings) hasSuffix;
 in {
   imports = filter (hasSuffix ".nix") (
-    map toString (filter (p: p != ./default.nix) (listFilesRecursive ./config))
+    map toString (filter (path: path != ./default.nix) (listFilesRecursive ./config))
   );
   config = mkIf osConfig.programs.hyprland.enable {
     wayland.windowManager.hyprland = {

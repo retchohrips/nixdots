@@ -1,8 +1,11 @@
 {
   userSettings,
-  systemSettings,
+  config,
+  lib,
   ...
-}: {
+}: let
+  acceptedTypes = ["desktop" "laptop"];
+in {
   services.syncthing = {
     enable = true;
     dataDir = "/home/${userSettings.username}";
@@ -15,11 +18,11 @@
           label = "Music";
           id = "jfvxq-2lb67";
           path =
-            if (systemSettings.hostname == "bundesk")
+            if (config.modules.system.hostname == "bundesk")
             then "/mnt/Cass/Media/Music"
             else "/home/${userSettings.username}/Media/Music";
         };
-        Obsidian = {
+        Obsidian = lib.mkIf (builtins.elem config.modules.device.type acceptedTypes) {
           enable = true;
           devices = ["S23"];
           label = "Obsidian";

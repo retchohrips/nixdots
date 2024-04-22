@@ -1,8 +1,8 @@
 {
   config,
   pkgs,
-  systemSettings,
   lib,
+  osConfig,
   ...
 }: let
   beetcamp = pkgs.callPackage ({
@@ -98,7 +98,7 @@ in {
     mpdIntegration.enableUpdate = true;
     settings = {
       directory =
-        if (systemSettings.hostname == "bundesk")
+        if (osConfig.modules.system.hostname == "bundesk")
         then "/mnt/Cass/Media/Music"
         else "${config.xdg.userDirs.music}";
       library = "${config.home.homeDirectory}/.beets/library.db";
@@ -203,7 +203,7 @@ in {
       smartplaylist = {
         auto = true;
         relative_to =
-          if (systemSettings.hostname == "bundesk")
+          if (osConfig.modules.system.hostname == "bundesk")
           then "/mnt/Cass/Media/Music"
           else "${config.xdg.userDirs.music}";
         playlist_dir = "${config.xdg.userDirs.music}/Playlists";
@@ -239,7 +239,7 @@ in {
       ]))
   ];
 
-  systemd.user.services.beets-lastloved = lib.mkIf (systemSettings.hostname == "bundesk") {
+  systemd.user.services.beets-lastloved = lib.mkIf (osConfig.modules.system.hostname == "bundesk") {
     Unit.Description = "beets last.fm loved tracks synchronization";
 
     Service = {
@@ -248,7 +248,7 @@ in {
     };
   };
 
-  systemd.user.timers.beets-lastloved = lib.mkIf (systemSettings.hostname == "bundesk") {
+  systemd.user.timers.beets-lastloved = lib.mkIf (osConfig.modules.system.hostname == "bundesk") {
     Unit = {Description = "Timer for beets last.fm loved tracks synchronization";};
 
     Timer = {

@@ -1,6 +1,6 @@
-{userSettings, ...}: {
+{
   imports = [
-    ./display/${userSettings.dewm}.nix
+    ./display/hyprland.nix
     ./environment
     ./hardware
     ./networking

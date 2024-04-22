@@ -1,12 +1,11 @@
 {
-  systemSettings,
+  config,
   lib,
   ...
 }: let
   inherit (lib) mkForce mkDefault;
 in {
   imports = [
-    # ./optimise.nix
     ./ssh.nix
     ./riseup.nix
     ./startpage.nix
@@ -45,7 +44,7 @@ in {
   };
 
   networking = {
-    hostName = systemSettings.hostname;
+    hostName = config.modules.system.hostname;
 
     hosts = {
       # Media server accessible by hostname

@@ -4,6 +4,6 @@
   inherit (lib.strings) hasSuffix;
 in {
   imports = filter (hasSuffix ".nix") (
-    map toString (filter (p: p != ./default.nix) (listFilesRecursive ./.))
+    map toString (filter (path: path != ./default.nix) (listFilesRecursive ./.))
   );
 }

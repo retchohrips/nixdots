@@ -5,8 +5,8 @@
     sudo = {
       enable = true;
 
-      # While convenient, this it insecure :(
-      wheelNeedsPassword = lib.mkDefault false;
+      # While convenient, disabling this is insecure :(
+      wheelNeedsPassword = lib.mkDefault true;
 
       #only allow members of the wheel group to execute sudo
       # by setting the executable’s permissions accordingly

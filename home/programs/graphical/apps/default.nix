@@ -1,6 +1,6 @@
-{userSettings, ...}: {
+{
   imports = [
-    ./${userSettings.browser}
+    ./firefox
     ./discord.nix
   ];
 }

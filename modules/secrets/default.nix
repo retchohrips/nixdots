@@ -34,8 +34,11 @@
       file = "/${homeDir}/.dotfiles/secrets/${file}.age";
       inherit path group owner mode;
     };
+
+  acceptedTypes = ["desktop" "laptop"];
 in {
   imports = [inputs.agenix.nixosModules.default];
+
   environment.systemPackages = [inputs.agenix.packages.${pkgs.system}.default];
 
   age.identityPaths = [
@@ -44,8 +47,8 @@ in {
   ];
 
   age.secrets = {
-    lastfm-account = mkSecret true {file = "lastfm-account";};
-    wakatime = mkSecretWithPath true {
+    lastfm-account = mkSecret (builtins.elem config.modules.device.type acceptedTypes) {file = "lastfm-account";};
+    wakatime = mkSecretWithPath (builtins.elem config.modules.device.type acceptedTypes) {
       file = "wakatime";
       path = homeDir + "/.wakatime.cfg";
       owner = username;

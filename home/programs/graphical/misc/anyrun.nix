@@ -2,10 +2,12 @@
   inputs,
   pkgs,
   config,
+  lib,
+  osConfig,
   ...
 }: {
   imports = [inputs.anyrun.homeManagerModules.default];
-  programs.anyrun = {
+  programs.anyrun = lib.mkIf osConfig.programs.hyprland.enable {
     enable = true;
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [

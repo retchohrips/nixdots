@@ -8,8 +8,6 @@
   acceptedTypes = ["laptop"];
 in {
   config = lib.mkIf (builtins.elem config.modules.device.type acceptedTypes) {
-    modules.system.security.fixWebcam = true;
-
     hardware.acpilight.enable = true;
 
     environment.systemPackages = with pkgs; [

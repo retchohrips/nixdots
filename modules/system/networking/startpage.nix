@@ -1,9 +1,13 @@
 {
   pkgs,
   userSettings,
+  lib,
+  config,
   ...
-}: {
-  systemd.services.startpage = {
+}: let
+  acceptedTypes = ["desktop" "laptop"];
+in {
+  systemd.services.startpage = lib.mkIf (builtins.elem config.modules.device.type acceptedTypes) {
     description = "A simple static homepage.";
     after = ["network.target"];
     wantedBy = ["multi-user.target"];

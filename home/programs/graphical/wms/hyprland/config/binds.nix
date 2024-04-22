@@ -1,8 +1,4 @@
-{
-  userSettings,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   ocr =
     pkgs.writeShellScript "ocr"
     ''
@@ -18,11 +14,10 @@ in {
       mvactive = binding "SUPER ALT" "moveactive";
       mvtows = binding "SUPER SHIFT" "movetoworkspace";
       arr = [1 2 3 4 5 6 7 8 9];
-      inherit (userSettings) browser terminal;
     in
       [
-        "SUPER, RETURN, exec, ${terminal}"
-        "SUPER, B, exec, ${browser}"
+        "SUPER, RETURN, exec, kitty"
+        "SUPER, B, exec, firefox"
         "SUPER, Period, exec, rofi -modi emoji -show emoji"
         "ALT, Tab, focuscurrentorlast"
         "SUPER, C, killactive"

@@ -1,14 +1,12 @@
 {
   config,
   pkgs,
+  lib,
+  osConfig,
   ...
 }: {
   stylix.targets.rofi.enable = false;
-  xdg.configFile."rofi/powermenuhack/style.rasi".text = import ./powermenu-style.nix {
-    inherit config;
-  };
-  xdg.configFile."rofi/powermenuhack/powermenu.sh".source = ./powermenu.sh;
-  programs.rofi = {
+  programs.rofi = lib.mkIf osConfig.programs.hyprland.enable {
     enable = true;
     package = with pkgs; rofi.override {plugins = [rofi-calc rofi-emoji];};
     extraConfig = {modi = "drun,emoji,calc";};

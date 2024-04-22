@@ -1,12 +1,12 @@
 {
   pkgs,
-  userSettings,
   config,
   inputs,
+  osConfig,
   ...
 }: let
-  theme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
-  inputImage = ../../wallpapers/${userSettings.pape};
+  theme = "${pkgs.base16-schemes}/share/themes/${osConfig.modules.home.theme}.yaml";
+  inputImage = osConfig.modules.home.wallpaper.file;
 
   genWallpaper = pkgs.runCommand "image.png" {} ''
     tmp="$(mktemp -d)"
@@ -18,9 +18,9 @@ in {
   imports = [inputs.stylix.homeManagerModules.stylix];
   stylix = {
     image =
-      if (userSettings.genPape == "yes")
+      if osConfig.modules.home.wallpaper.generate
       then genWallpaper
-      else ../../wallpapers/${userSettings.pape};
+      else config.modules.home.wallpaper.file;
     base16Scheme = theme;
 
     cursor = {
@@ -31,10 +31,10 @@ in {
 
     fonts = {
       monospace = {
-        name = "FantasqueSansM Nerd Font";
+        name = "JetBrainsMono Nerd Font";
         package = with pkgs; (nerdfonts.override {
           fonts = [
-            "FantasqueSansMono"
+            "JetBrainsMono"
           ];
         });
       };

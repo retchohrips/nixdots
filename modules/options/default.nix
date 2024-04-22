@@ -1,5 +1,5 @@
 {lib, ...}: let
-  inherit (lib) mkOption mkEnableOption types;
+  inherit (lib) mkOption types;
 in {
   options.modules = {
     device = {
@@ -8,8 +8,9 @@ in {
         default = "";
         description = ''
           The type/purpose of the device that will be used within the rest of the configuration.
-            - laptop: portable devices with batter optimizations
+            - laptop: portable devices with battery optimizations
             - desktop: stationary devices configured for maximum performance
+            - server: minimal config with no gui
         '';
       };
       gpu = {
@@ -26,27 +27,59 @@ in {
           type = with types; nullOr (enum ["intel"]);
           default = null;
           description = ''
-            The manifaturer/type of the primary system CPU.
-
-            Determines which ucode services will be enabled and provides additional kernel packages
+            The manifaturer/type of the primary system CPU. Determines which ucode services will be enabled and provides additional kernel packages.
           '';
         };
       };
     };
     system = {
-      security = {
-        fixWebcam = mkEnableOption "Unblacklist the related kernel module";
+      hostname = mkOption {
+        type = types.str;
+        description = "Hostname";
+      };
+      bluetooth = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable bluetooth";
+        };
+      };
+      printing = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable printing";
+        };
       };
       boot = {
         enableKernelTweaks = mkOption {
           type = types.bool;
           default = true;
-          description = "security and performance related kernel parameters";
+          description = "Security and performance related kernel parameters";
         };
         silentBoot = mkOption {
           type = types.bool;
           default = true;
-          description = "almost entirely silent boot process through `quiet` kernel parameter";
+          description = "Almost entirely silent boot process through `quiet` kernel parameter";
+        };
+      };
+    };
+    home = {
+      theme = mkOption {
+        type = types.str;
+        default = "catppuccin-frappe";
+        description = "The theme to use for stylix. Should be a base-16 theme.";
+      };
+      wallpaper = {
+        file = mkOption {
+          type = types.path;
+          default = ../../wallpapers/flowers.png;
+          description = "Image to use for wallpaper.";
+        };
+        generate = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Use lutgen to modify the wallpaper file to fit the stylix color theme.";
         };
       };
     };
