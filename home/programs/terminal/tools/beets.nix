@@ -215,7 +215,7 @@ in {
           }
           {
             name = "nicolethel.m3u";
-            query = "albumartist::('Nicole Dollanganger'|'Ethel Cain')";
+            query = "albumartist::('Nicole Dollanganger'|'Ethel Cain'|'White Silas')";
           }
           {
             name = "loved.m3u";
