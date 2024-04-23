@@ -4,7 +4,7 @@ in {
   options.modules = {
     device = {
       type = mkOption {
-        type = types.enum ["laptop" "desktop"];
+        type = types.enum ["laptop" "desktop" "server"];
         default = "";
         description = ''
           The type/purpose of the device that will be used within the rest of the configuration.
@@ -13,6 +13,7 @@ in {
             - server: minimal config with no gui
         '';
       };
+
       gpu = {
         type = mkOption {
           type = with types; nullOr (enum ["amd" "intel"]);
@@ -22,6 +23,7 @@ in {
           '';
         };
       };
+
       cpu = {
         type = mkOption {
           type = with types; nullOr (enum ["intel"]);
@@ -32,11 +34,13 @@ in {
         };
       };
     };
+
     system = {
       hostname = mkOption {
         type = types.str;
         description = "Hostname";
       };
+
       bluetooth = {
         enable = mkOption {
           type = types.bool;
@@ -44,6 +48,13 @@ in {
           description = "Enable bluetooth";
         };
       };
+
+      arr.enable = mkOption {
+        type = types.bool;
+        default = true; # Change when done debugging
+        description = "Enable media server.";
+      };
+
       printing = {
         enable = mkOption {
           type = types.bool;
@@ -51,12 +62,14 @@ in {
           description = "Enable printing";
         };
       };
+
       boot = {
         enableKernelTweaks = mkOption {
           type = types.bool;
           default = true;
           description = "Security and performance related kernel parameters";
         };
+
         silentBoot = mkOption {
           type = types.bool;
           default = true;
@@ -64,18 +77,21 @@ in {
         };
       };
     };
+
     home = {
       theme = mkOption {
         type = types.str;
         default = "catppuccin-frappe";
         description = "The theme to use for stylix. Should be a base-16 theme.";
       };
+
       wallpaper = {
         file = mkOption {
           type = types.path;
           default = ../../wallpapers/flowers.png;
           description = "Image to use for wallpaper.";
         };
+
         generate = mkOption {
           type = types.bool;
           default = true;

@@ -14,4 +14,6 @@ let
 in {
   "lastfm-account.age".publicKeys = mkSecrets personal;
   "wakatime.age".publicKeys = mkSecrets personal;
+  "radarrApiKey.age".publicKeys = mkSecrets personal;
+  "sonarrApiKey.age".publicKeys = mkSecrets personal;
 }

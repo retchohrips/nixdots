@@ -50,6 +50,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    recyclarr-configs = {
+      url = "github:recyclarr/config-templates";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -120,6 +125,34 @@
             }
           ];
         };
+      # cuddlenode = let
+      #   userSettings = {
+      #     username = "admin";
+      #     name = "Admin";
+      #   };
+      # in
+      #   lib.nixosSystem {
+      #     inherit system;
+      #     specialArgs = {
+      #       inherit self inputs userSettings;
+      #     };
+      #     modules = [
+      #       ./hosts/cuddlenode
+      #       ./modules
+      #       home-manager.nixosModules.home-manager
+      #       {
+      #         home-manager = {
+      #           useGlobalPkgs = true;
+      #           useUserPackages = true;
+      #           users.${userSettings.username} = import ./home;
+
+      #           extraSpecialArgs = {
+      #             inherit inputs userSettings;
+      #           };
+      #         };
+      #       }
+      #     ];
+      #   };
     };
   };
 }

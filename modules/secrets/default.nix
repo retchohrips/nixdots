@@ -55,5 +55,7 @@ in {
       group = "users";
       mode = "777";
     };
+    radarrApiKey = mkSecret (builtins.elem config.modules.device.type acceptedTypes) {file = "radarrApiKey";};
+    sonarrApiKey = mkSecret (builtins.elem config.modules.device.type acceptedTypes) {file = "sonarrApiKey";};
   };
 }
