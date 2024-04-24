@@ -45,6 +45,8 @@ in {
         set fish_greeting # Disable greeting
         set sponge_purge_only_on_exit true
 
+        ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+
         set fish_color_autosuggestion brwhite
         set fish_color_command brcyan
         set fish_color_comment yellow

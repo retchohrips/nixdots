@@ -21,10 +21,8 @@
       url = "github:alexanderjeurissen/ranger_devicons";
       flake = false;
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    neovim-flake.url = "github:notashelf/neovim-flake/v0.6";
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock = {
