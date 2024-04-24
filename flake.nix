@@ -53,6 +53,11 @@
       url = "github:recyclarr/config-templates";
       flake = false;
     };
+
+    firefox-ui-fix = {
+      url = "github:black7375/Firefox-UI-Fix/photon-style";
+      flake = false;
+    };
   };
 
   outputs = {

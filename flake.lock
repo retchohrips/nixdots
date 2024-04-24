@@ -211,6 +211,23 @@
         "type": "github"
       }
     },
+    "firefox-ui-fix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708340729,
+        "narHash": "sha256-4D880bHhEib3uJDoFP3yz6H6Iipei8yhf+LgUTsyGNQ=",
+        "owner": "black7375",
+        "repo": "Firefox-UI-Fix",
+        "rev": "7343efe88d88b2d7cc4434401ab16e2c3799ccbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "black7375",
+        "ref": "photon-style",
+        "repo": "Firefox-UI-Fix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -2639,6 +2656,7 @@
         "agenix": "agenix",
         "anyrun": "anyrun",
         "betterfox": "betterfox",
+        "firefox-ui-fix": "firefox-ui-fix",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
         "hyprland": "hyprland",

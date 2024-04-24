@@ -6,6 +6,14 @@
   ...
 }: let
   acceptedTypes = ["desktop" "laptop"];
+  betterfoxConfig = builtins.readFile inputs.betterfox;
+  firefox-ui-fixConfig = builtins.readFile "${inputs.firefox-ui-fix}/user.js";
+
+  sharedExtraConfig = ''
+    ${betterfoxConfig}
+
+    ${firefox-ui-fixConfig}
+  '';
 in {
   config = lib.mkIf (builtins.elem osConfig.modules.device.type acceptedTypes) {
     programs.firefox = {
@@ -13,7 +21,7 @@ in {
 
       profiles.default = {
         name = "Default";
-        extraConfig = builtins.readFile inputs.betterfox;
+        extraConfig = sharedExtraConfig;
 
         settings = {
           "extensions.abuseReport.enabled" = false;
@@ -103,11 +111,14 @@ in {
           };
         };
 
+        userContent = "@import url(\"firefox-ui-fix/userContent.css\")";
+
         userChrome =
           /*
           css
           */
           ''
+            @import url("firefox-ui-fix/userChrome.css");
             /* Remove close button */
             .titlebar-buttonbox-container{ display:none }
             .titlebar-spacer[type="post-tabs"]{ display:none }
@@ -122,5 +133,7 @@ in {
       "x-scheme-handler/about" = "firefox.desktop";
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
+
+    home.file.".mozilla/firefox/default/chrome/firefox-ui-fix".source = inputs.firefox-ui-fix;
   };
 }
