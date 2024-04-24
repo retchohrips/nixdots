@@ -1,15 +1,22 @@
 {
   pkgs,
   config,
+  lib,
   ...
-}: {
+}: let
+  inherit (lib) getExe;
+in {
   stylix.targets.fish.enable = !config.programs.kitty.enable;
   programs.fish = {
     enable = true;
     shellAliases = {
       rg = "rg --smart-case";
-      fd = "fd -Lu";
+      fd = "fd -Lu"; # follow symlinks and include hidden files
+      cat = "${getExe pkgs.bat} --style=plain";
+      grep = "${getExe pkgs.ripgrep}";
+
       rcp = "rsync --compress --human-readable --partial --info=progress2";
+      fcd = "cd $(find -type d | fzf)";
     };
     shellAbbrs = {
       g = "git";
@@ -21,14 +28,11 @@
       gm = "git merge";
       gp = "git push";
       gpu = "git pull";
+      gs = "git status";
+      gss = "git status --short";
       nf = "nix flake";
-      nfu = "nix flake update";
-      npr = "nixpkgs-review pr --run fish --print-result";
-      nd = "nix develop --command fish";
-      nb = "nix build";
       ns = "nix shell";
       nr = "nix run";
-      ncg = "sudo nix-collect-garbage -d";
       c = "clear";
       e = "exit";
       v = "nvim";

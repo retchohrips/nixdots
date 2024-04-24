@@ -15,8 +15,6 @@ in {
       # enable systemd DNS resolver daemon
       enable = true;
 
-      # this is necessary to get tailscale picking up your headscale instance
-      # and allows you to ping connected hosts by hostname
       domains = ["~."];
 
       # DNSSEC provides to DNS clients (resolvers) origin authentication of DNS data, authenticated denial of existence

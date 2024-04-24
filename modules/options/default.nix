@@ -51,7 +51,7 @@ in {
 
       arr.enable = mkOption {
         type = types.bool;
-        default = true; # Change when done debugging
+        default = false;
         description = "Enable media server.";
       };
 

@@ -7,7 +7,7 @@
   config.boot = let
     sys = config.modules.system;
   in {
-    consoleLogLevel = 3;
+    consoleLogLevel = lib.mkForce 3;
 
     # Always use latest kernel
     kernelPackages = lib.mkOverride 500 pkgs.linuxPackages_xanmod_latest;

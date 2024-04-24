@@ -14,7 +14,6 @@
         enable = true;
         docker = {
           enable = true;
-          tdarr-node.enable = true;
         };
         virt.enable = true;
       };
