@@ -6,13 +6,33 @@
   ...
 }: let
   acceptedTypes = ["desktop" "laptop"];
+  userPrefValue = with lib;
+    pref:
+      builtins.toJSON (
+        if isBool pref || isInt pref || isString pref
+        then pref
+        else builtins.toJSON pref
+      );
+  mkConfig = with lib;
+    prefs:
+      concatStrings (mapAttrsToList (name: value: ''
+          user_pref("${name}", ${userPrefValue value});
+        '')
+        prefs);
   betterfoxConfig = builtins.readFile inputs.betterfox;
   firefox-ui-fixConfig = builtins.readFile "${inputs.firefox-ui-fix}/user.js";
+  personalConfig = {
+    "userChrome.autohide.page_action" = true;
+    "userChrome.autohide.back_button" = true;
+    "userChrome.autohide.forward_button" = true;
+  };
 
   sharedExtraConfig = ''
     ${betterfoxConfig}
 
     ${firefox-ui-fixConfig}
+
+    ${mkConfig personalConfig}
   '';
 in {
   config = lib.mkIf (builtins.elem osConfig.modules.device.type acceptedTypes) {
