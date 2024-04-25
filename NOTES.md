@@ -6,4 +6,3 @@
 - [ ] Arr
   - [ ] put recyclarr on a timer
   - [ ] tdarr
-  - [ ] bazarr

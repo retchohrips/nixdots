@@ -10,11 +10,9 @@
     system = {
       hostname = "bundesk";
       vpn.enable = true;
+      arr.enable = true;
       virtualization = {
         enable = true;
-        docker = {
-          enable = true;
-        };
         virt.enable = true;
       };
     };
