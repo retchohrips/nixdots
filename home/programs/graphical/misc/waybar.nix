@@ -194,7 +194,7 @@ with config.lib.stylix.colors; {
           format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
           format-wifi = "{icon}";
           format-disconnected = "󰤮";
-          tooltip-format = "{signaldBm}dBm {essid} {frequency}GHz";
+          tooltip-format = "{essid} {signalStrength}";
           on-click = "nmtui-connect";
         };
 
