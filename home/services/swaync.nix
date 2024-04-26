@@ -49,7 +49,12 @@
       };
     };
 
-    style = with config.lib.stylix.colors; ''
+    style = with config.lib.stylix.colors; let
+      alpha =
+        if (osConfig.modules.device.type == "laptop")
+        then "1"
+        else ".55";
+    in ''
       * {
         color: ${withHashtag.base05};
         all: unset;
@@ -66,7 +71,7 @@
       }
 
       .floating-notifications.background .notification-row .notification-background {
-        background: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, .55);
+        background: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, ${alpha});
         box-shadow: 0 2px 8px 0 ${withHashtag.base00};
         border: 1px solid ${withHashtag.base0D};
         border-radius: 12px;
@@ -156,7 +161,7 @@
 
       /* Control Center */
       .control-center {
-        background: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, .55);
+        background: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, ${alpha});
         border-radius: 12px;
         border: 1px solid ${withHashtag.base0D};
         box-shadow: 0 2px 8px 0 ${withHashtag.base00};

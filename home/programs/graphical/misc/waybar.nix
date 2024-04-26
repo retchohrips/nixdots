@@ -225,7 +225,13 @@ with config.lib.stylix.colors; {
         };
       };
     };
-    style =
+
+    style = let
+      alpha =
+        if (osConfig.modules.device.type == "laptop")
+        then "1"
+        else "0.5";
+    in
       /*
       css
       */
@@ -254,7 +260,7 @@ with config.lib.stylix.colors; {
         }
 
         .modules-left, .modules-center, .modules-right {
-          background: alpha(${withHashtag.base00}, 0.5);
+          background: alpha(${withHashtag.base00}, ${alpha});
           padding-top: 2px;
           padding-bottom: 2px;
           padding-left: 4px;
