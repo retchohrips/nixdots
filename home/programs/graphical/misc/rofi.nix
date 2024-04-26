@@ -25,7 +25,10 @@
           border-color = mkL "${withHashtag.base05}30";
           border = mkL "1px";
           border-radius = mkL "6px";
-          background-color = mkL "${withHashtag.base00}80";
+          background-color =
+            if (osConfig.modules.device.type == "laptop")
+            then mkL "${withHashtag.base00}"
+            else mkL "${withHashtag.base00}80";
         };
 
         mainbox = {
