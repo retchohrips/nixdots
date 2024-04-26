@@ -46,6 +46,10 @@
         }
       '';
       "wlogout/style.css".text = with config.lib.stylix.colors; let
+        alpha =
+          if (osConfig.modules.device.type == "laptop")
+          then "1"
+          else "0.5";
         iconPath = "${pkgs.wlogout}/share/wlogout/icons";
       in
         /*
@@ -56,7 +60,7 @@
             font-family: ${config.stylix.fonts.sansSerif.name};
             font-size: 14pt;
             color: ${withHashtag.base05};
-            background-color: alpha(${withHashtag.base00}, 0.5);
+            background-color: alpha(${withHashtag.base00}, ${alpha});
           }
 
           button {
